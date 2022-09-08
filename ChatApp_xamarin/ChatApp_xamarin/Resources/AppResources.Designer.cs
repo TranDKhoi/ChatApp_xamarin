@@ -59,5 +59,266 @@ namespace ChatApp_xamarin.Resources {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alert.
+        /// </summary>
+        internal static string alert {
+            get {
+                return ResourceManager.GetString("alert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password must atleast 6 characters.
+        /// </summary>
+        internal static string atleast6char {
+            get {
+                return ResourceManager.GetString("atleast6char", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check your email to verify account.
+        /// </summary>
+        internal static string checkyouremail {
+            get {
+                return ResourceManager.GetString("checkyouremail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm.
+        /// </summary>
+        internal static string confirm {
+            get {
+                return ResourceManager.GetString("confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm password.
+        /// </summary>
+        internal static string confirmpass {
+            get {
+                return ResourceManager.GetString("confirmpass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create account successfully.
+        /// </summary>
+        internal static string createaccountsuccessfully {
+            get {
+                return ResourceManager.GetString("createaccountsuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create new account.
+        /// </summary>
+        internal static string createnewacount {
+            get {
+                return ResourceManager.GetString("createnewacount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Don&apos;t have any code?.
+        /// </summary>
+        internal static string donthaveanycode {
+            get {
+                return ResourceManager.GetString("donthaveanycode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email does not exist.
+        /// </summary>
+        internal static string emaildoesnotexist {
+            get {
+                return ResourceManager.GetString("emaildoesnotexist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email existed.
+        /// </summary>
+        internal static string emailexisted {
+            get {
+                return ResourceManager.GetString("emailexisted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter your verification code.
+        /// </summary>
+        internal static string enteryourverificationcode {
+            get {
+                return ResourceManager.GetString("enteryourverificationcode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed.
+        /// </summary>
+        internal static string Failed {
+            get {
+                return ResourceManager.GetString("Failed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forgot password?.
+        /// </summary>
+        internal static string forgotpass {
+            get {
+                return ResourceManager.GetString("forgotpass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Incorrect password.
+        /// </summary>
+        internal static string incorrectpassword {
+            get {
+                return ResourceManager.GetString("incorrectpassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid email format.
+        /// </summary>
+        internal static string invalidemailformat {
+            get {
+                return ResourceManager.GetString("invalidemailformat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login.
+        /// </summary>
+        internal static string login {
+            get {
+                return ResourceManager.GetString("login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New password.
+        /// </summary>
+        internal static string newpass {
+            get {
+                return ResourceManager.GetString("newpass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password.
+        /// </summary>
+        internal static string password {
+            get {
+                return ResourceManager.GetString("password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter your email.
+        /// </summary>
+        internal static string pleaseenteryouremail {
+            get {
+                return ResourceManager.GetString("pleaseenteryouremail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter your email or password.
+        /// </summary>
+        internal static string pleaseenteryouremailorpassword {
+            get {
+                return ResourceManager.GetString("pleaseenteryouremailorpassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter your password.
+        /// </summary>
+        internal static string pleaseenteryourpassword {
+            get {
+                return ResourceManager.GetString("pleaseenteryourpassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset password.
+        /// </summary>
+        internal static string resetpass {
+            get {
+                return ResourceManager.GetString("resetpass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset password successfully.
+        /// </summary>
+        internal static string resetpasswordsuccessfully {
+            get {
+                return ResourceManager.GetString("resetpasswordsuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send code.
+        /// </summary>
+        internal static string sendcode {
+            get {
+                return ResourceManager.GetString("sendcode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set your new password.
+        /// </summary>
+        internal static string setyournewpass {
+            get {
+                return ResourceManager.GetString("setyournewpass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verify.
+        /// </summary>
+        internal static string verify {
+            get {
+                return ResourceManager.GetString("verify", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wrong email or password.
+        /// </summary>
+        internal static string wrongemailorpassword {
+            get {
+                return ResourceManager.GetString("wrongemailorpassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wrong verification code.
+        /// </summary>
+        internal static string wrongverificationcode {
+            get {
+                return ResourceManager.GetString("wrongverificationcode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your email.
+        /// </summary>
+        internal static string youremail {
+            get {
+                return ResourceManager.GetString("youremail", resourceCulture);
+            }
+        }
     }
 }

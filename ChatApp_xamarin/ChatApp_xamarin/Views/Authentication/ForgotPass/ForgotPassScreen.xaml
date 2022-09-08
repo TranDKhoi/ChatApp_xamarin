@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ChatApp_xamarin.Views.Authentication.ForgotPass.ForgotPassScreen"
+             BindingContext="{StaticResource FotgotPassVM}"
+             xmlns:tran="clr-namespace:ChatApp_xamarin.Helpers"
+             NavigationPage.HasNavigationBar="false"
+             BackgroundColor="{AppThemeBinding Light=White,Dark=#242526}"
+             Padding="20"
+             Visual="Material">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label FontSize="50" Text="{tran:Translate forgotpass}"/>
+            <StackLayout VerticalOptions="CenterAndExpand">
+                <Entry Placeholder="{tran:Translate youremail}"
+                       Text="{Binding Email, Mode=OneWayToSource}"
+                       BackgroundColor="{AppThemeBinding Light=White,Dark=#242526}"
+                       PlaceholderColor="{StaticResource primaryColor}" />
+                <Button Text="{tran:Translate sendcode}"
+                        Command="{Binding SendcodeClickCM}"
+                        CornerRadius="50"
+                        HeightRequest="50"
+                        Margin="0,50,0,0"
+                        BackgroundColor="{StaticResource primaryColor}" />
+                <Label Text="{tran:Translate login}"
+                       FontSize="18"
+                       HorizontalOptions="Center"
+                       Margin="0,20,0,0">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding PopToLoginScreenCM}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

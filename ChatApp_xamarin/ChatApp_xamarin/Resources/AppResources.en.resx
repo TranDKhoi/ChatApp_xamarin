@@ -117,7 +117,91 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="alert" xml:space="preserve">
+    <value>Alert</value>
+  </data>
+  <data name="atleast6char" xml:space="preserve">
+    <value>Password must atleast 6 characters</value>
+  </data>
+  <data name="checkyouremail" xml:space="preserve">
+    <value>Check your email to verify account</value>
+  </data>
+  <data name="confirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="confirmpass" xml:space="preserve">
+    <value>Confirm password</value>
+  </data>
+  <data name="createaccountsuccessfully" xml:space="preserve">
+    <value>Create account successfully</value>
+  </data>
+  <data name="createnewacount" xml:space="preserve">
+    <value>Create new account</value>
+  </data>
+  <data name="donthaveanycode" xml:space="preserve">
+    <value>Don't have any code?</value>
+  </data>
+  <data name="emaildoesnotexist" xml:space="preserve">
+    <value>Email does not exist</value>
+  </data>
+  <data name="emailexisted" xml:space="preserve">
+    <value>Email existed</value>
+  </data>
+  <data name="enteryourverificationcode" xml:space="preserve">
+    <value>Enter your verification code</value>
+  </data>
+  <data name="Failed" xml:space="preserve">
+    <value>Failed</value>
+  </data>
+  <data name="forgotpass" xml:space="preserve">
+    <value>Forgot password?</value>
+  </data>
+  <data name="incorrectpassword" xml:space="preserve">
+    <value>Incorrect password</value>
+  </data>
+  <data name="invalidemailformat" xml:space="preserve">
+    <value>Invalid email format</value>
+  </data>
   <data name="login" xml:space="preserve">
     <value>Login</value>
+  </data>
+  <data name="newpass" xml:space="preserve">
+    <value>New password</value>
+  </data>
+  <data name="password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="pleaseenteryouremail" xml:space="preserve">
+    <value>Please enter your email</value>
+  </data>
+  <data name="pleaseenteryouremailorpassword" xml:space="preserve">
+    <value>Please enter your email or password</value>
+  </data>
+  <data name="pleaseenteryourpassword" xml:space="preserve">
+    <value>Please enter your password</value>
+  </data>
+  <data name="resetpass" xml:space="preserve">
+    <value>Reset password</value>
+  </data>
+  <data name="resetpasswordsuccessfully" xml:space="preserve">
+    <value>Reset password successfully</value>
+  </data>
+  <data name="sendcode" xml:space="preserve">
+    <value>Send code</value>
+  </data>
+  <data name="setyournewpass" xml:space="preserve">
+    <value>Set your new password</value>
+  </data>
+  <data name="verify" xml:space="preserve">
+    <value>Verify</value>
+  </data>
+  <data name="wrongemailorpassword" xml:space="preserve">
+    <value>Wrong email or password</value>
+  </data>
+  <data name="wrongverificationcode" xml:space="preserve">
+    <value>Wrong verification code</value>
+  </data>
+  <data name="youremail" xml:space="preserve">
+    <value>Your email</value>
   </data>
 </root>

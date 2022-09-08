@@ -1,4 +1,6 @@
-﻿using ChatApp_xamarin.Views.Authentication.LoginScreen;
+﻿using Acr.UserDialogs;
+using ChatApp_xamarin.Views.Authentication.LoginScreen;
+using ChatApp_xamarin.Views.Authentication.SignUpScreen;
 using Plugin.Multilingual;
 using Xamarin.Forms;
 
@@ -8,12 +10,11 @@ namespace ChatApp_xamarin
     {
         public App()
         {
-          
+
             InitializeComponent();
 
-            CrossMultilingual.Current.CurrentCultureInfo = new System.Globalization.CultureInfo("vi");
-
-            MainPage = new LoginScreen();
+            CrossMultilingual.Current.CurrentCultureInfo = new System.Globalization.CultureInfo("en");
+            MainPage = new NavigationPage(new LoginScreen());
         }
 
         protected override void OnStart()

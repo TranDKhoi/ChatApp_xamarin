@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ChatApp_xamarin.Views.Authentication.SignUpScreen.SignUpScreen"
+             xmlns:i18n="clr-namespace:ChatApp_xamarin.Helpers"
+             BindingContext="{StaticResource SignUpVM }"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="{AppThemeBinding Light=White,Dark=#242526}"
+             Visual="Material">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="CenterAndExpand"
+                     Padding="20,50,20,20">
+            <Entry Placeholder="{i18n:Translate youremail}"
+                   BackgroundColor="{AppThemeBinding Light=White,Dark=#242526}"
+                   Text="{Binding Email, Mode=OneWayToSource}"
+                   PlaceholderColor="{StaticResource primaryColor}" />
+            <Entry Placeholder="{i18n:Translate password}"
+                   Text="{Binding Password, Mode=OneWayToSource}"
+                   IsPassword="True"
+                   BackgroundColor="{AppThemeBinding Light=White,Dark=#242526}"
+                   PlaceholderColor="{StaticResource primaryColor}"></Entry>
+            <Entry Placeholder="{i18n:Translate confirmpass}"
+                   Text="{Binding RePassword, Mode=OneWayToSource}"
+                   IsPassword="True"
+                   BackgroundColor="{AppThemeBinding Light=White,Dark=#242526}"
+                   PlaceholderColor="{StaticResource primaryColor}"></Entry>
+            <Button HeightRequest="50"
+                    CornerRadius="50" 
+                    Text="{i18n:Translate confirm}"
+                    BackgroundColor="{StaticResource primaryColor}"
+                    Margin="0,20,0,0"
+                    Command="{Binding ConfirmClickCM}"/>
+            <Label Text="{i18n:Translate login}"
+                   HorizontalOptions="Center"
+                   VerticalOptions="End"
+                   Margin="0,50,0,0">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding PopClickCM}" />
+                </Label.GestureRecognizers>
+            </Label>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

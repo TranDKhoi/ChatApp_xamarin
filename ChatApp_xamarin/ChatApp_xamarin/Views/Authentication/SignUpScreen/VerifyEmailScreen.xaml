@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ChatApp_xamarin.Views.Authentication.SignUpScreen.VerifyEmailScreen"
+             BindingContext="{StaticResource SignUpVM}"
+             Visual="Material"
+             xmlns:i18l="clr-namespace:ChatApp_xamarin.Helpers"
+             BackgroundColor="{AppThemeBinding Light=White,Dark=#242526}"
+             NavigationPage.HasNavigationBar="False"
+             Padding="20">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="{i18l:Translate enteryourverificationcode}"
+                   FontSize="50" />
+            <StackLayout VerticalOptions="CenterAndExpand">
+                <Entry x:Name="codeField"
+                       Keyboard="Numeric"
+                       BackgroundColor="{AppThemeBinding Light=White,Dark=#242526}"
+                       CharacterSpacing="20"
+                       HorizontalTextAlignment="Center"
+                       MaxLength="5"
+                       FontSize="30"
+                       PlaceholderColor="{StaticResource primaryColor}" />
+                <Button Text="{i18l:Translate verify}"
+                        Command="{Binding VerifyEmailClickCM}"
+                        CommandParameter="{x:Reference codeField}"
+                        CornerRadius="50"
+                        HeightRequest="50"
+                        Margin="0,50,0,0"
+                        BackgroundColor="{StaticResource primaryColor}" />
+                <Label Text="{i18l:Translate donthaveanycode}"
+                       HorizontalOptions="Center"
+                       Margin="0,50,0,0">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding PopToSignUpClickCM}"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

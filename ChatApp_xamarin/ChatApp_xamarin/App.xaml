@@ -2,10 +2,14 @@
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:loginVM="clr-namespace:ChatApp_xamarin.ViewModels.Authentication"
-             x:Class="ChatApp_xamarin.App">
+             x:Class="ChatApp_xamarin.App"
+          >
     <Application.Resources>
         <ResourceDictionary>
             <loginVM:LoginViewModel x:Key="LoginVM" />
+            <loginVM:ForgotPassViewModel x:Key="FotgotPassVM" />
+            <loginVM:SignUpViewModel x:Key="SignUpVM" />
+            <Color x:Key="primaryColor">#0695FF</Color>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
