@@ -5,7 +5,7 @@
              xmlns:i18n="clr-namespace:ChatApp_xamarin.Helpers"
              BindingContext="{StaticResource LoginVM}">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout BackgroundColor="{AppThemeBinding Light=White,Dark=Black}">
             <Label Text="Welcome to Xamarin.Forms!"
                    VerticalOptions="CenterAndExpand"
                    HorizontalOptions="CenterAndExpand" />

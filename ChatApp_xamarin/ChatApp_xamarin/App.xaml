@@ -6,10 +6,6 @@
     <Application.Resources>
         <ResourceDictionary>
             <loginVM:LoginViewModel x:Key="LoginVM" />
-
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="ResourcesXAML/Theme/LightTheme.xaml" />
-            </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

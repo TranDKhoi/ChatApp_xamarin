@@ -3,6 +3,7 @@ using Plugin.Multilingual;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Input;
@@ -33,10 +34,38 @@ namespace ChatApp_xamarin.ViewModels.Authentication
         {
             tapCM = new Command(() =>
             {
-                CrossMultilingual.Current.CurrentCultureInfo = new System.Globalization.CultureInfo("en");
-                App.Current.MainPage = new LoginScreen();
+                
+
             });
         }
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//CHANGE LANGUAGE
+//CrossMultilingual.Current.CurrentCultureInfo = new System.Globalization.CultureInfo("en");
+//App.Current.MainPage = new LoginScreen();
+
+
+//CHANGE THEME
+//if (App.Current.RequestedTheme == OSAppTheme.Light)
+//{
+//    App.Current.UserAppTheme = OSAppTheme.Dark;
+//}
+//else
+//{
+//    App.Current.UserAppTheme = OSAppTheme.Light;
+//}
