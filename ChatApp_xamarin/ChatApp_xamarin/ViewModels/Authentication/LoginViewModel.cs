@@ -9,6 +9,14 @@ using ChatApp_xamarin.Services;
 using ChatApp_xamarin.Models;
 using ChatApp_xamarin.Utils;
 using ChatApp_xamarin.Views.BottomBarCustom;
+using Firebase.Database;
+using Xamarin.Essentials;
+using System.Reactive.Linq;
+using System.Collections.Generic;
+using System;
+using Plugin.LocalNotification;
+using Plugin.LocalNotification.iOSOption;
+using Plugin.LocalNotification.AndroidOption;
 
 namespace ChatApp_xamarin.ViewModels.Authentication
 {
@@ -30,6 +38,15 @@ namespace ChatApp_xamarin.ViewModels.Authentication
             get { return password; }
             set { password = value; OnPropertyChanged(); }
         }
+
+        private List<User> listData;
+
+        public List<User> ListData
+        {
+            get { return listData; }
+            set { listData = value; OnPropertyChanged(); }
+        }
+
 
 
         public ICommand LoginClickCM { get; set; }
@@ -77,6 +94,7 @@ namespace ChatApp_xamarin.ViewModels.Authentication
             {
                 await App.Current.MainPage.Navigation.PushAsync(new SignUpScreen());
             });
+
         }
 
 
@@ -115,3 +133,29 @@ namespace ChatApp_xamarin.ViewModels.Authentication
 //{
 //    App.Current.UserAppTheme = OSAppTheme.Light;
 //}
+
+//listener
+//var subscriber = MessageService.ins.SubscriptionToMessageChange();
+//var listener = subscriber.Subscribe(item =>
+//{
+//    Console.WriteLine("sssss");
+//});
+////listener.Dispose();
+
+//NOTIFICATION
+//var notification = new NotificationRequest
+//{
+//    BadgeNumber = 1,
+//    Description = item.Object.email,
+//    Title = item.Object.name,
+//    ReturningData = "Test Data",
+//    NotificationId = 253,
+//    Android = new AndroidOptions
+//    {
+//        ChannelId = "AndroidMessChannel",
+//        LaunchAppWhenTapped = true,
+//        Priority = AndroidPriority.Max,
+//    }
+//};
+
+//LocalNotificationCenter.Current.Show(notification);

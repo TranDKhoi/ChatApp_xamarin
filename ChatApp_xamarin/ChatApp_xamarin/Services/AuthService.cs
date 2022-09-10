@@ -30,18 +30,11 @@ namespace ChatApp_xamarin.Services
         }
 
         private FirebaseClient _client;
-        public FirebaseClient Client
-        {
-            get { return _client; }
-            set { _client = value; }
-        }
-
-        private const string baseurl = "https://chatapp-xamarin-default-rtdb.asia-southeast1.firebasedatabase.app/";
 
 
         AuthService()
         {
-            Client = new FirebaseClient(baseurl);
+            _client = DbService.ins.Client;
         }
 
         public async Task<(String, User)> SignUp(string email, string pass)
@@ -49,7 +42,7 @@ namespace ChatApp_xamarin.Services
 
             try
             {
-                var listUser = await Client.Child("users").OnceAsync<User>();
+                var listUser = await _client.Child("users").OnceAsync<User>();
                 if (listUser.Count != 0)
                 {
                     foreach (var user in listUser)
@@ -67,7 +60,7 @@ namespace ChatApp_xamarin.Services
                     password = MD5Hash(pass),
                 };
                 var json = JsonConvert.SerializeObject(u);
-                var res = await Client.Child("users").PostAsync(json);
+                var res = await _client.Child("users").PostAsync(json);
                 if (res != null)
                 {
                     var trueUser = JsonConvert.DeserializeObject<User>(res.Object);
@@ -87,7 +80,7 @@ namespace ChatApp_xamarin.Services
         {
             try
             {
-                var listUser = await Client.Child("users").OnceAsync<User>();
+                var listUser = await _client.Child("users").OnceAsync<User>();
 
                 if (listUser.Count == 0)
                 {
@@ -128,7 +121,7 @@ namespace ChatApp_xamarin.Services
 
                 u.id = null;
                 u.password = MD5Hash(password);
-                await Client.Child($"users/{userId}").PatchAsync(JsonConvert.SerializeObject(u));
+                await _client.Child($"users/{userId}").PatchAsync(JsonConvert.SerializeObject(u));
 
                 return (AppResources.resetpasswordsuccessfully, true);
             }
@@ -142,7 +135,7 @@ namespace ChatApp_xamarin.Services
         {
             try
             {
-                var listUser = await Client.Child("users").OnceAsync<User>();
+                var listUser = await _client.Child("users").OnceAsync<User>();
 
                 if (listUser.Count == 0)
                 {
@@ -173,7 +166,7 @@ namespace ChatApp_xamarin.Services
         {
             try
             {
-                var user = await Client.Child($"users/{id}").OnceSingleAsync<User>();
+                var user = await _client.Child($"users/{id}").OnceSingleAsync<User>();
 
 
                 if (user == null)
