@@ -7,7 +7,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <loginVM:LoginViewModel x:Key="LoginVM" />
-            <loginVM:ForgotPassViewModel x:Key="FotgotPassVM" />
+            <loginVM:ForgotPassViewModel x:Key="ForgotPassVM" />
             <loginVM:SignUpViewModel x:Key="SignUpVM" />
             <Color x:Key="primaryColor">#0695FF</Color>
         </ResourceDictionary>
