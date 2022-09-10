@@ -21,6 +21,7 @@ namespace ChatApp_xamarin.Droid
             UserDialogs.Init(this);
             ToastConfig.DefaultPosition = ToastPosition.Bottom;
             LoadApplication(new App());
+
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {

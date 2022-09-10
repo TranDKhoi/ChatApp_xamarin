@@ -8,6 +8,7 @@ using ChatApp_xamarin.Views.Authentication.SignUpScreen;
 using ChatApp_xamarin.Services;
 using ChatApp_xamarin.Models;
 using ChatApp_xamarin.Utils;
+using ChatApp_xamarin.Views.BottomBarCustom;
 
 namespace ChatApp_xamarin.ViewModels.Authentication
 {
@@ -58,7 +59,7 @@ namespace ChatApp_xamarin.ViewModels.Authentication
                         return;
                     }
 
-                    //NAVIGATION TO HOME HERE
+                    await App.Current.MainPage.Navigation.PushAsync(new BottomBarCustom());
 
                 }
                 else

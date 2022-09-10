@@ -79,6 +79,15 @@ namespace ChatApp_xamarin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Calls.
+        /// </summary>
+        internal static string callTitle {
+            get {
+                return ResourceManager.GetString("callTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Check your email to verify account.
         /// </summary>
         internal static string checkyouremail {
@@ -102,6 +111,15 @@ namespace ChatApp_xamarin.Resources {
         internal static string confirmpass {
             get {
                 return ResourceManager.GetString("confirmpass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Messages.
+        /// </summary>
+        internal static string conversationTitle {
+            get {
+                return ResourceManager.GetString("conversationTitle", resourceCulture);
             }
         }
         
@@ -219,6 +237,15 @@ namespace ChatApp_xamarin.Resources {
         internal static string password {
             get {
                 return ResourceManager.GetString("password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phonebook.
+        /// </summary>
+        internal static string phoneBookTitle {
+            get {
+                return ResourceManager.GetString("phoneBookTitle", resourceCulture);
             }
         }
         

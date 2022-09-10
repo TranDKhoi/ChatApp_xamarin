@@ -1,6 +1,7 @@
 ﻿using Acr.UserDialogs;
 using ChatApp_xamarin.Views.Authentication.LoginScreen;
 using ChatApp_xamarin.Views.Authentication.SignUpScreen;
+using ChatApp_xamarin.Views.BottomBarCustom;
 using Plugin.Multilingual;
 using Xamarin.Forms;
 
