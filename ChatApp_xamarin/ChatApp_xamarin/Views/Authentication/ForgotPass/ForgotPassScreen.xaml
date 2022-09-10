@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ChatApp_xamarin.Views.Authentication.ForgotPass.ForgotPassScreen"
-             BindingContext="{StaticResource FotgotPassVM}"
+             BindingContext="{StaticResource ForgotPassVM}"
              xmlns:tran="clr-namespace:ChatApp_xamarin.Helpers"
              NavigationPage.HasNavigationBar="false"
              BackgroundColor="{AppThemeBinding Light=White,Dark=#242526}"

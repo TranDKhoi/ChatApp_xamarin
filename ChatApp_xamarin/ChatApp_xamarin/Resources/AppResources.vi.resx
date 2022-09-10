@@ -123,6 +123,9 @@
   <data name="atleast6char" xml:space="preserve">
     <value>Mật khẩu tối thiểu 6 ký tự</value>
   </data>
+  <data name="callTitle" xml:space="preserve">
+    <value>Cuộc gọi</value>
+  </data>
   <data name="checkyouremail" xml:space="preserve">
     <value>Kiểm tra email của bạn để xác thực tài khoản</value>
   </data>
@@ -131,6 +134,9 @@
   </data>
   <data name="confirmpass" xml:space="preserve">
     <value>Xác nhận mật khẩu</value>
+  </data>
+  <data name="conversationTitle" xml:space="preserve">
+    <value>Đoạn chat</value>
   </data>
   <data name="createaccountsuccessfully" xml:space="preserve">
     <value>Tạo tài khoản thành công</value>
@@ -170,6 +176,9 @@
   </data>
   <data name="password" xml:space="preserve">
     <value>Mật khẩu</value>
+  </data>
+  <data name="phoneBookTitle" xml:space="preserve">
+    <value>Danh bạ</value>
   </data>
   <data name="pleaseenteryouremail" xml:space="preserve">
     <value>Vui lòng nhập email</value>

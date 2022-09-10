@@ -123,6 +123,9 @@
   <data name="atleast6char" xml:space="preserve">
     <value>Password must atleast 6 characters</value>
   </data>
+  <data name="callTitle" xml:space="preserve">
+    <value>Calls</value>
+  </data>
   <data name="checkyouremail" xml:space="preserve">
     <value>Check your email to verify account</value>
   </data>
@@ -131,6 +134,9 @@
   </data>
   <data name="confirmpass" xml:space="preserve">
     <value>Confirm password</value>
+  </data>
+  <data name="conversationTitle" xml:space="preserve">
+    <value>Messages</value>
   </data>
   <data name="createaccountsuccessfully" xml:space="preserve">
     <value>Create account successfully</value>
@@ -170,6 +176,9 @@
   </data>
   <data name="password" xml:space="preserve">
     <value>Password</value>
+  </data>
+  <data name="phoneBookTitle" xml:space="preserve">
+    <value>Phonebook</value>
   </data>
   <data name="pleaseenteryouremail" xml:space="preserve">
     <value>Please enter your email</value>

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage  xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:chat="clr-namespace:ChatApp_xamarin.Views.Chat"
+             xmlns:call="clr-namespace:ChatApp_xamarin.Views.Call"
+             xmlns:phoneBook="clr-namespace:ChatApp_xamarin.Views.PhoneBook"
+             xmlns:i18n="clr-namespace:ChatApp_xamarin.Helpers"
+             x:Class="ChatApp_xamarin.Views.BottomBarCustom.BottomBarCustom"
+             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+             android:TabbedPage.ToolbarPlacement="Bottom"
+             android:TabbedPage.BarItemColor="#a4aab1"
+             
+             BackgroundColor="White"
+             android:TabbedPage.BarSelectedItemColor="{StaticResource Key=primaryColor}"
+             xmlns:windows="clr-namespace:Xamarin.Forms.PlatformConfiguration.WindowsSpecific;assembly=Xamarin.Forms.Core"
+             windows:TabbedPage.HeaderIconsEnabled="true">
+    <chat:ConversationScreen Title="{i18n:Translate conversationTitle}"
+                             IconImageSource="chat_bubble.png" />
+    <call:CallScreen Title="{i18n:Translate callTitle}"
+                     IconImageSource="group.png" />
+    <phoneBook:PhoneBookScreen Title="{i18n:Translate phoneBookTitle}"
+                               IconImageSource="videocam.png" />
+
+</TabbedPage>

@@ -7,7 +7,7 @@
              BackgroundColor="{AppThemeBinding Light=White,Dark=#242526}"
              Padding="20"
              NavigationPage.HasNavigationBar="False"
-             BindingContext="{StaticResource FotgotPassVM}">
+             BindingContext="{StaticResource ForgotPassVM}">
     <ContentPage.Content>
         <StackLayout>
             <Label Text="{i18l:Translate enteryourverificationcode}"
