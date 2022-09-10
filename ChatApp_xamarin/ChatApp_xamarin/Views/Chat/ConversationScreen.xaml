@@ -1,13 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ChatApp_xamarin.Views.Chat.ConversationScreen">
+             x:Class="ChatApp_xamarin.Views.Chat.ConversationScreen"
+             xmlns:i18n="clr-namespace:ChatApp_xamarin.Helpers"
+             BindingContext="{StaticResource ConversationVM}">
     <ContentPage.Content>
-        <StackLayout BackgroundColor="Aqua"
-                     HeightRequest="1000">
-            <Label Text="Chat screen"
-                   VerticalOptions="CenterAndExpand"
-                   HorizontalOptions="CenterAndExpand" />
+        <StackLayout HorizontalOptions="StartAndExpand"
+                     Padding="20">
+            <Entry Placeholder="{i18n:Translate search}" 
+                   HeightRequest="50"
+                   Text="{Binding Search, Mode=OneWayToSource}"
+                   BackgroundColor="{AppThemeBinding Light=#f6f6f6, Dark=#303030}"
+                  />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

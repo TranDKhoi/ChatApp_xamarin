@@ -195,8 +195,14 @@
   <data name="resetpasswordsuccessfully" xml:space="preserve">
     <value>Cập nhật mật khẩu thành công</value>
   </data>
+  <data name="search" xml:space="preserve">
+    <value>Tìm kiếm</value>
+  </data>
   <data name="sendcode" xml:space="preserve">
     <value>Gửi mã</value>
+  </data>
+  <data name="setting" xml:space="preserve">
+    <value>Cài đặt</value>
   </data>
   <data name="setyournewpass" xml:space="preserve">
     <value>Đặt mật khẩu mới</value>

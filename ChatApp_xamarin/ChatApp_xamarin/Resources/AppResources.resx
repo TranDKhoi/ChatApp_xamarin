@@ -195,8 +195,14 @@
   <data name="resetpasswordsuccessfully" xml:space="preserve">
     <value>Reset password successfully</value>
   </data>
+  <data name="search" xml:space="preserve">
+    <value>Search</value>
+  </data>
   <data name="sendcode" xml:space="preserve">
     <value>Send code</value>
+  </data>
+  <data name="setting" xml:space="preserve">
+    <value>Setting</value>
   </data>
   <data name="setyournewpass" xml:space="preserve">
     <value>Set your new password</value>
