@@ -8,6 +8,7 @@ using Acr.UserDialogs;
 using Plugin.LocalNotification;
 using Plugin.LocalNotification.AndroidOption;
 using Android.Content;
+using AndroidX.Core.OS;
 
 namespace ChatApp_xamarin.Droid
 {
@@ -28,8 +29,7 @@ namespace ChatApp_xamarin.Droid
             //init local notification push
             LocalNotificationCenter.CreateNotificationChannel(new NotificationChannelRequest());
 
-
-            LoadApplication(new App());
+            LoadApplication(new Application());
             LocalNotificationCenter.NotifyNotificationTapped(Intent);
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)

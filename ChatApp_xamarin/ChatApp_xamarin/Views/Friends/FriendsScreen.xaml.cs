@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace ChatApp_xamarin.Views.PhoneBook
+namespace ChatApp_xamarin.Views.Friends
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PhoneBookScreen : ContentPage
+    public partial class FriendsScreen : ContentPage
     {
-        public PhoneBookScreen()
+        public FriendsScreen()
         {
             InitializeComponent();
         }

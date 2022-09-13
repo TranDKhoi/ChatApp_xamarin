@@ -2,8 +2,7 @@
 <TabbedPage  xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:chat="clr-namespace:ChatApp_xamarin.Views.Chat"
-             xmlns:call="clr-namespace:ChatApp_xamarin.Views.Call"
-             xmlns:phoneBook="clr-namespace:ChatApp_xamarin.Views.PhoneBook"
+             xmlns:friends="clr-namespace:ChatApp_xamarin.Views.Friends"
              xmlns:setting="clr-namespace:ChatApp_xamarin.Views.Setting"
              xmlns:i18n="clr-namespace:ChatApp_xamarin.Helpers"
              x:Class="ChatApp_xamarin.Views.BottomBarCustom.BottomBarCustom"
@@ -16,10 +15,8 @@
              windows:TabbedPage.HeaderIconsEnabled="true">
     <chat:ConversationScreen Title="{i18n:Translate conversationTitle}"
                              IconImageSource="chat_bubble.png" />
-    <call:CallScreen Title="{i18n:Translate callTitle}"
-                     IconImageSource="group.png" />
-    <phoneBook:PhoneBookScreen Title="{i18n:Translate phoneBookTitle}"
-                               IconImageSource="videocam.png" />
+    <friends:FriendsScreen Title="{i18n:Translate friendsTitle}"
+                               IconImageSource="group.png" />
     <setting:SettingScreen Title="{i18n:Translate setting}"
                            IconImageSource="settings.png" />
 

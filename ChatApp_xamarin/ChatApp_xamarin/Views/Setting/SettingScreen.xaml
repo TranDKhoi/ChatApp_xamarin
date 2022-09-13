@@ -1,12 +1,139 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ChatApp_xamarin.Views.Setting.SettingScreen">
+             x:Class="ChatApp_xamarin.Views.Setting.SettingScreen"
+             Visual="Material"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:tran="clr-namespace:ChatApp_xamarin.Helpers"
+             BackgroundColor="{AppThemeBinding Dark=black,Light=White}"
+             BindingContext="{StaticResource SettingVM}">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Setting screen"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <ScrollView>
+            <StackLayout Padding="20">
+                <Frame CornerRadius="100"
+                       WidthRequest="130"
+                       HeightRequest="130"
+                       HorizontalOptions="Center"
+                       IsClippedToBounds="True"
+                       Padding="0">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding PickAvatarCM}" />
+                    </Frame.GestureRecognizers>
+                    <Image Source="{Binding AvatarPath}"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" />
+                </Frame>
+                <Label Text="{Binding CurrentUser.name}"
+                       FontSize="30"
+                       HorizontalOptions="Center"
+                       TextColor="{AppThemeBinding Light=black,Dark=white}" />
+                <!--SETTING-->
+                <Label Text="{tran:Translate settings}"
+                       FontSize="20"
+                       Margin="0,30,0,0"
+                       TextColor="{AppThemeBinding Dark=white,Light=black}" />
+                <Frame Padding="5"
+                       HeightRequest="40"
+                       BackgroundColor="{AppThemeBinding Dark=black,Light=white}">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ChangeThemeCM}" />
+                    </Frame.GestureRecognizers>
+                    <Grid>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="&#xe51c;"
+                                   FontFamily="Material"
+                                   TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                                   FontSize="30"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center" />
+                            <Label Text="{tran:Translate darkmode}"
+                                   VerticalOptions="Center"
+                                   TextColor="{AppThemeBinding Dark=White,Light=Black}"
+                                   FontSize="20" />
+                        </StackLayout>
+                        <Switch IsToggled="{Binding IsDark}"
+                                HorizontalOptions="End"
+                                IsEnabled="False"
+                                ThumbColor="{StaticResource primaryColor}" />
+                    </Grid>
+                </Frame>
+                <Frame Padding="5"
+                       HeightRequest="40"
+                       BackgroundColor="{AppThemeBinding Dark=black,Light=white}">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ChangeLanguageCM}" />
+                    </Frame.GestureRecognizers>
+                    <Grid>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="&#xe8e2;"
+                                   FontFamily="Material"
+                                   TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                                   FontSize="30"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center" />
+                            <Label Text="{tran:Translate vietnamese}"
+                                   VerticalOptions="Center"
+                                   TextColor="{AppThemeBinding Dark=White,Light=Black}"
+                                   FontSize="20" />
+                        </StackLayout>
+                        <Switch IsToggled="{Binding ISVN}"
+                                HorizontalOptions="End"
+                                IsEnabled="False"
+                                ThumbColor="{StaticResource primaryColor}" />
+                    </Grid>
+                </Frame>
+                <Frame Padding="5"
+                       HeightRequest="40"
+                       BackgroundColor="{AppThemeBinding Dark=black,Light=white}">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ChangeSilentModeCM}" />
+                    </Frame.GestureRecognizers>
+                    <Grid>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="&#xe04e;"
+                                   FontFamily="Material"
+                                   TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                                   FontSize="30"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center" />
+                            <Label Text="{tran:Translate silentmode}"
+                                   VerticalOptions="Center"
+                                   TextColor="{AppThemeBinding Dark=White,Light=Black}"
+                                   FontSize="20" />
+                        </StackLayout>
+                        <Switch IsToggled="{Binding IsSilent}"
+                                HorizontalOptions="End"
+                                IsEnabled="False"
+                                ThumbColor="{StaticResource primaryColor}" />
+                    </Grid>
+                </Frame>
+                <!---ACCOUNT-->
+                <Label Text="{tran:Translate account}"
+                       FontSize="20"
+                       Margin="0,30,0,0"
+                       TextColor="{AppThemeBinding Dark=white,Light=black}" />
+                <Frame Padding="5"
+                       HeightRequest="40"
+                       BackgroundColor="{AppThemeBinding Dark=black,Light=white}">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding SignOutCM}" />
+                    </Frame.GestureRecognizers>
+                    <Grid>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="&#xe9ba;"
+                                   FontFamily="Material"
+                                   TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                                   FontSize="30"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center" />
+                            <Label Text="{tran:Translate signout}"
+                                   VerticalOptions="Center"
+                                   TextColor="{AppThemeBinding Dark=White,Light=Black}"
+                                   FontSize="20" />
+                        </StackLayout>
+                    </Grid>
+                </Frame>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

@@ -117,14 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="account" xml:space="preserve">
+    <value>Tài khoản</value>
+  </data>
   <data name="alert" xml:space="preserve">
     <value>Thông báo</value>
   </data>
+  <data name="areyousurewanttosignout" xml:space="preserve">
+    <value>Bạn có chắc muốn đăng xuất?</value>
+  </data>
   <data name="atleast6char" xml:space="preserve">
     <value>Mật khẩu tối thiểu 6 ký tự</value>
-  </data>
-  <data name="callTitle" xml:space="preserve">
-    <value>Cuộc gọi</value>
   </data>
   <data name="checkyouremail" xml:space="preserve">
     <value>Kiểm tra email của bạn để xác thực tài khoản</value>
@@ -144,6 +147,9 @@
   <data name="createnewacount" xml:space="preserve">
     <value>Tạo tài khoản</value>
   </data>
+  <data name="darkmode" xml:space="preserve">
+    <value>Chế độ ban đêm</value>
+  </data>
   <data name="donthaveanycode" xml:space="preserve">
     <value>Không nhận được mã?</value>
   </data>
@@ -162,6 +168,9 @@
   <data name="forgotpass" xml:space="preserve">
     <value>Quên mật khẩu?</value>
   </data>
+  <data name="friendsTitle" xml:space="preserve">
+    <value>Bạn bè</value>
+  </data>
   <data name="incorrectpassword" xml:space="preserve">
     <value>Sai mật khẩu</value>
   </data>
@@ -174,11 +183,11 @@
   <data name="newpass" xml:space="preserve">
     <value>Mật khẩu mới</value>
   </data>
+  <data name="no" xml:space="preserve">
+    <value>Huỷ</value>
+  </data>
   <data name="password" xml:space="preserve">
     <value>Mật khẩu</value>
-  </data>
-  <data name="phoneBookTitle" xml:space="preserve">
-    <value>Danh bạ</value>
   </data>
   <data name="pleaseenteryouremail" xml:space="preserve">
     <value>Vui lòng nhập email</value>
@@ -204,11 +213,23 @@
   <data name="setting" xml:space="preserve">
     <value>Cài đặt</value>
   </data>
+  <data name="settings" xml:space="preserve">
+    <value>Cài đặt chung</value>
+  </data>
   <data name="setyournewpass" xml:space="preserve">
     <value>Đặt mật khẩu mới</value>
   </data>
+  <data name="signout" xml:space="preserve">
+    <value>Đăng xuất</value>
+  </data>
+  <data name="silentmode" xml:space="preserve">
+    <value>Chế độ im lặng</value>
+  </data>
   <data name="verify" xml:space="preserve">
     <value>Xác thực</value>
+  </data>
+  <data name="vietnamese" xml:space="preserve">
+    <value>Tiếng Việt</value>
   </data>
   <data name="wrongemailorpassword" xml:space="preserve">
     <value>Sai tài khoản hoặc mật khẩu</value>

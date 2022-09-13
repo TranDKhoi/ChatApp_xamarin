@@ -47,18 +47,18 @@ namespace ChatApp_xamarin.ViewModels.Authentication
         {
             PopToLoginScreenCM = new Command(async () =>
             {
-                await App.Current.MainPage.Navigation.PopAsync();
+                await Application.Current.MainPage.Navigation.PopAsync();
             });
 
             PopToForgotPassScreenClickCM = new Command(async () =>
             {
-                await App.Current.MainPage.Navigation.PopAsync();
+                await Application.Current.MainPage.Navigation.PopAsync();
             });
 
             PopUntilLoginScreenClickCM = new Command(async () =>
             {
-                App.Current.MainPage = new NavigationPage(new LoginScreen());
-                await App.Current.MainPage.Navigation.PopAsync();
+                Application.Current.MainPage = new NavigationPage(new LoginScreen());
+                await Application.Current.MainPage.Navigation.PopAsync();
             });
 
             SendcodeClickCM = new Command(async () =>
@@ -83,8 +83,8 @@ namespace ChatApp_xamarin.ViewModels.Authentication
                     verifyCode = await AuthService.ins.SendVerifyCode(Email.Trim());
                     UserDialogs.Instance.HideLoading();
 
-                    await App.Current.MainPage.DisplayAlert(AppResources.alert, AppResources.checkyouremail, "OK");
-                    await App.Current.MainPage.Navigation.PushAsync(new VerifyEmailForgotScreen());
+                    await Application.Current.MainPage.DisplayAlert(AppResources.alert, AppResources.checkyouremail, "OK");
+                    await Application.Current.MainPage.Navigation.PushAsync(new VerifyEmailForgotScreen());
                 }
                 else
                 {
@@ -99,8 +99,8 @@ namespace ChatApp_xamarin.ViewModels.Authentication
                 if (string.IsNullOrEmpty(en.Text)) return;
                 if (int.Parse(en.Text.Trim()) == verifyCode)
                 {
-                    App.Current.MainPage = new NavigationPage(new ResetPassScreen());
-                    await App.Current.MainPage.Navigation.PopToRootAsync();
+                    Application.Current.MainPage = new NavigationPage(new ResetPassScreen());
+                    await Application.Current.MainPage.Navigation.PopToRootAsync();
                 }
                 else
                 {
@@ -131,9 +131,9 @@ namespace ChatApp_xamarin.ViewModels.Authentication
                 (string res, bool isS) = await AuthService.ins.ResetPassword(userNeedToReset.id, NewPass);
                 if (isS)
                 {
-                    await App.Current.MainPage.DisplayAlert(AppResources.alert, res, "OK");
-                    App.Current.MainPage = new NavigationPage(new LoginScreen());
-                    await App.Current.MainPage.Navigation.PopAsync();
+                    await Application.Current.MainPage.DisplayAlert(AppResources.alert, res, "OK");
+                    Application.Current.MainPage = new NavigationPage(new LoginScreen());
+                    await Application.Current.MainPage.Navigation.PopAsync();
                 }
                 else
                 {

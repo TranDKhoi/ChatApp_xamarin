@@ -117,14 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="account" xml:space="preserve">
+    <value>Account</value>
+  </data>
   <data name="alert" xml:space="preserve">
     <value>Alert</value>
   </data>
+  <data name="areyousurewanttosignout" xml:space="preserve">
+    <value>Are you sure you want to sign out?</value>
+  </data>
   <data name="atleast6char" xml:space="preserve">
     <value>Password must atleast 6 characters</value>
-  </data>
-  <data name="callTitle" xml:space="preserve">
-    <value>Calls</value>
   </data>
   <data name="checkyouremail" xml:space="preserve">
     <value>Check your email to verify account</value>
@@ -144,6 +147,9 @@
   <data name="createnewacount" xml:space="preserve">
     <value>Create new account</value>
   </data>
+  <data name="darkmode" xml:space="preserve">
+    <value>Dark mode</value>
+  </data>
   <data name="donthaveanycode" xml:space="preserve">
     <value>Don't have any code?</value>
   </data>
@@ -162,6 +168,9 @@
   <data name="forgotpass" xml:space="preserve">
     <value>Forgot password?</value>
   </data>
+  <data name="friendsTitle" xml:space="preserve">
+    <value>Friends</value>
+  </data>
   <data name="incorrectpassword" xml:space="preserve">
     <value>Incorrect password</value>
   </data>
@@ -174,11 +183,11 @@
   <data name="newpass" xml:space="preserve">
     <value>New password</value>
   </data>
+  <data name="no" xml:space="preserve">
+    <value>No</value>
+  </data>
   <data name="password" xml:space="preserve">
     <value>Password</value>
-  </data>
-  <data name="phoneBookTitle" xml:space="preserve">
-    <value>Phonebook</value>
   </data>
   <data name="pleaseenteryouremail" xml:space="preserve">
     <value>Please enter your email</value>
@@ -204,11 +213,23 @@
   <data name="setting" xml:space="preserve">
     <value>Setting</value>
   </data>
+  <data name="settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
   <data name="setyournewpass" xml:space="preserve">
     <value>Set your new password</value>
   </data>
+  <data name="signout" xml:space="preserve">
+    <value>Sign out</value>
+  </data>
+  <data name="silentmode" xml:space="preserve">
+    <value>Silent mode</value>
+  </data>
   <data name="verify" xml:space="preserve">
     <value>Verify</value>
+  </data>
+  <data name="vietnamese" xml:space="preserve">
+    <value>Vietnamese</value>
   </data>
   <data name="wrongemailorpassword" xml:space="preserve">
     <value>Wrong email or password</value>

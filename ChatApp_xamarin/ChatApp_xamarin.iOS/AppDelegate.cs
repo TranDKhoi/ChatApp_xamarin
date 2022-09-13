@@ -23,7 +23,7 @@ namespace ChatApp_xamarin.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
-            LoadApplication(new App());
+            LoadApplication(new ChatApp_xamarin.Application());
 
             return base.FinishedLaunching(app, options);
         }

@@ -61,6 +61,15 @@ namespace ChatApp_xamarin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Account.
+        /// </summary>
+        internal static string account {
+            get {
+                return ResourceManager.GetString("account", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Alert.
         /// </summary>
         internal static string alert {
@@ -70,20 +79,20 @@ namespace ChatApp_xamarin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to sign out?.
+        /// </summary>
+        internal static string areyousurewanttosignout {
+            get {
+                return ResourceManager.GetString("areyousurewanttosignout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password must atleast 6 characters.
         /// </summary>
         internal static string atleast6char {
             get {
                 return ResourceManager.GetString("atleast6char", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Calls.
-        /// </summary>
-        internal static string callTitle {
-            get {
-                return ResourceManager.GetString("callTitle", resourceCulture);
             }
         }
         
@@ -142,6 +151,15 @@ namespace ChatApp_xamarin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dark mode.
+        /// </summary>
+        internal static string darkmode {
+            get {
+                return ResourceManager.GetString("darkmode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Don&apos;t have any code?.
         /// </summary>
         internal static string donthaveanycode {
@@ -196,6 +214,15 @@ namespace ChatApp_xamarin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Friends.
+        /// </summary>
+        internal static string friendsTitle {
+            get {
+                return ResourceManager.GetString("friendsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Incorrect password.
         /// </summary>
         internal static string incorrectpassword {
@@ -232,20 +259,20 @@ namespace ChatApp_xamarin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        internal static string no {
+            get {
+                return ResourceManager.GetString("no", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
         internal static string password {
             get {
                 return ResourceManager.GetString("password", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Phonebook.
-        /// </summary>
-        internal static string phoneBookTitle {
-            get {
-                return ResourceManager.GetString("phoneBookTitle", resourceCulture);
             }
         }
         
@@ -322,6 +349,15 @@ namespace ChatApp_xamarin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        internal static string settings {
+            get {
+                return ResourceManager.GetString("settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Set your new password.
         /// </summary>
         internal static string setyournewpass {
@@ -331,11 +367,38 @@ namespace ChatApp_xamarin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sign out.
+        /// </summary>
+        internal static string signout {
+            get {
+                return ResourceManager.GetString("signout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Silent mode.
+        /// </summary>
+        internal static string silentmode {
+            get {
+                return ResourceManager.GetString("silentmode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Verify.
         /// </summary>
         internal static string verify {
             get {
                 return ResourceManager.GetString("verify", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vietnamese.
+        /// </summary>
+        internal static string vietnamese {
+            get {
+                return ResourceManager.GetString("vietnamese", resourceCulture);
             }
         }
         

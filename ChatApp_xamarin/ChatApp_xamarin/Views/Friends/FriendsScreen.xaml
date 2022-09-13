@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ChatApp_xamarin.Views.Friends.FriendsScreen"
+             xmlns:i18n="clr-namespace:ChatApp_xamarin.Helpers"
+             BindingContext="{StaticResource FriendsVM}">
+    <ContentPage.Content>
+        <StackLayout Padding="20">
+            <Label Text="{i18n:Translate friendsTitle}"
+                   FontAttributes="Bold"
+                   FontSize="22"
+                   TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                   HorizontalOptions="StartAndExpand"
+                   VerticalOptions="Center" 
+                   Margin="0, 0, 0, 10"/>
+            <Frame CornerRadius="10"
+                   BackgroundColor="{AppThemeBinding Light=#f6f6f6, Dark=#303030}"
+                   Padding="10"
+                   HorizontalOptions="FillAndExpand">
+                <StackLayout Orientation="Horizontal"
+                             HorizontalOptions="StartAndExpand">
+                    <Label FontFamily="Material"
+                           TextColor="{AppThemeBinding Light=#9f9f9f, Dark=#6d6d6d}"
+                           FontSize="25"
+                           Text="&#xe8b6;"
+                           Margin="5, 0, 10, 0"
+                           VerticalOptions="Center">
+                    </Label>
+
+                    <Label Text="{i18n:Translate search}"
+                           TextColor="{AppThemeBinding Light=#767676,Dark=#878787}"
+                           FontSize="15"
+                           VerticalOptions="Center" />
+                </StackLayout>
+            </Frame>
+            <CollectionView ItemsSource="{Binding tests}"
+                            Margin="0">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal"
+                                     Padding="0, 7, 0, 7">
+                            <Grid Margin="0, 0, 10, 0">
+                                <Frame CornerRadius="100"
+                                       HeightRequest="60"
+                                       WidthRequest="60"
+                                       Padding="0"
+                                       HorizontalOptions="Center"
+                                       IsClippedToBounds="True">
+                                    <Image Source="{Binding avatar}"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Center" />
+                                </Frame>
+                                <Frame BackgroundColor="#50ca30"
+                                       HeightRequest="15"
+                                       WidthRequest="15"
+                                       Padding="0"
+                                       Margin="5, 0, 5, 0"
+                                       VerticalOptions="End"
+                                       HorizontalOptions="End"
+                                       CornerRadius="90" />
+                            </Grid>
+                            <Label Text="{Binding name}"
+                                   TextColor="{AppThemeBinding Light=#080808, Dark=#b4b4b4}"
+                                   FontSize="15"
+                                   FontAttributes="Bold"
+                                   VerticalOptions="Center"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

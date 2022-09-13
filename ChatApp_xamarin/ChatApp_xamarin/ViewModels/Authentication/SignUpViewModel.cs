@@ -47,7 +47,7 @@ namespace ChatApp_xamarin.ViewModels.Authentication
         {
             PopClickCM = new Command(async () =>
             {
-                await App.Current.MainPage.Navigation.PopAsync();
+                await Application.Current.MainPage.Navigation.PopAsync();
             });
             ConfirmClickCM = new Command(async (p) =>
             {
@@ -63,8 +63,8 @@ namespace ChatApp_xamarin.ViewModels.Authentication
                     UserDialogs.Instance.ShowLoading();
                     verifycationCode = await AuthService.ins.SendVerifyCode(Email.Trim());
                     UserDialogs.Instance.HideLoading();
-                    await App.Current.MainPage.DisplayAlert(AppResources.alert, AppResources.checkyouremail, "OK");
-                    await App.Current.MainPage.Navigation.PushAsync(new VerifyEmailScreen());
+                    await Application.Current.MainPage.DisplayAlert(AppResources.alert, AppResources.checkyouremail, "OK");
+                    await Application.Current.MainPage.Navigation.PushAsync(new VerifyEmailScreen());
                 }
             });
             VerifyEmailClickCM = new Command(async (p) =>
@@ -84,9 +84,9 @@ namespace ChatApp_xamarin.ViewModels.Authentication
                     }
 
                     //NAVIGATE TO HOME
-                    await App.Current.MainPage.DisplayAlert(AppResources.alert, AppResources.createaccountsuccessfully, "OK");
-                    App.Current.MainPage = new NavigationPage(new LoginScreen());
-                    await App.Current.MainPage.Navigation.PopToRootAsync();
+                    await Application.Current.MainPage.DisplayAlert(AppResources.alert, AppResources.createaccountsuccessfully, "OK");
+                    Application.Current.MainPage = new NavigationPage(new LoginScreen());
+                    await Application.Current.MainPage.Navigation.PopToRootAsync();
                 }
                 else
                 {
@@ -96,7 +96,7 @@ namespace ChatApp_xamarin.ViewModels.Authentication
             });
             PopToSignUpClickCM = new Command(async () =>
             {
-                await App.Current.MainPage.Navigation.PopAsync();
+                await Application.Current.MainPage.Navigation.PopAsync();
             });
 
         }

@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using ChatApp_xamarin.Utils;
+using ChatApp_xamarin.ViewModels.Setting;
+using ChatApp_xamarin.Views.BottomBarCustom;
+using Plugin.Multilingual;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -16,5 +15,16 @@ namespace ChatApp_xamarin.Views.Setting
         {
             InitializeComponent();
         }
+
+        protected override void OnAppearing()
+        {
+            var vm = (SettingViewModel)this.BindingContext;
+            vm.GetCurrentUserCM.Execute(null);
+
+            vm.IsDark = Preferences.Get("isDark", false);
+            vm.ISVN = Preferences.Get("isVN", false);
+            vm.IsSilent = Preferences.Get("isSilent", false);
+        }
+
     }
 }

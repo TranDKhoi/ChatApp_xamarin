@@ -1,26 +1,14 @@
 ﻿using ChatApp_xamarin.Models;
+using ChatApp_xamarin.ViewModels.Chat;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Xamarin.CommunityToolkit.UI.Views;
 using Xamarin.Forms;
 
-namespace ChatApp_xamarin.ViewModels.Chat
+namespace ChatApp_xamarin.ViewModels.Friends
 {
-    public class ConversationViewModel : BaseViewModel
+    public class FriendsViewModel : BaseViewModel
     {
-
-        private List<User> _users;
-        public List<User> users
-        {
-            get { return _users; }
-            set
-            {
-                _users = value;
-                OnPropertyChanged();
-            }
-        }
-
         private List<Test> _tests;
         public List<Test> tests
         {
@@ -32,11 +20,10 @@ namespace ChatApp_xamarin.ViewModels.Chat
             }
         }
 
-        public ConversationViewModel()
+        public FriendsViewModel()
         {
-            users = new List<User>();
             tests = new List<Test>();
-            for(int i=0; i < 10; i++)
+            for (int i = 0; i < 10; i++)
             {
                 Test test = new Test
                 {
@@ -46,18 +33,9 @@ namespace ChatApp_xamarin.ViewModels.Chat
                     avatar = ImageSource.FromUri(new Uri("https://play-lh.googleusercontent.com/03URhAXU-IrK5PB-DiN6lyLGITlp-6xTizXkW5l98AUvpzOxQej6ss_zM4f8zxN0ofEf"))
                 };
                 tests.Add(test);
-                User user = new User
-                {
-                    name = "Kiều Bá Dương",
-                    imgSource = ImageSource.FromUri(new Uri("https://play-lh.googleusercontent.com/03URhAXU-IrK5PB-DiN6lyLGITlp-6xTizXkW5l98AUvpzOxQej6ss_zM4f8zxN0ofEf")),
-                    
-
-                };
-                users.Add(user);
             }
         }
     }
-
     public class Test
     {
         public ImageSource avatar { get; set; }

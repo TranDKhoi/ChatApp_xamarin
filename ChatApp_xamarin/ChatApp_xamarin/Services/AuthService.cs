@@ -162,7 +162,7 @@ namespace ChatApp_xamarin.Services
             }
         }
 
-        private async Task<User> GetUserById(string id)
+        public async Task<User> GetUserById(string id)
         {
             try
             {

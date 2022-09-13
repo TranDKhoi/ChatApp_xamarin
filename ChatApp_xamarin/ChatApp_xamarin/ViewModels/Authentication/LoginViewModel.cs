@@ -53,7 +53,6 @@ namespace ChatApp_xamarin.ViewModels.Authentication
         public ICommand ForgotPassClickCM { get; set; }
         public ICommand SignUpClickCM { get; set; }
 
-
         public LoginViewModel()
         {
 
@@ -76,8 +75,10 @@ namespace ChatApp_xamarin.ViewModels.Authentication
                         return;
                     }
 
-                    await App.Current.MainPage.Navigation.PushAsync(new BottomBarCustom());
-
+                    GlobalData.ins.currentUser = user;
+                    Preferences.Set("currentUser", user.id);
+                    Application.Current.MainPage = new NavigationPage(new BottomBarCustom());
+                    await Application.Current.MainPage.Navigation.PopToRootAsync();
                 }
                 else
                 {
@@ -87,14 +88,13 @@ namespace ChatApp_xamarin.ViewModels.Authentication
 
             ForgotPassClickCM = new Command(async () =>
             {
-                await App.Current.MainPage.Navigation.PushAsync(new ForgotPassScreen());
+                await Application.Current.MainPage.Navigation.PushAsync(new ForgotPassScreen());
             });
 
             SignUpClickCM = new Command(async (p) =>
             {
-                await App.Current.MainPage.Navigation.PushAsync(new SignUpScreen());
+                await Application.Current.MainPage.Navigation.PushAsync(new SignUpScreen());
             });
-
         }
 
 
@@ -102,7 +102,6 @@ namespace ChatApp_xamarin.ViewModels.Authentication
         {
             return !string.IsNullOrEmpty(Email) && !string.IsNullOrEmpty(Password);
         }
-
     }
 }
 
@@ -112,27 +111,6 @@ namespace ChatApp_xamarin.ViewModels.Authentication
 
 
 
-
-
-
-
-
-
-
-//CHANGE LANGUAGE
-//CrossMultilingual.Current.CurrentCultureInfo = new System.Globalization.CultureInfo("en");
-//App.Current.MainPage = new LoginScreen();
-
-
-//CHANGE THEME
-//if (App.Current.RequestedTheme == OSAppTheme.Light)
-//{
-//    App.Current.UserAppTheme = OSAppTheme.Dark;
-//}
-//else
-//{
-//    App.Current.UserAppTheme = OSAppTheme.Light;
-//}
 
 //listener
 //var subscriber = MessageService.ins.SubscriptionToMessageChange();
