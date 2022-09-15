@@ -160,6 +160,15 @@ namespace ChatApp_xamarin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Display name.
+        /// </summary>
+        internal static string displayname {
+            get {
+                return ResourceManager.GetString("displayname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Don&apos;t have any code?.
         /// </summary>
         internal static string donthaveanycode {
@@ -286,11 +295,11 @@ namespace ChatApp_xamarin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please enter your email or password.
+        ///   Looks up a localized string similar to Please enter your information.
         /// </summary>
-        internal static string pleaseenteryouremailorpassword {
+        internal static string pleaseenteryourinformation {
             get {
-                return ResourceManager.GetString("pleaseenteryouremailorpassword", resourceCulture);
+                return ResourceManager.GetString("pleaseenteryourinformation", resourceCulture);
             }
         }
         

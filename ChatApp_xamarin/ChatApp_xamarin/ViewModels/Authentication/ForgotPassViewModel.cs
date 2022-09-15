@@ -68,7 +68,7 @@ namespace ChatApp_xamarin.ViewModels.Authentication
                 if (isS)
                 {
                     UserDialogs.Instance.ShowLoading();
-                    (string resp, User u) = await AuthService.ins.GetUserByEmail(email);
+                    (string resp, User u) = await UserService.ins.GetUserByEmail(email);
                     UserDialogs.Instance.HideLoading();
 
 

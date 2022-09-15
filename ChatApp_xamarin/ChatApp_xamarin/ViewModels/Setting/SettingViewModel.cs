@@ -74,9 +74,6 @@ namespace ChatApp_xamarin.ViewModels.Setting
 
             GetCurrentUserCM = new Command(async () =>
             {
-                if (GlobalData.ins.currentUser != null) return;
-                var id = Preferences.Get("currentUser", null);
-                GlobalData.ins.currentUser = await AuthService.ins.GetUserById(id);
                 CurrentUser = GlobalData.ins.currentUser;
             });
 
@@ -139,7 +136,7 @@ namespace ChatApp_xamarin.ViewModels.Setting
                 UserDialogs.Instance.HideLoading();
 
                 //update user in firebas
-                UserService.ins.UpDateUserAvatar(AvatarPath);
+                UserService.ins.UpdateUserAvatar(AvatarPath);
             });
 
             SignOutCM = new Command(async () =>

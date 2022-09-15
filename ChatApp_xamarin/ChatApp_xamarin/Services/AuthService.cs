@@ -37,7 +37,7 @@ namespace ChatApp_xamarin.Services
             _client = DbService.ins.Client;
         }
 
-        public async Task<(String, User)> SignUp(string email, string pass)
+        public async Task<(String, User)> SignUp(User newUser)
         {
 
             try
@@ -47,25 +47,20 @@ namespace ChatApp_xamarin.Services
                 {
                     foreach (var user in listUser)
                     {
-                        if (user.Object.email == email)
+                        if (user.Object.email == newUser.email)
                         {
                             return (AppResources.emailexisted, null);
                         }
                     }
                 }
 
-                User u = new User
-                {
-                    email = email,
-                    password = MD5Hash(pass),
-                };
-                var json = JsonConvert.SerializeObject(u);
+                newUser.password = MD5Hash(newUser.password);
+                var json = JsonConvert.SerializeObject(newUser);
                 var res = await _client.Child("users").PostAsync(json);
                 if (res != null)
                 {
-                    var trueUser = JsonConvert.DeserializeObject<User>(res.Object);
-                    trueUser.id = res.Key;
-                    return (null, trueUser);
+                    newUser.id = res.Key;
+                    return (null, newUser);
                 }
                 return (AppResources.Failed, null);
             }
@@ -115,7 +110,7 @@ namespace ChatApp_xamarin.Services
         {
             try
             {
-                User u = await GetUserById(userId);
+                User u = await UserService.ins.GetUserById(userId);
                 if (u == null)
                     return (AppResources.emaildoesnotexist, false);
 
@@ -128,60 +123,6 @@ namespace ChatApp_xamarin.Services
             catch (Exception e)
             {
                 return (e.Message, false);
-            }
-        }
-
-        public async Task<(String, User)> GetUserByEmail(string email)
-        {
-            try
-            {
-                var listUser = await _client.Child("users").OnceAsync<User>();
-
-                if (listUser.Count == 0)
-                {
-                    return (AppResources.emaildoesnotexist, null);
-                }
-                else
-                {
-                    var doc = listUser.Where(x => x.Object.email == email).FirstOrDefault();
-                    if (doc == null)
-                    {
-                        return (AppResources.emaildoesnotexist, null);
-                    }
-
-                    var trueUser = doc.Object;
-
-                    trueUser.id = doc.Key;
-                    return (null, trueUser);
-
-                }
-            }
-            catch (Exception e)
-            {
-                return (e.Message, null);
-            }
-        }
-
-        public async Task<User> GetUserById(string id)
-        {
-            try
-            {
-                var user = await _client.Child($"users/{id}").OnceSingleAsync<User>();
-
-
-                if (user == null)
-                {
-                    return null;
-                }
-                else
-                {
-                    user.id = id;
-                    return user;
-                }
-            }
-            catch (Exception)
-            {
-                return null;
             }
         }
 

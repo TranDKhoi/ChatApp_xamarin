@@ -150,6 +150,9 @@
   <data name="darkmode" xml:space="preserve">
     <value>Dark mode</value>
   </data>
+  <data name="displayname" xml:space="preserve">
+    <value>Display name</value>
+  </data>
   <data name="donthaveanycode" xml:space="preserve">
     <value>Don't have any code?</value>
   </data>
@@ -192,8 +195,8 @@
   <data name="pleaseenteryouremail" xml:space="preserve">
     <value>Please enter your email</value>
   </data>
-  <data name="pleaseenteryouremailorpassword" xml:space="preserve">
-    <value>Please enter your email or password</value>
+  <data name="pleaseenteryourinformation" xml:space="preserve">
+    <value>Please enter your information</value>
   </data>
   <data name="pleaseenteryourpassword" xml:space="preserve">
     <value>Please enter your password</value>

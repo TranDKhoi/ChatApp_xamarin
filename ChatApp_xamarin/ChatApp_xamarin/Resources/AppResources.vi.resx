@@ -150,6 +150,9 @@
   <data name="darkmode" xml:space="preserve">
     <value>Chế độ ban đêm</value>
   </data>
+  <data name="displayname" xml:space="preserve">
+    <value>Tên hiển thị</value>
+  </data>
   <data name="donthaveanycode" xml:space="preserve">
     <value>Không nhận được mã?</value>
   </data>
@@ -192,8 +195,8 @@
   <data name="pleaseenteryouremail" xml:space="preserve">
     <value>Vui lòng nhập email</value>
   </data>
-  <data name="pleaseenteryouremailorpassword" xml:space="preserve">
-    <value>Vui lòng nhập tài khoản hoặc mật khẩu</value>
+  <data name="pleaseenteryourinformation" xml:space="preserve">
+    <value>Vui lòng điền thông tin của bạn</value>
   </data>
   <data name="pleaseenteryourpassword" xml:space="preserve">
     <value>Vui lòng nhập mật khẩu</value>

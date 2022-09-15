@@ -10,6 +10,10 @@
     <ContentPage.Content>
         <StackLayout VerticalOptions="CenterAndExpand"
                      Padding="20,50,20,20">
+            <Entry Placeholder="{i18n:Translate displayname}"
+                   BackgroundColor="{AppThemeBinding Light=White,Dark=#242526}"
+                   Text="{Binding Displayname, Mode=OneWayToSource}"
+                   PlaceholderColor="{StaticResource primaryColor}" />
             <Entry Placeholder="{i18n:Translate youremail}"
                    BackgroundColor="{AppThemeBinding Light=White,Dark=#242526}"
                    Text="{Binding Email, Mode=OneWayToSource}"

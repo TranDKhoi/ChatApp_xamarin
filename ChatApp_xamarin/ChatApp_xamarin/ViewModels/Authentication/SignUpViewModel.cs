@@ -35,6 +35,13 @@ namespace ChatApp_xamarin.ViewModels.Authentication
             set { rePassword = value; OnPropertyChanged(); }
         }
 
+        private string displayName;
+        public string Displayname
+        {
+            get { return displayName; }
+            set { displayName = value; OnPropertyChanged(); }
+        }
+
 
         private int verifycationCode;
 
@@ -75,7 +82,15 @@ namespace ChatApp_xamarin.ViewModels.Authentication
                 if (int.Parse(en.Text.Trim()) == verifycationCode)
                 {
                     UserDialogs.Instance.ShowLoading();
-                    (string mess, User user) = await AuthService.ins.SignUp(Email, Password);
+
+                    User u = new User
+                    {
+                        email = Email,
+                        password = Password,
+                        name = Displayname,
+                    };
+
+                    (string mess, User user) = await AuthService.ins.SignUp(u);
                     UserDialogs.Instance.HideLoading();
                     if (user == null)
                     {
@@ -104,9 +119,9 @@ namespace ChatApp_xamarin.ViewModels.Authentication
 
         (String, bool) isValidateData()
         {
-            if (string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Password) || string.IsNullOrEmpty(RePassword))
+            if (string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Password) || string.IsNullOrEmpty(RePassword) || string.IsNullOrEmpty(Displayname))
             {
-                return (AppResources.pleaseenteryouremailorpassword, false);
+                return (AppResources.pleaseenteryourinformation, false);
             }
             if (Password != RePassword)
             {

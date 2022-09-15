@@ -2,6 +2,7 @@
 using ChatApp_xamarin.Models;
 using ChatApp_xamarin.Services;
 using ChatApp_xamarin.Utils;
+using ChatApp_xamarin.Views;
 using ChatApp_xamarin.Views.Authentication.LoginScreen;
 using ChatApp_xamarin.Views.Authentication.SignUpScreen;
 using ChatApp_xamarin.Views.BottomBarCustom;

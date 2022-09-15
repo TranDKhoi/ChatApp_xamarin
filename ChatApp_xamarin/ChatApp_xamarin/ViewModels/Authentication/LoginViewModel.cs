@@ -82,7 +82,7 @@ namespace ChatApp_xamarin.ViewModels.Authentication
                 }
                 else
                 {
-                    UserDialogs.Instance.Toast(AppResources.pleaseenteryouremailorpassword);
+                    UserDialogs.Instance.Toast(AppResources.pleaseenteryourinformation);
                 }
             });
 
