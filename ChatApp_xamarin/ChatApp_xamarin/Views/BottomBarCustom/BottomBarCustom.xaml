@@ -12,7 +12,8 @@
              BackgroundColor="{AppThemeBinding Light=White, Dark=Black}"
              android:TabbedPage.BarSelectedItemColor="{StaticResource Key=primaryColor}"
              xmlns:windows="clr-namespace:Xamarin.Forms.PlatformConfiguration.WindowsSpecific;assembly=Xamarin.Forms.Core"
-             windows:TabbedPage.HeaderIconsEnabled="true">
+             windows:TabbedPage.HeaderIconsEnabled="true"
+             BindingContext="{StaticResource BottomVM}">
     <chat:ConversationScreen Title="{i18n:Translate conversationTitle}"
                              IconImageSource="chat_bubble.png" />
     <friends:FriendsScreen Title="{i18n:Translate friendsTitle}"

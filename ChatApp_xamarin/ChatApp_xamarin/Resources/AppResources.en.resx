@@ -228,6 +228,9 @@
   <data name="silentmode" xml:space="preserve">
     <value>Silent mode</value>
   </data>
+  <data name="texting" xml:space="preserve">
+    <value>Texting</value>
+  </data>
   <data name="verify" xml:space="preserve">
     <value>Verify</value>
   </data>

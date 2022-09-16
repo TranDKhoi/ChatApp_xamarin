@@ -1,16 +1,20 @@
 ﻿using ChatApp_xamarin.Models;
 using ChatApp_xamarin.ViewModels.Chat;
+using ChatApp_xamarin.Views.Chat;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace ChatApp_xamarin.ViewModels.Friends
 {
     public class FriendsViewModel : BaseViewModel
     {
-        private List<Test> _tests;
-        public List<Test> tests
+        public ICommand OpenChatScreenVM { get; set; }
+        private ObservableCollection<Test> _tests;
+        public ObservableCollection<Test> tests
         {
             get { return _tests; }
             set
@@ -22,7 +26,7 @@ namespace ChatApp_xamarin.ViewModels.Friends
 
         public FriendsViewModel()
         {
-            tests = new List<Test>();
+            tests = new ObservableCollection<Test>();
             for (int i = 0; i < 10; i++)
             {
                 Test test = new Test
@@ -34,6 +38,10 @@ namespace ChatApp_xamarin.ViewModels.Friends
                 };
                 tests.Add(test);
             }
+            OpenChatScreenVM = new Command(async () =>
+            {
+                await Application.Current.MainPage.Navigation.PushAsync(new ChatScreen());
+            });
         }
     }
     public class Test

@@ -5,7 +5,12 @@
              xmlns:i18n="clr-namespace:ChatApp_xamarin.Helpers"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              xmlns:sho="http://sharpnado.com"
+             xmlns:cvt="clr-namespace:ChatApp_xamarin.ViewModels.Converter"
              BindingContext="{StaticResource ConversationVM}">
+    <ContentPage.Resources>
+        <cvt:MemberToNameConverter x:Key="memtonameCVT" />
+        <cvt:MemberToAvatarConverter x:Key="memtoavtCVT" />
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout Padding="20">
             <StackLayout Orientation="Horizontal"
@@ -18,7 +23,6 @@
                        TextColor="{AppThemeBinding Light=Black, Dark=White}"
                        HorizontalOptions="StartAndExpand"
                        VerticalOptions="Center" />
-
                 <Frame CornerRadius="90"
                        BackgroundColor="{AppThemeBinding Light=#f6f6f6, Dark=#303030}"
                        Padding="10"
@@ -54,30 +58,30 @@
                            FontSize="25"
                            Text="&#xe8b6;"
                            Margin="5, 0, 10, 0"
-                           VerticalOptions="Center">
-                    </Label>
-
+                           VerticalOptions="Center"></Label>
                     <Label Text="{i18n:Translate search}"
                            TextColor="{AppThemeBinding Light=#767676,Dark=#878787}"
                            FontSize="15"
                            VerticalOptions="Center" />
                 </StackLayout>
             </Frame>
-
-            <CollectionView ItemsSource="{Binding tests}">
+            <CollectionView ItemsSource="{Binding ListConversation}"
+                            x:Name="ListConversation"
+                            SelectionMode="Single"
+                            SelectionChanged="ListConversation_SelectionChanged">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout Orientation="Horizontal"
                                      Padding="0, 7, 0, 7">
                             <Grid WidthRequest="100"
                                   Margin="0, 0, 10, 0">
-                                <Frame CornerRadius="100"
-                                       HeightRequest="60"
-                                       WidthRequest="60"
+                                <Frame CornerRadius="120"
+                                       HeightRequest="50"
                                        Padding="0"
                                        HorizontalOptions="Center"
-                                       IsClippedToBounds="True">
-                                    <Image Source="{Binding avatar}"
+                                       IsClippedToBounds="True"
+                                       VerticalOptions="Center">
+                                    <Image Source="{Binding member, Converter={StaticResource memtoavtCVT}}"
                                            VerticalOptions="Center"
                                            HorizontalOptions="Center" />
                                 </Frame>
@@ -91,32 +95,30 @@
                                        CornerRadius="90" />
                             </Grid>
                             <StackLayout VerticalOptions="CenterAndExpand">
-                                <Label Text="{Binding name}"
+                                <Label Text="{Binding member, Converter={StaticResource memtonameCVT}}"
                                        TextColor="{AppThemeBinding Light=#080808, Dark=#b4b4b4}"
                                        FontSize="15"
-                                       FontAttributes="Bold"
-                                       />
+                                       FontAttributes="Bold" />
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="3*"/>
+                                        <ColumnDefinition Width="3*" />
                                         <ColumnDefinition />
                                     </Grid.ColumnDefinitions>
-                                    <Label Text="{Binding message}"
+                                    <Label Text="{Binding lastMessage.message}"
                                            TextColor="{AppThemeBinding Light=#080808, Dark=#b4b4b4}"
                                            FontSize="15"
                                            MaxLines="1" />
-                                    <Label Text="{Binding createdAt}"
+                                    <Label Text="{Binding lastMessage.createdAt}"
                                            TextColor="{AppThemeBinding Light=#080808, Dark=#b4b4b4}"
                                            FontSize="15"
-                                           MaxLines="1" 
-                                           Grid.Column="1"/>
+                                           MaxLines="1"
+                                           Grid.Column="1" />
                                 </Grid>
                             </StackLayout>
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

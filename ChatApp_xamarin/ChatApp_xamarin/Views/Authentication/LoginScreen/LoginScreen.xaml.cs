@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using ChatApp_xamarin.ViewModels;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace ChatApp_xamarin.Views.Authentication.LoginScreen
@@ -9,6 +10,12 @@ namespace ChatApp_xamarin.Views.Authentication.LoginScreen
         public LoginScreen()
         {
             InitializeComponent();
+        }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            var bottomVM = Application.Current.Resources["BottomVM"] as BottomBarViewModel;
+            bottomVM.UnSubscribeToConversationCM.Execute(null);
         }
     }
 }

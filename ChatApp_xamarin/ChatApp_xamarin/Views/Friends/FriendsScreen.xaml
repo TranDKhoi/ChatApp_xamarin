@@ -34,7 +34,10 @@
                 </StackLayout>
             </Frame>
             <CollectionView ItemsSource="{Binding tests}"
-                            Margin="0">
+                            Margin="0"
+                            x:Name="listFriends"
+                            SelectionChanged="listFriends_SelectionChanged"
+                            SelectionMode="Single">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout Orientation="Horizontal"

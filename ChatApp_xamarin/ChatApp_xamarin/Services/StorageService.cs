@@ -31,7 +31,7 @@ namespace ChatApp_xamarin.Services
         }
 
 
-        private string storageConnectionString = "DefaultEndpointsProtocol=https;AccountName=trankhoi;AccountKey=9KOUw/zYJ2mgGFzDZHYV6D2dsRqXSerLI13gYHWBeIfY1TsCp6yzcFFixSMMpgnF6jiEOnJMFBZF+AStALYByw==;EndpointSuffix=core.windows.net";
+        private string storageConnectionString = "DefaultEndpointsProtocol=https;AccountName=trankhoi;AccountKey=D7JsgZ7nPCPC8LOPVF34k5b8cLCRoct10CrZt+dPCjLY+v0Z4gEnheUH+cyaz3pAP4LSvdYYbMkv+AStWdCfdg==;EndpointSuffix=core.windows.net";
 
         private CloudBlobClient _blClient;
 
