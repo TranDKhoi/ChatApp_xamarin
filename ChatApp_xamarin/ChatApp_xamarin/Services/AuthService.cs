@@ -114,7 +114,6 @@ namespace ChatApp_xamarin.Services
                 if (u == null)
                     return (AppResources.emaildoesnotexist, false);
 
-                u.id = null;
                 u.password = MD5Hash(password);
                 await _client.Child($"users/{userId}").PatchAsync(JsonConvert.SerializeObject(u));
 

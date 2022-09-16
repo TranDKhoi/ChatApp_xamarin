@@ -6,7 +6,6 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ChatApp_xamarin.Services
@@ -37,11 +36,9 @@ namespace ChatApp_xamarin.Services
 
         public async void UpdateUserAvatar(string url)
         {
-            User newU = new User
-            {
-                avatar = url,
-            };
-            await _client.Child($"users/{GlobalData.ins.currentUser.id}").PatchAsync(JsonConvert.SerializeObject(newU)); ;
+            var upUser = GlobalData.ins.currentUser;
+            upUser.avatar = url;
+            await _client.Child($"users/{GlobalData.ins.currentUser.id}").PatchAsync(JsonConvert.SerializeObject(upUser));
         }
 
         public async Task<(String, User)> GetUserByEmail(string email)
@@ -77,25 +74,47 @@ namespace ChatApp_xamarin.Services
 
         public async Task<User> GetUserById(string id)
         {
-            try
-            {
-                var user = await _client.Child($"users/{id}").OnceSingleAsync<User>();
+            var user = await _client.Child($"users/{id}").OnceSingleAsync<User>();
 
-
-                if (user == null)
-                {
-                    return null;
-                }
-                else
-                {
-                    user.id = id;
-                    return user;
-                }
-            }
-            catch (Exception)
+            if (user == null)
             {
                 return null;
             }
+            else
+            {
+                user.id = id;
+                return user;
+            }
+        }
+
+        public async Task UpdateRoomKey(List<string> memberId, string roomId)
+        {
+            foreach (var item in memberId)
+            {
+                var user = await GetUserById(item);
+                if (user != null)
+                {
+                    if (user.roomKey is null)
+                    {
+                        user.roomKey = new List<string>();
+                        user.roomKey.Add(roomId);
+                        await _client.Child($"users/{user.id}").PutAsync(JsonConvert.SerializeObject(user));
+                    }
+                    if (!user.roomKey.Contains(roomId))
+                    {
+                        user.roomKey.Add(roomId);
+                        await _client.Child($"users/{user.id}").PutAsync(JsonConvert.SerializeObject(user));
+                    }
+                }
+
+            }
+        }
+
+        public async Task<List<User>> GetUserByName(string userName)
+        {
+            var res = (await _client.Child("users").OnceAsync<User>()).Where(item => item.Object.name == userName);
+            var listUser = res.Select(item => item.Object).ToList();
+            return listUser;
         }
     }
 }

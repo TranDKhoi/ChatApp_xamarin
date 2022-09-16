@@ -110,16 +110,6 @@ namespace ChatApp_xamarin.ViewModels.Authentication
 
 
 
-
-
-//listener
-//var subscriber = MessageService.ins.SubscriptionToMessageChange();
-//var listener = subscriber.Subscribe(item =>
-//{
-//    Console.WriteLine("sssss");
-//});
-////listener.Dispose();
-
 //NOTIFICATION
 //var notification = new NotificationRequest
 //{

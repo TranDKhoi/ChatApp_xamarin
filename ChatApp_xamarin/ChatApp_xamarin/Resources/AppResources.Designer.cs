@@ -394,6 +394,15 @@ namespace ChatApp_xamarin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Texting.
+        /// </summary>
+        internal static string texting {
+            get {
+                return ResourceManager.GetString("texting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Verify.
         /// </summary>
         internal static string verify {

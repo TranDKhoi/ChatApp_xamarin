@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:effects="clr-namespace:ChatApp_xamarin.Effects"
+             xmlns:i18n="clr-namespace:ChatApp_xamarin.Helpers"
+             x:Class="ChatApp_xamarin.Views.Chat.ChatScreen"
+             xmlns:chatVM="clr-namespace:ChatApp_xamarin.ViewModels.Chat"
+             xmlns:cvt="clr-namespace:ChatApp_xamarin.ViewModels.Converter"
+             BindingContext="{StaticResource ChatVM}"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="Send">
+                <Grid Padding="0, 10, 0, 10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="4*" />
+                        <ColumnDefinition Width="10" />
+                    </Grid.ColumnDefinitions>
+                    <Frame Grid.Column="1"
+                           Padding="5"
+                           CornerRadius="10"
+                           Margin="0, 0, 0, 0"
+                           HorizontalOptions="End">
+                        <Frame.Background>
+                            <LinearGradientBrush EndPoint="0,1">
+                                <GradientStop Color="#881ed7"
+                                              Offset="0.1" />
+                                <GradientStop Color="#881ceb"
+                                              Offset="1.0" />
+                            </LinearGradientBrush>
+                        </Frame.Background>
+                        <Label Text="{Binding message}"
+                               FontSize="18"
+                               Padding="10,5,10,5"
+                               TextColor="#fff1ff"
+                               HorizontalOptions="End"></Label>
+                    </Frame>
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="Receive">
+                <Grid Padding="10, 10, 0, 10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30" />
+                        <ColumnDefinition Width="4*" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Frame CornerRadius="60"
+                           HeightRequest="27"
+                           WidthRequest="27"
+                           Padding="0"
+                           HorizontalOptions="Center"
+                           IsClippedToBounds="True"
+                           VerticalOptions="Center">
+                        <Image Source="{Binding sender.avatar}"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center" />
+                    </Frame>
+                    <Frame Grid.Column="1"
+                           Padding="5"
+                           CornerRadius="10"
+                           Margin="0, 0, 0, 0"
+                           BackgroundColor="#f1f1f1"
+                           HorizontalOptions="Start">
+                        <Label Text="{Binding message}"
+                               FontSize="18"
+                               Padding="10,5,10,5"
+                               TextColor="#000000"></Label>
+                    </Frame>
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="SendImage">
+                <Grid Padding="0, 10, 0, 10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="4*" />
+                        <ColumnDefinition Width="10" />
+                    </Grid.ColumnDefinitions>
+                    <Frame Grid.Column="1"
+                           Padding="5"
+                           CornerRadius="10"
+                           Margin="0, 0, 0, 0"
+                           HorizontalOptions="End">
+                        <Frame.Background>
+                            <LinearGradientBrush EndPoint="0,1">
+                                <GradientStop Color="#881ed7"
+                                              Offset="0.1" />
+                                <GradientStop Color="#881ceb"
+                                              Offset="1.0" />
+                            </LinearGradientBrush>
+                        </Frame.Background>
+                        <Image Source="{Binding image}"
+                               HeightRequest="100"
+                               WidthRequest="100" />
+                    </Frame>
+                </Grid>
+            </DataTemplate>
+            <chatVM:MessageItemTemplateSelector ReceiveTemplate="{StaticResource Receive}"
+                                                SendTemplate="{StaticResource Send}"
+                                                SendImageTemplate="{StaticResource SendImage}"
+                                                x:Key="messageItemSelector" />
+        </ResourceDictionary>
+        <cvt:MemberToAvatarConverter x:Key="membertoavtCVT" />
+        <cvt:MemberToNameConverter x:Key="membertonameCVT" />
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="Fill"
+                         Margin="0, 5, 0, 5"
+                         Padding="10"
+                         android:VisualElement.Elevation="100">
+                <Label FontFamily="Material"
+                       TextColor="{AppThemeBinding Light=#aa00ff, Dark=#a20deb}"
+                       FontSize="30"
+                       Text="&#xe5c4;"
+                       Margin="5, 0, 10, 0"
+                       VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding BackCM}" />
+                    </Label.GestureRecognizers>
+                </Label>
+                <Frame CornerRadius="100"
+                       HeightRequest="50"
+                       WidthRequest="50"
+                       Padding="0"
+                       HorizontalOptions="Center"
+                       IsClippedToBounds="True"
+                       VerticalOptions="Center">
+                    <Image Source="{Binding CurrentRoom.member,Converter={StaticResource membertoavtCVT}}"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center" />
+                </Frame>
+                <Label Text="{Binding CurrentRoom.member,Converter={StaticResource membertonameCVT}}"
+                       FontAttributes="Bold"
+                       FontSize="22"
+                       Margin="10, 0, 0, 0"
+                       TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                       HorizontalOptions="StartAndExpand"
+                       VerticalOptions="Center" />
+            </StackLayout>
+            <CollectionView ItemsSource="{Binding ListMessage}"
+                            ItemTemplate="{StaticResource messageItemSelector}"
+                            x:Name="MessageList" />
+            <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="Fill"
+                         Padding="10"
+                         android:VisualElement.Elevation="100">
+                <Label FontFamily="Material"
+                       TextColor="{AppThemeBinding Light=#0080ff, Dark=#a20deb}"
+                       FontSize="25"
+                       Text="&#xe412;"
+                       Margin="5, 0, 10, 0"
+                       VerticalOptions="Center"></Label>
+                <Label FontFamily="Material"
+                       TextColor="{AppThemeBinding Light=#0080ff, Dark=#a20deb}"
+                       FontSize="25"
+                       Text="&#xe3f4;"
+                       Margin="5, 0, 10, 0"
+                       VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding PickPhotoCM}" />
+                    </Label.GestureRecognizers>
+                </Label>
+                <Frame HorizontalOptions="FillAndExpand"
+                       Padding="0"
+                       CornerRadius="20">
+                    <Entry Placeholder="{i18n:Translate texting}"
+                           Text="{Binding currentMessage}"
+                           Keyboard="Chat"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="Center"
+                           Margin="15, 0, 15, 0">
+                        <Entry.Effects>
+                            <effects:PlainEntry />
+                        </Entry.Effects>
+                    </Entry>
+                </Frame>
+                <Label FontFamily="Material"
+                       TextColor="{AppThemeBinding Light=#0080ff, Dark=#a20deb}"
+                       FontSize="25"
+                       Text="&#xe163;"
+                       Margin="5, 0, 10, 0"
+                       VerticalOptions="Center"
+                       x:Name="SendIcon"></Label>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

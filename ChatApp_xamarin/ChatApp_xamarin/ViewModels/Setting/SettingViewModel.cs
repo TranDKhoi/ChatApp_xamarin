@@ -72,7 +72,7 @@ namespace ChatApp_xamarin.ViewModels.Setting
         public SettingViewModel()
         {
 
-            GetCurrentUserCM = new Command(async () =>
+            GetCurrentUserCM = new Command(() =>
             {
                 CurrentUser = GlobalData.ins.currentUser;
             });
@@ -144,6 +144,7 @@ namespace ChatApp_xamarin.ViewModels.Setting
                 if (await Application.Current.MainPage.DisplayAlert(AppResources.alert, AppResources.areyousurewanttosignout, "OK", AppResources.no))
                 {
                     Preferences.Remove("currentUser");
+                    GlobalData.ins.currentUser = null;
                     Application.Current.MainPage = new NavigationPage(new LoginScreen());
                     await Application.Current.MainPage.Navigation.PopToRootAsync();
                 }

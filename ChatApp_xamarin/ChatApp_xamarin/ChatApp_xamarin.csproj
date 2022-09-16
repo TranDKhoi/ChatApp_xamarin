@@ -36,6 +36,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Plugin.LocalNotification" Version="10.0.2" />
     <PackageReference Include="Plugin.Multilingual" Version="1.0.2" />
+
     <PackageReference Include="WindowsAzure.Storage" Version="9.3.3" />
     <PackageReference Include="Xam.Plugin.Iconize" Version="3.5.0.129" />
     <PackageReference Include="Xam.Plugin.Iconize.FontAwesome" Version="3.5.0.129" />
@@ -53,8 +54,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
-    <Compile Update="Views\PhoneBook\PhoneBookScreen.xaml.cs">
-      <DependentUpon>PhoneBookScreen.xaml</DependentUpon>
+    <Compile Update="Views\Friends\FriendsScreen.xaml.cs">
+      <DependentUpon>FriendsScreen.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
@@ -80,22 +81,18 @@
     <EmbeddedResource Update="Views\BottomBarCustom\BottomBarCustom.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Call\CallScreen.xaml">
+    <EmbeddedResource Update="Views\Chat\ChatScreen.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Chat\ConversationScreen.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\PhoneBook\PhoneBookScreen.xaml">
+    <EmbeddedResource Update="Views\Friends\FriendsScreen.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Setting\SettingScreen.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="ViewModels\ConversationScreen\" />
   </ItemGroup>
 
   <ItemGroup>
