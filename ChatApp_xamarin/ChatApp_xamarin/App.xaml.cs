@@ -49,14 +49,26 @@ namespace ChatApp_xamarin
 
         protected override void OnStart()
         {
+            var id = Preferences.Get("currentUser", null);
+
+            if (id != null)
+                AuthService.ins.Online(id);
         }
 
         protected override void OnSleep()
         {
+            var id = Preferences.Get("currentUser", null);
+
+            if (id != null)
+                AuthService.ins.Logout(id);
         }
 
         protected override void OnResume()
         {
+            var id = Preferences.Get("currentUser", null);
+
+            if (id != null)
+                AuthService.ins.Online(id);
         }
     }
 }
