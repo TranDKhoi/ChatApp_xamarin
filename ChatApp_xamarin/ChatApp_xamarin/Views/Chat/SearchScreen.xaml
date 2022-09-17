@@ -4,6 +4,7 @@
              x:Class="ChatApp_xamarin.Views.Chat.SearchScreen"
              xmlns:i18n="clr-namespace:ChatApp_xamarin.Helpers"
              xmlns:effects="clr-namespace:ChatApp_xamarin.Effects"
+             xmlns:behaviors="http://xamarin.com/schemas/2020/toolkit"
              BindingContext="{StaticResource SearchVM}"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
@@ -23,29 +24,34 @@
                     </Label.GestureRecognizers>
                 </Label>
                 <Entry Placeholder="{i18n:Translate search}"
-                       Text="{Binding searchName}"
+                       Text="{Binding searchName, Mode=TwoWay}"
                        TextColor="{AppThemeBinding Light=Black, Dark=White}"
                        PlaceholderColor="{AppThemeBinding Light=#7f7f7f, Dark=#6e6e6e}"
                        Keyboard="Chat"
                        HorizontalOptions="FillAndExpand"
                        VerticalOptions="Center"
                        Margin="10, 0, 15, 0"
-                      >
+                      x:Name="searchEntry"
+                       >
                     <Entry.Effects>
                         <effects:PlainEntry />
                     </Entry.Effects>
+                    <Entry.Behaviors>
+                        <behaviors:EventToCommandBehavior EventName="TextChanged"
+                                                          Command="{Binding SearchCM}"/>
+                    </Entry.Behaviors>
                 </Entry>
             </StackLayout>
-            <CollectionView ItemsSource="{Binding tests}"
+            <CollectionView ItemsSource="{Binding users}"
                             Margin="0"
                             x:Name="listFriends"
                             SelectionMode="Single"
-                            SelectedItem="null">
+                            SelectionChanged="listFriends_SelectionChanged">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout Orientation="Horizontal"
                                      Padding="0, 7, 0, 7">
-                            <Grid Margin="0, 0, 10, 0">
+                            <Grid Margin="20, 0, 10, 0">
                                 <Frame CornerRadius="100"
                                        HeightRequest="60"
                                        WidthRequest="60"

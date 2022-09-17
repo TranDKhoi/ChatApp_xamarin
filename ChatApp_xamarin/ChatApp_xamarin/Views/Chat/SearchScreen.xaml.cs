@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChatApp_xamarin.ViewModels.Chat;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,21 @@ namespace ChatApp_xamarin.Views.Chat
         public SearchScreen()
         {
             InitializeComponent();
+        }
+        protected override void OnAppearing()
+        {
+            searchEntry.Focus();
+        }
+
+        private void listFriends_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (listFriends.ItemsSource == null)
+            {
+                return;
+            }
+            var viewModel = (SearchViewModel)this.BindingContext;
+            //viewModel.OpenChatScreenVM.Execute(listFriends.SelectedItem);
+            //ListConversation.SelectedItem = null;
         }
     }
 }
