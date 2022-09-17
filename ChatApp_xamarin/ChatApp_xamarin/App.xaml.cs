@@ -6,6 +6,7 @@ using ChatApp_xamarin.Views;
 using ChatApp_xamarin.Views.Authentication.LoginScreen;
 using ChatApp_xamarin.Views.Authentication.SignUpScreen;
 using ChatApp_xamarin.Views.BottomBarCustom;
+using ChatApp_xamarin.Views.Chat;
 using Plugin.Multilingual;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
@@ -18,33 +19,32 @@ namespace ChatApp_xamarin
         public Application()
         {
             InitializeComponent();
-
             //get language
-            var isVN = Preferences.Get("isVN", false);
-            if (isVN)
-                CrossMultilingual.Current.CurrentCultureInfo = new System.Globalization.CultureInfo("vi");
+            var isvn = preferences.get("isvn", false);
+            if (isvn)
+                crossmultilingual.current.currentcultureinfo = new system.globalization.cultureinfo("vi");
             else
-                CrossMultilingual.Current.CurrentCultureInfo = new System.Globalization.CultureInfo("en");
+                crossmultilingual.current.currentcultureinfo = new system.globalization.cultureinfo("en");
 
             //get theme data
-            var isDark = Preferences.Get("isDark", false);
-            if (isDark)
-                Application.Current.UserAppTheme = OSAppTheme.Dark;
+            var isdark = preferences.get("isdark", false);
+            if (isdark)
+                application.current.userapptheme = osapptheme.dark;
             else
-                Application.Current.UserAppTheme = OSAppTheme.Light;
+                application.current.userapptheme = osapptheme.light;
 
             //get silent mode
-            var isSilent = Preferences.Get("isSilent", false);
-            GlobalData.ins.isSilentMode = isSilent;
+            var issilent = preferences.get("issilent", false);
+            globaldata.ins.issilentmode = issilent;
 
 
             //get user login state
-            var id = Preferences.Get("currentUser", null);
+            var id = preferences.get("currentuser", null);
 
             if (id != null)
-                MainPage = new NavigationPage(new BottomBarCustom());
+                mainpage = new navigationpage(new bottombarcustom());
             else
-                MainPage = new NavigationPage(new LoginScreen());
+                mainpage = new navigationpage(new loginscreen());
         }
 
         protected override void OnStart()

@@ -6,7 +6,8 @@
              xmlns:friendsVM="clr-namespace:ChatApp_xamarin.ViewModels.Friends"
              x:Class="ChatApp_xamarin.Application"
              xmlns:settingVM="clr-namespace:ChatApp_xamarin.ViewModels.Setting"
-             xmlns:bottomBarVM="clr-namespace:ChatApp_xamarin.ViewModels">
+             xmlns:bottomBarVM="clr-namespace:ChatApp_xamarin.ViewModels"
+             >
     <Application.Resources>
         <ResourceDictionary>
             <loginVM:LoginViewModel x:Key="LoginVM" />
@@ -14,6 +15,7 @@
             <loginVM:SignUpViewModel x:Key="SignUpVM" />
             <chatVM:ConversationViewModel x:Key="ConversationVM" />
             <chatVM:ChatViewModel x:Key="ChatVM" />
+            <chatVM:SearchViewModel x:Key="SearchVM" />
             <settingVM:SettingViewModel x:Key="SettingVM" />
             <friendsVM:FriendsViewModel x:Key="FriendsVM" />
             <bottomBarVM:BottomBarViewModel x:Key="BottomVM" />
