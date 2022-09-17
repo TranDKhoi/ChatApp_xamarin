@@ -18,7 +18,7 @@ namespace ChatApp_xamarin.Views.Setting
             InitializeComponent();
         }
 
-        protected override async void OnAppearing()
+        protected override void OnAppearing()
         {
             var vm = (SettingViewModel)this.BindingContext;
             vm.GetCurrentUserCM.Execute(null);

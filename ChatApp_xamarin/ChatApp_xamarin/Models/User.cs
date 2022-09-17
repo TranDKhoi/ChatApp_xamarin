@@ -13,5 +13,6 @@ namespace ChatApp_xamarin.Models
         public string password { get; set; }
         public string avatar { get; set; }
         public List<string> roomKey { get; set; }
+        public List<string> friendId { get; set; }
     }
 }
