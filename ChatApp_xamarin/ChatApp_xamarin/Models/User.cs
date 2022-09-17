@@ -14,5 +14,6 @@ namespace ChatApp_xamarin.Models
         public string avatar { get; set; }
         public List<string> roomKey { get; set; }
         public List<string> friendId { get; set; }
+        public bool isOnline { get; set; }
     }
 }

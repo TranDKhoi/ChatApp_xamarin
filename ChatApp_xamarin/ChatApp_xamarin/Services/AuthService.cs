@@ -1,15 +1,14 @@
 ﻿using ChatApp_xamarin.Models;
-using Firebase.Database;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using System.Security.Cryptography;
 using System.Linq;
 using ChatApp_xamarin.Resources;
 using System.Net.Mail;
 using System.Net;
+using ChatApp_xamarin.Utils;
+using Firebase.Database;
 
 namespace ChatApp_xamarin.Services
 {
@@ -96,6 +95,9 @@ namespace ChatApp_xamarin.Services
                     }
 
                     trueUser.id = doc.Key;
+                    trueUser.isOnline = true;
+
+                    _ = _client.Child($"users/{trueUser.id}").PatchAsync(JsonConvert.SerializeObject(trueUser));
                     return (null, trueUser);
 
                 }
@@ -104,6 +106,22 @@ namespace ChatApp_xamarin.Services
             {
                 return (e.Message, null);
             }
+        }
+
+        public void Logout(string userID)
+        {
+            var user = GlobalData.ins.currentUser;
+            user.isOnline = false;
+
+            _ = _client.Child($"users/{userID}").PatchAsync(JsonConvert.SerializeObject(user));
+        }
+
+        public async void Online(string userID)
+        {
+            var u = await _client.Child($"users/{userID}").OnceSingleAsync<User>();
+            u.isOnline = true;
+
+            _ = _client.Child($"users/{userID}").PatchAsync(JsonConvert.SerializeObject(u));
         }
 
         public async Task<(String, bool)> ResetPassword(string userId, string password)

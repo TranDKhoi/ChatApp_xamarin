@@ -141,9 +141,33 @@ namespace ChatApp_xamarin.Services
 
         public async Task<List<User>> GetUserByName(string userName)
         {
-            var res = (await _client.Child("users").OnceAsync<User>()).Where(item => item.Object.name == userName);
-            var listUser = res.Select(item => item.Object).ToList();
-            return listUser;
+
+            var res = await _client.Child("users").OnceAsync<User>();
+
+            List<User> listMatchedName = null;
+
+            if (res.Count != 0)
+            {
+                listMatchedName = new List<User>();
+                listMatchedName = res.Select(i => i.Object).Where(item => item.name == userName).ToList();
+            }
+
+            return listMatchedName;
+        }
+
+        public async Task<List<User>> GetOnlineFriend(List<string> friendId)
+        {
+            var listUser = await _client.Child("users").OnceAsync<User>();
+
+            List<User> listOnline = new List<User>();
+
+            foreach (var id in friendId)
+            {
+                listOnline.Add(listUser.Select(u => u.Object).Where(i => i.id == id).First());
+            }
+
+            return listOnline;
+
         }
     }
 }

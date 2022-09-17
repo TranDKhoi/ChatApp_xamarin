@@ -77,6 +77,15 @@ namespace ChatApp_xamarin.Services
             var json = JsonConvert.SerializeObject(newRoom);
             await _client.Child($"rooms/{uniqueID}").PutAsync(json);
 
+            newRoom.member = new List<User>();
+            foreach (var memberId in newRoom.memberId)
+            {
+                var u = await UserService.ins.GetUserById(memberId);
+                newRoom.member.Add(u);
+            }
+            //fetch last message of this room
+            newRoom.lastMessage = await MessageService.ins.GetLastMessage(newRoom.id);
+
             _ = UserService.ins.UpdateRoomKey(memberID, uniqueID);
 
             var friendId = memberID.Where(id => id != GlobalData.ins.currentUser.id).First();
@@ -141,6 +150,18 @@ namespace ChatApp_xamarin.Services
             var group = await _client.Child($"rooms/{roomId}").OnceSingleAsync<Room>();
             group.roomName = newName;
             await _client.Child($"rooms/{roomId}").PatchAsync<Room>(group);
+        }
+
+
+        public async Task<Room> GetRoomWithMyFriend(string friendId)
+        {
+            var allRoom = await _client.Child("rooms").OnceAsync<Room>();
+
+            if (allRoom == null) return null;
+
+            var listRoomWith2Mem = allRoom.Select(r => r.Object).Where(r => r.memberId.Count == 2 || r.memberId.Contains(friendId));
+
+            return listRoomWith2Mem.Where(r => r.memberId.Contains(GlobalData.ins.currentUser.id)).First();
         }
 
     }
