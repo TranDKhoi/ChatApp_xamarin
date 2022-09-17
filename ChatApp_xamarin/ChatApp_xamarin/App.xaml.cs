@@ -20,31 +20,31 @@ namespace ChatApp_xamarin
         {
             InitializeComponent();
             //get language
-            var isvn = preferences.get("isvn", false);
-            if (isvn)
-                crossmultilingual.current.currentcultureinfo = new system.globalization.cultureinfo("vi");
+            var isVN = Preferences.Get("isVN", false);
+            if (isVN)
+                CrossMultilingual.Current.CurrentCultureInfo = new System.Globalization.CultureInfo("vi");
             else
-                crossmultilingual.current.currentcultureinfo = new system.globalization.cultureinfo("en");
+                CrossMultilingual.Current.CurrentCultureInfo = new System.Globalization.CultureInfo("en");
 
             //get theme data
-            var isdark = preferences.get("isdark", false);
-            if (isdark)
-                application.current.userapptheme = osapptheme.dark;
+            var isDark = Preferences.Get("isDark", false);
+            if (isDark)
+                Application.Current.UserAppTheme = OSAppTheme.Dark;
             else
-                application.current.userapptheme = osapptheme.light;
+                Application.Current.UserAppTheme = OSAppTheme.Light;
 
             //get silent mode
-            var issilent = preferences.get("issilent", false);
-            globaldata.ins.issilentmode = issilent;
+            var isSilent = Preferences.Get("isSilent", false);
+            GlobalData.ins.isSilentMode = isSilent;
 
 
             //get user login state
-            var id = preferences.get("currentuser", null);
+            var id = Preferences.Get("currentUser", null);
 
             if (id != null)
-                mainpage = new navigationpage(new bottombarcustom());
+                MainPage = new NavigationPage(new BottomBarCustom());
             else
-                mainpage = new navigationpage(new loginscreen());
+                MainPage = new NavigationPage(new LoginScreen());
         }
 
         protected override void OnStart()

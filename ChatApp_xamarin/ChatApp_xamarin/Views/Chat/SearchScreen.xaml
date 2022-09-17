@@ -7,22 +7,29 @@
              BindingContext="{StaticResource SearchVM}"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-        <StackLayout Padding="20">
-            <StackLayout Orientation="Horizontal">
+        <StackLayout Padding="0"
+                     Margin="0">
+            <StackLayout Orientation="Horizontal"
+                         Margin="0, 5, 0, 5"
+                         Padding="10">
                 <Label FontFamily="Material"
                        TextColor="{AppThemeBinding Light=#000000, Dark=#ffffff}"
-                       FontSize="25"
+                       FontSize="30"
                        Text="&#xe5c4;"
-                       Margin="5, 0, 0, 0"
+                       Margin="5, 0, 10, 0"
                        VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding BackCM}" />
+                    </Label.GestureRecognizers>
                 </Label>
                 <Entry Placeholder="{i18n:Translate search}"
                        Text="{Binding searchName}"
-                       TextColor="{AppThemeBinding Light=#7f7f7f, Dark=#6e6e6e}"
+                       TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                       PlaceholderColor="{AppThemeBinding Light=#7f7f7f, Dark=#6e6e6e}"
                        Keyboard="Chat"
                        HorizontalOptions="FillAndExpand"
                        VerticalOptions="Center"
-                       Margin="15, 0, 15, 0"
+                       Margin="10, 0, 15, 0"
                       >
                     <Entry.Effects>
                         <effects:PlainEntry />

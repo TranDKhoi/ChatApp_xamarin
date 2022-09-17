@@ -64,6 +64,9 @@
                            FontSize="15"
                            VerticalOptions="Center" />
                 </StackLayout>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding OpenSearchScreenVM}" />
+                </Frame.GestureRecognizers>
             </Frame>
             <CollectionView ItemsSource="{Binding ListConversation}"
                             x:Name="ListConversation"

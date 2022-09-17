@@ -1,15 +1,20 @@
-﻿using ChatApp_xamarin.ViewModels.Friends;
+﻿using ChatApp_xamarin.Models;
+using ChatApp_xamarin.ViewModels.Friends;
 using ChatApp_xamarin.Views.Chat;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace ChatApp_xamarin.ViewModels.Chat
 {
     public class SearchViewModel : BaseViewModel
     {
+        public ICommand BackCM { get; set; }
+
+
         private string _searchName;
         public string searchName
         {
@@ -20,38 +25,22 @@ namespace ChatApp_xamarin.ViewModels.Chat
                 OnPropertyChanged();
             }
         }
-        private ObservableCollection<Test> _tests;
-        public ObservableCollection<Test> tests
+        private ObservableCollection<User> _users;
+        public ObservableCollection<User> users
         {
-            get { return _tests; }
+            get { return _users; }
             set
             {
-                _tests = value;
+                _users = value;
                 OnPropertyChanged();
             }
         }
         public SearchViewModel()
         {
-            tests = new ObservableCollection<Test>();
-            tests.Add(new Test
+
+            BackCM = new Command(async () =>
             {
-                name = "Kiều Bá Dương",
-                avatar = ImageSource.FromUri(new Uri("https://play-lh.googleusercontent.com/03URhAXU-IrK5PB-DiN6lyLGITlp-6xTizXkW5l98AUvpzOxQej6ss_zM4f8zxN0ofEf"))
-            });
-            tests.Add(new Test
-            {
-                name = "Trần Đình Khôi",
-                avatar = ImageSource.FromUri(new Uri("https://play-lh.googleusercontent.com/03URhAXU-IrK5PB-DiN6lyLGITlp-6xTizXkW5l98AUvpzOxQej6ss_zM4f8zxN0ofEf"))
-            });
-            tests.Add(new Test
-            {
-                name = "Lê Hải Phong",
-                avatar = ImageSource.FromUri(new Uri("https://play-lh.googleusercontent.com/03URhAXU-IrK5PB-DiN6lyLGITlp-6xTizXkW5l98AUvpzOxQej6ss_zM4f8zxN0ofEf"))
-            });
-            tests.Add(new Test
-            {
-                name = "Đỗ Thành Đạt",
-                avatar = ImageSource.FromUri(new Uri("https://play-lh.googleusercontent.com/03URhAXU-IrK5PB-DiN6lyLGITlp-6xTizXkW5l98AUvpzOxQej6ss_zM4f8zxN0ofEf"))
+                await Application.Current.MainPage.Navigation.PopAsync();
             });
         }
     }

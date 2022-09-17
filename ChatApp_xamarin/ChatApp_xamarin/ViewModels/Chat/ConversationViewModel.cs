@@ -16,6 +16,7 @@ namespace ChatApp_xamarin.ViewModels.Chat
     public class ConversationViewModel : BaseViewModel
     {
         public ICommand OpenChatScreenVM { get; set; }
+        public ICommand OpenSearchScreenVM { get; set; }
         public ICommand GetAllConversation { get; set; }
 
         private ObservableCollection<Room> listConversation;
@@ -40,6 +41,11 @@ namespace ChatApp_xamarin.ViewModels.Chat
             GetAllConversation = new Command(async () =>
             {
                 ListConversation = new ObservableCollection<Room>(await ConversationService.ins.GetAllConversation(GlobalData.ins.currentUser.roomKey));
+            });
+
+            OpenSearchScreenVM = new Command(async (p) =>
+            {
+                await Application.Current.MainPage.Navigation.PushAsync(new SearchScreen());
             });
         }
     }
