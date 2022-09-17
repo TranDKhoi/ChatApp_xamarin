@@ -66,7 +66,7 @@ namespace ChatApp_xamarin.Services
             return listCv;
         }
 
-        public async Task<string> CreateConversation(List<string> memberID)
+        public async Task<Room> CreateConversation(List<string> memberID)
         {
             var uniqueID = Guid.NewGuid().ToString();
             Room newRoom = new Room
@@ -79,7 +79,28 @@ namespace ChatApp_xamarin.Services
 
             _ = UserService.ins.UpdateRoomKey(memberID, uniqueID);
 
-            return uniqueID;
+            var friendId = memberID.Where(id => id != GlobalData.ins.currentUser.id).First();
+
+            _ = UserService.ins.UpdateFriend(friendId);
+
+            return newRoom;
+        }
+
+        public async Task<Room> CreateGroupConversation(List<string> memberID, string roomName)
+        {
+            var uniqueID = Guid.NewGuid().ToString();
+            Room newGroup = new Room
+            {
+                id = uniqueID,
+                memberId = new List<string>(memberID),
+                roomName = roomName,
+            };
+            var json = JsonConvert.SerializeObject(newGroup);
+            await _client.Child($"rooms/{uniqueID}").PutAsync(json);
+
+            _ = UserService.ins.UpdateRoomKey(memberID, uniqueID);
+
+            return newGroup;
         }
 
         public async void SeenLastMessage(string roomId)
@@ -113,6 +134,13 @@ namespace ChatApp_xamarin.Services
 
             room.lastMessage = lassmess;
             await _client.Child($"rooms/{roomId}").PatchAsync(JsonConvert.SerializeObject(room));
+        }
+
+        public async Task UpdateGroupName(string roomId, string newName)
+        {
+            var group = await _client.Child($"rooms/{roomId}").OnceSingleAsync<Room>();
+            group.roomName = newName;
+            await _client.Child($"rooms/{roomId}").PatchAsync<Room>(group);
         }
 
     }

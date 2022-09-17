@@ -110,6 +110,35 @@ namespace ChatApp_xamarin.Services
             }
         }
 
+        public async Task UpdateFriend(string friendID)
+        {
+            if (GlobalData.ins.currentUser.friendId is null)
+            {
+                GlobalData.ins.currentUser.friendId = new List<string>();
+                GlobalData.ins.currentUser.friendId.Add(friendID);
+            }
+            if (!GlobalData.ins.currentUser.friendId.Contains(friendID))
+            {
+                GlobalData.ins.currentUser.friendId.Add(friendID);
+            }
+
+            await _client.Child($"users/{GlobalData.ins.currentUser.id}").PatchAsync(JsonConvert.SerializeObject(GlobalData.ins.currentUser));
+
+            var friend = await _client.Child($"users/{friendID}").OnceSingleAsync<User>();
+
+            if (friend.friendId is null)
+            {
+                friend.friendId = new List<string>();
+                friend.friendId.Add(GlobalData.ins.currentUser.id);
+            }
+            if (!friend.friendId.Contains(GlobalData.ins.currentUser.id))
+            {
+                friend.friendId.Add(GlobalData.ins.currentUser.id);
+            }
+
+            await _client.Child($"users/{friend.id}").PatchAsync(JsonConvert.SerializeObject(friend));
+        }
+
         public async Task<List<User>> GetUserByName(string userName)
         {
             var res = (await _client.Child("users").OnceAsync<User>()).Where(item => item.Object.name == userName);
