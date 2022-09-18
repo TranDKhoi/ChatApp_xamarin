@@ -61,6 +61,15 @@ namespace ChatApp_xamarin.Services
                 listCv[i].lastMessage = await MessageService.ins.GetLastMessage(listCv[i].id);
             }
 
+            //retrieve name for room
+            foreach (var r in listCv)
+            {
+                if (r.roomName is null)
+                {
+                    var partnerName = r.member.Where(m => m.id != GlobalData.ins.currentUser.id).Select(m => m.name).First();
+                    r.roomName = partnerName;
+                }
+            }
 
             //return listCv.OrderByDescending(item => item.lastMessage?.createdAt).ToList();
             return listCv;
@@ -68,6 +77,11 @@ namespace ChatApp_xamarin.Services
 
         public async Task<Room> CreateConversation(List<string> memberID)
         {
+
+            var partnerId = memberID.Where(u => u != GlobalData.ins.currentUser.id).First(); ;
+
+            var partner = await UserService.ins.GetUserById(partnerId);
+
             var uniqueID = Guid.NewGuid().ToString();
             Room newRoom = new Room
             {
@@ -76,6 +90,8 @@ namespace ChatApp_xamarin.Services
             };
             var json = JsonConvert.SerializeObject(newRoom);
             await _client.Child($"rooms/{uniqueID}").PutAsync(json);
+
+            newRoom.roomName = partner.name;
 
             newRoom.member = new List<User>();
             foreach (var memberId in newRoom.memberId)
@@ -145,13 +161,12 @@ namespace ChatApp_xamarin.Services
             await _client.Child($"rooms/{roomId}").PatchAsync(JsonConvert.SerializeObject(room));
         }
 
-        public async Task UpdateGroupName(string roomId, string newName)
+        public async Task UpdateRoomName(string roomId, string newName)
         {
             var group = await _client.Child($"rooms/{roomId}").OnceSingleAsync<Room>();
             group.roomName = newName;
             await _client.Child($"rooms/{roomId}").PatchAsync<Room>(group);
         }
-
 
         public async Task<Room> GetRoomWithMyFriend(string friendId)
         {
@@ -172,6 +187,13 @@ namespace ChatApp_xamarin.Services
             }
             //fetch last message of this room
             res.lastMessage = await MessageService.ins.GetLastMessage(res.id);
+
+            //get room name
+            if (res.roomName is null)
+            {
+                var partnerName = res.member.Where(m => m.id != GlobalData.ins.currentUser.id).Select(m => m.name).First();
+                res.roomName = partnerName;
+            }
 
             return res;
         }

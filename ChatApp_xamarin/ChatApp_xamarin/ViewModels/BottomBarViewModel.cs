@@ -5,8 +5,6 @@ using ChatApp_xamarin.ViewModels.Chat;
 using Plugin.LocalNotification.AndroidOption;
 using Plugin.LocalNotification;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -77,13 +75,12 @@ namespace ChatApp_xamarin.ViewModels
                     return;
 
 
-            var sender = await UserService.ins.GetUserById(item.lastMessage.senderId);
 
             var notification = new NotificationRequest
             {
                 BadgeNumber = 3,
                 Description = item.lastMessage.message,
-                Title = sender.name,
+                Title = item.roomName,
                 //ReturningData = "Test Data",
                 NotificationId = 1,
                 Android = new AndroidOptions
@@ -94,7 +91,11 @@ namespace ChatApp_xamarin.ViewModels
                 }
             };
 
-            _ = LocalNotificationCenter.Current.Show(notification);
+
+            if (!GlobalData.ins.isSilentMode)
+            {
+                _ = LocalNotificationCenter.Current.Show(notification);
+            }
         }
     }
 }
