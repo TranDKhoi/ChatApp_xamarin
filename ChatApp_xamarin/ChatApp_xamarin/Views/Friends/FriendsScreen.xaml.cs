@@ -1,7 +1,11 @@
-﻿using ChatApp_xamarin.ViewModels.Chat;
+﻿using ChatApp_xamarin.Models;
+using ChatApp_xamarin.Services;
+using ChatApp_xamarin.Utils;
+using ChatApp_xamarin.ViewModels.Chat;
 using ChatApp_xamarin.ViewModels.Friends;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +28,13 @@ namespace ChatApp_xamarin.Views.Friends
             var viewModel = (FriendsViewModel)this.BindingContext;
             viewModel.OpenChatScreenVM.Execute(null);
             listFriends.SelectedItem = null;
+        }
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            //var viewModel = (FriendsViewModel)this.BindingContext;
+            //viewModel.users = new ObservableCollection<User>(await UserService.ins.GetOnlineFriend(GlobalData.ins.currentUser.friendId));
         }
     }
 }

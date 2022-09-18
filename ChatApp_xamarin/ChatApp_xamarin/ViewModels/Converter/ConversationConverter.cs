@@ -58,4 +58,70 @@ namespace ChatApp_xamarin.ViewModels.Converter
             return null;
         }
     }
+
+    public class IsOnlineConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var isOnline = (bool)value;
+            if (isOnline)
+            {
+                return Color.FromHex("#FF50ca30");
+            }
+            return null;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var isOnline = (bool)value;
+            if (isOnline)
+            {
+                return Color.FromHex("#FF50ca30");
+            }
+            return null;
+        }
+    }
+
+    public class IsOnlineRoomConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var members = value as List<User>;
+            if (members.Count == 2)
+            {
+                for (int i = 0; i < members.Count; i++)
+                {
+                    if (members[i].id != GlobalData.ins.currentUser.id)
+                    {
+                        if (members[i].isOnline)
+                        {
+                            return Color.FromHex("#FF50ca30");
+                        }
+                        return null;
+                    }
+                }
+            }
+            return null;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var members = value as List<User>;
+            if (members.Count == 2)
+            {
+                for (int i = 0; i < members.Count; i++)
+                {
+                    if (members[i].id != GlobalData.ins.currentUser.id)
+                    {
+                        if (members[i].isOnline)
+                        {
+                            return Color.FromHex("#FF50ca30");
+                        }
+                        return null;
+                    }
+                }
+            }
+            return null;
+        }
+    }
 }

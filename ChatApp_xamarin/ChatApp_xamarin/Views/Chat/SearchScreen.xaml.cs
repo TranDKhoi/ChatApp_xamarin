@@ -22,15 +22,16 @@ namespace ChatApp_xamarin.Views.Chat
             searchEntry.Focus();
         }
 
-        private void listFriends_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (listFriends.ItemsSource == null)
-            {
-                return;
-            }
-            var viewModel = (SearchViewModel)this.BindingContext;
-            //viewModel.OpenChatScreenVM.Execute(listFriends.SelectedItem);
-            //ListConversation.SelectedItem = null;
-        }
+        //private void listFriends_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+            
+        //    var viewModel = (SearchViewModel)this.BindingContext;
+        //    if (listFriends.ItemsSource == null)
+        //    {
+        //        return;
+        //    }
+        //    viewModel.OpenChatScreenCM.Execute(listFriends.SelectedItem);
+        //    //listFriends.SelectedItem = null;
+        //}
     }
 }

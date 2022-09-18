@@ -56,18 +56,22 @@ namespace ChatApp_xamarin.ViewModels.Chat
 
             OpenChatScreenCM = new Command(async (p) =>
             {
-                ChatScreen cs = new ChatScreen();
-                var vm = (ChatViewModel)cs.BindingContext;
-                User searchUser = p as User;
-                if (GlobalData.ins.currentUser.friendId.Contains(searchUser.id))
+                ChatScreen chatScreen = new ChatScreen();
+                var vm = (ChatViewModel)chatScreen.BindingContext;
+                if (p != null)
                 {
-                    //vm.CurrentRoom = await 
+                    User searchUser = p as User;
+                    if (GlobalData.ins.currentUser.friendId != null && GlobalData.ins.currentUser.friendId.Contains(searchUser.id))
+                    {
+                        vm.CurrentRoom = await ConversationService.ins.GetRoomWithMyFriend(searchUser.id);
+                    }
+                    else
+                    {
+                        vm.CurrentRoom = await ConversationService.ins.CreateConversation(new List<String>() { GlobalData.ins.currentUser.id, searchUser.id });
+                    }
+
+                    await Application.Current.MainPage.Navigation.PushAsync(new ChatScreen());
                 }
-                else
-                {
-                    vm.CurrentRoom = await ConversationService.ins.CreateConversation( new List<String>() { GlobalData.ins.currentUser.id, searchUser.id });
-                }
-                await Application.Current.MainPage.Navigation.PushAsync(new ChatScreen());
             });
         }
     }

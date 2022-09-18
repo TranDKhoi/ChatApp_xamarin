@@ -46,7 +46,8 @@
                             Margin="0"
                             x:Name="listFriends"
                             SelectionMode="Single"
-                            SelectionChanged="listFriends_SelectionChanged">
+                            SelectionChangedCommand="{Binding OpenChatScreenCM}"
+                            SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference listFriends}}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout Orientation="Horizontal"
