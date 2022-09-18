@@ -68,6 +68,7 @@ namespace ChatApp_xamarin.ViewModels.Chat
                     else
                     {
                         vm.CurrentRoom = await ConversationService.ins.CreateConversation(new List<String>() { GlobalData.ins.currentUser.id, searchUser.id });
+                        GlobalData.ins.currentUser = await UserService.ins.GetUserById(GlobalData.ins.currentUser.id);
                     }
 
                     await Application.Current.MainPage.Navigation.PushAsync(new ChatScreen());

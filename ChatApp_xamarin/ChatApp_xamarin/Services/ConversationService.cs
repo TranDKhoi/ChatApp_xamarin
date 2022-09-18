@@ -86,11 +86,11 @@ namespace ChatApp_xamarin.Services
             //fetch last message of this room
             newRoom.lastMessage = await MessageService.ins.GetLastMessage(newRoom.id);
 
-            _ = UserService.ins.UpdateRoomKey(memberID, uniqueID);
+            await UserService.ins.UpdateRoomKey(memberID, uniqueID);
 
             var friendId = memberID.Where(id => id != GlobalData.ins.currentUser.id).First();
 
-            _ = UserService.ins.UpdateFriend(friendId);
+            await UserService.ins.UpdateFriend(friendId);
 
             return newRoom;
         }
@@ -159,10 +159,21 @@ namespace ChatApp_xamarin.Services
 
             if (allRoom == null) return null;
 
-            var listRoomWith2Mem = allRoom.Select(r => r.Object).Where(r => r.memberId.Count == 2 || r.memberId.Contains(friendId));
+            var listRoomWith2Mem = allRoom.Select(r => r.Object).Where(r => r.memberId.Count == 2 && r.memberId.Contains(friendId));
 
-            return listRoomWith2Mem.Where(r => r.memberId.Contains(GlobalData.ins.currentUser.id)).First();
+            var res = listRoomWith2Mem.Where(r => r.memberId.Contains(GlobalData.ins.currentUser.id)).First();
+
+            //fetch user data for room
+            res.member = new List<User>();
+            foreach (var memberId in res.memberId)
+            {
+                var u = await UserService.ins.GetUserById(memberId);
+                res.member.Add(u);
+            }
+            //fetch last message of this room
+            res.lastMessage = await MessageService.ins.GetLastMessage(res.id);
+
+            return res;
         }
-
     }
 }

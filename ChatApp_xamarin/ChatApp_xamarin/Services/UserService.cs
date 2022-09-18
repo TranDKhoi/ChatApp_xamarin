@@ -98,12 +98,12 @@ namespace ChatApp_xamarin.Services
                     {
                         user.roomKey = new List<string>();
                         user.roomKey.Add(roomId);
-                        await _client.Child($"users/{user.id}").PutAsync(JsonConvert.SerializeObject(user));
+                        await _client.Child($"users/{user.id}").PatchAsync(JsonConvert.SerializeObject(user));
                     }
                     if (!user.roomKey.Contains(roomId))
                     {
                         user.roomKey.Add(roomId);
-                        await _client.Child($"users/{user.id}").PutAsync(JsonConvert.SerializeObject(user));
+                        await _client.Child($"users/{user.id}").PatchAsync(JsonConvert.SerializeObject(user));
                     }
                 }
 
@@ -112,28 +112,30 @@ namespace ChatApp_xamarin.Services
 
         public async Task UpdateFriend(string friendID)
         {
-            if (GlobalData.ins.currentUser.friendId is null)
+            var currentU = await _client.Child($"users/{GlobalData.ins.currentUser.id}").OnceSingleAsync<User>();
+
+            if (currentU.friendId is null)
             {
-                GlobalData.ins.currentUser.friendId = new List<string>();
-                GlobalData.ins.currentUser.friendId.Add(friendID);
+                currentU.friendId = new List<string>();
+                currentU.friendId.Add(friendID);
             }
-            if (!GlobalData.ins.currentUser.friendId.Contains(friendID))
+            if (!currentU.friendId.Contains(friendID))
             {
-                GlobalData.ins.currentUser.friendId.Add(friendID);
+                currentU.friendId.Add(friendID);
             }
 
-            await _client.Child($"users/{GlobalData.ins.currentUser.id}").PatchAsync(JsonConvert.SerializeObject(GlobalData.ins.currentUser));
+            await _client.Child($"users/{currentU.id}").PatchAsync(JsonConvert.SerializeObject(currentU));
 
             var friend = await _client.Child($"users/{friendID}").OnceSingleAsync<User>();
 
             if (friend.friendId is null)
             {
                 friend.friendId = new List<string>();
-                friend.friendId.Add(GlobalData.ins.currentUser.id);
+                friend.friendId.Add(currentU.id);
             }
-            if (!friend.friendId.Contains(GlobalData.ins.currentUser.id))
+            if (!friend.friendId.Contains(currentU.id))
             {
-                friend.friendId.Add(GlobalData.ins.currentUser.id);
+                friend.friendId.Add(currentU.id);
             }
 
             await _client.Child($"users/{friend.id}").PatchAsync(JsonConvert.SerializeObject(friend));
@@ -149,7 +151,7 @@ namespace ChatApp_xamarin.Services
             if (res.Count != 0)
             {
                 listMatchedName = new List<User>();
-                listMatchedName = res.Select(i => i.Object).Where(item => item.name == userName).ToList();
+                listMatchedName = res.Select(i => i.Object).Where(item => item.name == userName && item.id != GlobalData.ins.currentUser.id).ToList();
             }
 
             return listMatchedName;
