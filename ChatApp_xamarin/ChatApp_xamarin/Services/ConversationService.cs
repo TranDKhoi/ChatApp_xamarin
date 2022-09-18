@@ -1,15 +1,15 @@
 ﻿using ChatApp_xamarin.Models;
+using ChatApp_xamarin.Utils;
 using Firebase.Database;
+using Firebase.Database.Query;
+using Firebase.Database.Streaming;
 using Newtonsoft.Json;
+using Plugin.Media.Abstractions;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Linq;
-using System.Threading.Tasks;
-using ChatApp_xamarin.Utils;
-using Firebase.Database.Streaming;
 using System.Reactive.Linq;
-using Firebase.Database.Query;
+using System.Threading.Tasks;
 
 namespace ChatApp_xamarin.Services
 {
@@ -111,14 +111,19 @@ namespace ChatApp_xamarin.Services
             return newRoom;
         }
 
-        public async Task<Room> CreateGroupConversation(List<string> memberID, string roomName)
+        public async Task<Room> CreateGroupConversation(List<string> memberID, string roomName, MediaFile avt)
         {
             var uniqueID = Guid.NewGuid().ToString();
+
+            var link = await StorageService.ins.UploadGroupImage(uniqueID, avt);
+
             Room newGroup = new Room
             {
                 id = uniqueID,
                 memberId = new List<string>(memberID),
                 roomName = roomName,
+                avatar = link,
+
             };
             var json = JsonConvert.SerializeObject(newGroup);
             await _client.Child($"rooms/{uniqueID}").PutAsync(json);
@@ -166,6 +171,17 @@ namespace ChatApp_xamarin.Services
             var group = await _client.Child($"rooms/{roomId}").OnceSingleAsync<Room>();
             group.roomName = newName;
             await _client.Child($"rooms/{roomId}").PatchAsync<Room>(group);
+        }
+
+        public async Task UpdateRoomAvatar(string roomId, MediaFile avt)
+        {
+            var room = await _client.Child($"rooms/{roomId}").OnceSingleAsync<Room>();
+
+            var link = await StorageService.ins.UploadGroupImage(roomId, avt);
+
+            room.avatar = link;
+
+            await _client.Child($"rooms/{roomId}").PatchAsync(JsonConvert.SerializeObject(room));
         }
 
         public async Task<Room> GetRoomWithMyFriend(string friendId)

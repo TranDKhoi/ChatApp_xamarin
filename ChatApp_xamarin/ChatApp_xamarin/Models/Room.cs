@@ -13,5 +13,6 @@ namespace ChatApp_xamarin.Models
         public Message lastMessage { get; set; }
         public string roomName { get; set; }
         public List<string> isMuted { get; set; }
+        public string avatar { get; set; }
     }
 }
