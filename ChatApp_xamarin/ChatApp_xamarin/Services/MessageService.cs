@@ -4,6 +4,7 @@ using ChatApp_xamarin.Utils;
 using Firebase.Database;
 using Firebase.Database.Streaming;
 using Newtonsoft.Json;
+using Plugin.Media.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -63,6 +64,23 @@ namespace ChatApp_xamarin.Services
             var res = await _client.Child($"messages/{roomID}").PostAsync(json);
 
             await ConversationService.ins.UpdateLastMessage(roomID, newMess);
+        }
+
+        public async Task SendImage(string roomId, MediaFile file)
+        {
+            var link = await StorageService.ins.UploadMessageImage(file);
+
+            Message newMess = new Message
+            {
+                createdAt = DateTime.Now.ToString(),
+                senderId = GlobalData.ins.currentUser.id,
+                image = link,
+            };
+
+            var json = JsonConvert.SerializeObject(newMess);
+            var res = await _client.Child($"messages/{roomId}").PostAsync(json);
+
+            await ConversationService.ins.UpdateLastMessage(roomId, newMess);
         }
 
         public async Task<List<Message>> GetRoomMessages(string roomId)

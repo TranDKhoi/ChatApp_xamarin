@@ -11,6 +11,6 @@ namespace ChatApp_xamarin.Models
         public User sender { get; set; }
         public string createdAt { get; set; }
         public string message { get; set; }
-        public List<string> images { get; set; }
+        public string image { get; set; }
     }
 }

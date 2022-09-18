@@ -62,5 +62,28 @@ namespace ChatApp_xamarin.Services
                 return $"https://trankhoi.blob.core.windows.net/users/{GlobalData.ins.currentUser.id}.png";
             }
         }
+
+        public async Task<string> UploadMessageImage(MediaFile file)
+        {
+            string filePath = file.Path;
+
+
+            // Gets a reference to the images container
+            var container = _blClient.GetContainerReference("messages");
+            await container.CreateIfNotExistsAsync();
+            await container.SetPermissionsAsync(new BlobContainerPermissions
+            {
+                PublicAccess = BlobContainerPublicAccessType.Blob
+            });
+            // Uploads the image to the blob storage
+            var now = DateTime.Now;
+            var imageBlob = container.GetBlockBlobReference($"{now}.png");
+
+            using (var fileStream = File.OpenRead(filePath))
+            {
+                await imageBlob.UploadFromStreamAsync(fileStream);
+                return $"https://trankhoi.blob.core.windows.net/messages/{now}.png";
+            }
+        }
     }
 }
