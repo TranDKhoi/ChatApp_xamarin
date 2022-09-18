@@ -16,27 +16,27 @@ namespace ChatApp_xamarin.ViewModels.Chat
     public class SearchViewModel : BaseViewModel
     {
         public ICommand BackCM { get; set; }
-        public ICommand SearchCM { get; set; }
+        public ICommand SearchGroupCM { get; set; }
         public ICommand OpenChatScreenCM { get; set; }
 
 
-        private string _searchName;
-        public string searchName
+        private string _searchGroupName;
+        public string searchGroupName
         {
-            get { return _searchName; }
+            get { return _searchGroupName; }
             set
             {
-                _searchName = value;
+                _searchGroupName = value;
                 OnPropertyChanged();
             }
         }
-        private ObservableCollection<User> _users;
-        public ObservableCollection<User> users
+        private ObservableCollection<Room> _rooms;
+        public ObservableCollection<Room> rooms
         {
-            get { return _users; }
+            get { return _rooms; }
             set
             {
-                _users = value;
+                _rooms = value;
                 OnPropertyChanged();
             }
         }
@@ -45,34 +45,42 @@ namespace ChatApp_xamarin.ViewModels.Chat
 
             BackCM = new Command(async () =>
             {
-                searchName = String.Empty;
+                searchGroupName = String.Empty;
                 await Application.Current.MainPage.Navigation.PopAsync();
             });
 
-            SearchCM = new Command(async () =>
-            {
-                users = new ObservableCollection<User>(await UserService.ins.GetUserByName(searchName));
-            });
+            SearchGroupCM = new Command(async () =>
+             {
+                 if (rooms != null)
+                 {
+                     rooms.Clear();
+                 }
+                 if (!string.IsNullOrEmpty(searchGroupName))
+                 {
+                     List<Room> searchRoom = new List<Room>();
+                     var allRoom = await ConversationService.ins.GetAllConversation(GlobalData.ins.currentUser.roomKey);
+                     if (allRoom != null)
+                     {
+                         for (int i = 0; i < allRoom.Count; i++)
+                         {
+                             if (allRoom[i].roomName.ToLower().Contains(searchGroupName.ToLower()))
+                             {
+                                 searchRoom.Add(allRoom[i]);
+                             }
+                         }
+                         rooms = new ObservableCollection<Room>(searchRoom);
+                     }
+                 }
+             });
 
             OpenChatScreenCM = new Command(async (p) =>
             {
-                ChatScreen chatScreen = new ChatScreen();
-                var vm = (ChatViewModel)chatScreen.BindingContext;
-                if (p != null)
-                {
-                    User searchUser = p as User;
-                    if (GlobalData.ins.currentUser.friendId != null && GlobalData.ins.currentUser.friendId.Contains(searchUser.id))
-                    {
-                        vm.CurrentRoom = await ConversationService.ins.GetRoomWithMyFriend(searchUser.id);
-                    }
-                    else
-                    {
-                        vm.CurrentRoom = await ConversationService.ins.CreateConversation(new List<String>() { GlobalData.ins.currentUser.id, searchUser.id });
-                        GlobalData.ins.currentUser = await UserService.ins.GetUserById(GlobalData.ins.currentUser.id);
-                    }
-
-                    await Application.Current.MainPage.Navigation.PushAsync(new ChatScreen());
-                }
+                Room selectedRoom = p as Room;
+                ChatScreen cs = new ChatScreen();
+                var vm = (ChatViewModel)cs.BindingContext;
+                vm.CurrentRoom = selectedRoom;
+                await Application.Current.MainPage.Navigation.PushAsync(new ChatScreen());
+                searchGroupName = string.Empty;
             });
         }
     }

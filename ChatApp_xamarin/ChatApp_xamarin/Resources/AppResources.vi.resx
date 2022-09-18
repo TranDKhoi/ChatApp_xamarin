@@ -120,6 +120,9 @@
   <data name="account" xml:space="preserve">
     <value>Tài khoản</value>
   </data>
+  <data name="addMembers" xml:space="preserve">
+    <value>Thêm thành viên</value>
+  </data>
   <data name="alert" xml:space="preserve">
     <value>Thông báo</value>
   </data>
@@ -185,6 +188,9 @@
   </data>
   <data name="newpass" xml:space="preserve">
     <value>Mật khẩu mới</value>
+  </data>
+  <data name="next" xml:space="preserve">
+    <value>Tiếp</value>
   </data>
   <data name="no" xml:space="preserve">
     <value>Huỷ</value>

@@ -8,8 +8,8 @@
              xmlns:cvt="clr-namespace:ChatApp_xamarin.ViewModels.Converter"
              BindingContext="{StaticResource ConversationVM}">
     <ContentPage.Resources>
-        <cvt:MemberToNameConverter x:Key="memtonameCVT" />
-        <cvt:MemberToAvatarConverter x:Key="memtoavtCVT" />
+        <cvt:RoomNameConverter x:Key="roomNameCVT" />
+        <cvt:RoomAvatarConverter x:Key="roomAvatarCVT" />
         <cvt:IsOnlineConverter x:Key="isOnlineCVT" />
         <cvt:IsOnlineRoomConverter x:Key="isOnlineRoomCVT" />
     </ContentPage.Resources>
@@ -28,17 +28,6 @@
                 <Frame CornerRadius="90"
                        BackgroundColor="{AppThemeBinding Light=#f6f6f6, Dark=#303030}"
                        Padding="10"
-                       VerticalOptions="Center">
-                    <Label Text="&#xe412;"
-                           FontFamily="Material"
-                           TextColor="{AppThemeBinding Light=Black, Dark=White}"
-                           FontSize="20"
-                           VerticalOptions="Center"
-                           HorizontalOptions="Center" />
-                </Frame>
-                <Frame CornerRadius="90"
-                       BackgroundColor="{AppThemeBinding Light=#f6f6f6, Dark=#303030}"
-                       Padding="10"
                        Margin="10, 0, 0, 0"
                        VerticalOptions="Center">
                     <Label Text="&#xe3c9;"
@@ -47,6 +36,9 @@
                            FontSize="20"
                            VerticalOptions="Center"
                            HorizontalOptions="Center" />
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OpenGroupScreenVM}" />
+                    </Frame.GestureRecognizers>
                 </Frame>
             </StackLayout>
             <Frame CornerRadius="10"
@@ -86,7 +78,7 @@
                                        HorizontalOptions="Center"
                                        IsClippedToBounds="True"
                                        VerticalOptions="Center">
-                                    <Image Source="{Binding member, Converter={StaticResource memtoavtCVT}}"
+                                    <Image Source="{Binding ., Converter={StaticResource roomAvatarCVT}}"
                                            VerticalOptions="Center"
                                            HorizontalOptions="Center" />
                                 </Frame>
@@ -100,8 +92,8 @@
                                        CornerRadius="90" />
                             </Grid>
                             <StackLayout VerticalOptions="CenterAndExpand">
-                                <Label Text="{Binding member, Converter={StaticResource memtonameCVT}}"
-                                       TextColor="{AppThemeBinding Light=#080808, Dark=#b4b4b4}"
+                                <Label Text="{Binding ., Converter={StaticResource roomNameCVT}}"
+                                       TextColor="{AppThemeBinding Light=#080808, Dark=#bbbbbb}"
                                        FontSize="15"
                                        FontAttributes="Bold" />
                                 <Grid>

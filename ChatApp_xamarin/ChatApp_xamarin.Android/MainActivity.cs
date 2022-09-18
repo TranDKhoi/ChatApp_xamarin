@@ -73,7 +73,7 @@ namespace ChatApp_xamarin.Droid
             {
                 if (Control != null)
                 {
-                    Android.Graphics.Color entryLineColor = Android.Graphics.Color.White;
+                    Android.Graphics.Color entryLineColor = Android.Graphics.Color.Transparent;
                     Control.BackgroundTintList = ColorStateList.ValueOf(entryLineColor);
                 }
 

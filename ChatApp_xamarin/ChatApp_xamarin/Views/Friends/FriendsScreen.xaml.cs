@@ -21,20 +21,32 @@ namespace ChatApp_xamarin.Views.Friends
         public FriendsScreen()
         {
             InitializeComponent();
+            searchEntry.Background = null;
         }
 
         private void listFriends_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var viewModel = (FriendsViewModel)this.BindingContext;
-            viewModel.OpenChatScreenVM.Execute(null);
+            viewModel.OpenChatScreenVM.Execute(listFriends.SelectedItem);
             listFriends.SelectedItem = null;
         }
 
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            //var viewModel = (FriendsViewModel)this.BindingContext;
-            //viewModel.users = new ObservableCollection<User>(await UserService.ins.GetOnlineFriend(GlobalData.ins.currentUser.friendId));
+            var viewModel = (FriendsViewModel)this.BindingContext;
+            if (GlobalData.ins.currentUser != null)
+            {
+                if (GlobalData.ins.currentUser.friendId != null)
+                {
+                    if (await UserService.ins.GetOnlineFriend(GlobalData.ins.currentUser.friendId) != null)
+                    {
+                        viewModel.users = new ObservableCollection<User>(await UserService.ins.GetOnlineFriend(GlobalData.ins.currentUser.friendId));
+
+                    }
+                }
+            }
+
         }
     }
 }

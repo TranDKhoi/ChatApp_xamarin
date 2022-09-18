@@ -70,6 +70,15 @@ namespace ChatApp_xamarin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add members.
+        /// </summary>
+        internal static string addMembers {
+            get {
+                return ResourceManager.GetString("addMembers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Alert.
         /// </summary>
         internal static string alert {
@@ -264,6 +273,15 @@ namespace ChatApp_xamarin.Resources {
         internal static string newpass {
             get {
                 return ResourceManager.GetString("newpass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Next.
+        /// </summary>
+        internal static string next {
+            get {
+                return ResourceManager.GetString("next", resourceCulture);
             }
         }
         

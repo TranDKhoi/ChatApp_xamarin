@@ -14,11 +14,12 @@
              xmlns:windows="clr-namespace:Xamarin.Forms.PlatformConfiguration.WindowsSpecific;assembly=Xamarin.Forms.Core"
              windows:TabbedPage.HeaderIconsEnabled="true"
              BindingContext="{StaticResource BottomVM}">
-    <friends:FriendsScreen Title="{i18n:Translate friendsTitle}"
-                           IconImageSource="group.png" />
     <chat:ConversationScreen Title="{i18n:Translate conversationTitle}"
                              IconImageSource="chat_bubble.png" />
-    
+    <friends:FriendsScreen Title="{i18n:Translate friendsTitle}"
+                           IconImageSource="group.png" />
+
+
     <setting:SettingScreen Title="{i18n:Translate setting}"
                            IconImageSource="settings.png" />
 

@@ -101,11 +101,11 @@
                                                 SendImageTemplate="{StaticResource SendImage}"
                                                 x:Key="messageItemSelector" />
         </ResourceDictionary>
-        <cvt:MemberToAvatarConverter x:Key="membertoavtCVT" />
-        <cvt:MemberToNameConverter x:Key="membertonameCVT" />
+        <cvt:RoomAvatarConverter x:Key="roomAvatarCVT" />
+        <cvt:RoomNameConverter x:Key="roomNameCVT" />
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout BackgroundColor="{AppThemeBinding Light=White, Dark=Black}">
             <StackLayout Orientation="Horizontal"
                          HorizontalOptions="Fill"
                          Margin="0, 5, 0, 5"
@@ -121,18 +121,18 @@
                         <TapGestureRecognizer Command="{Binding BackCM}" />
                     </Label.GestureRecognizers>
                 </Label>
-                <Frame CornerRadius="100"
+                <Frame CornerRadius="120"
                        HeightRequest="50"
                        WidthRequest="50"
                        Padding="0"
                        HorizontalOptions="Center"
                        IsClippedToBounds="True"
                        VerticalOptions="Center">
-                    <Image Source="{Binding CurrentRoom.member,Converter={StaticResource membertoavtCVT}}"
+                    <Image Source="{Binding CurrentRoom,Converter={StaticResource roomAvatarCVT}}"
                            VerticalOptions="Center"
                            HorizontalOptions="Center" />
                 </Frame>
-                <Label Text="{Binding CurrentRoom.member,Converter={StaticResource membertonameCVT}}"
+                <Label Text="{Binding CurrentRoom,Converter={StaticResource roomAvatarCVT}}"
                        FontAttributes="Bold"
                        FontSize="22"
                        Margin="10, 0, 0, 0"
@@ -146,7 +146,8 @@
             <StackLayout Orientation="Horizontal"
                          HorizontalOptions="Fill"
                          Padding="10"
-                         android:VisualElement.Elevation="100">
+                         android:VisualElement.Elevation="100"
+                         >
                 <Label FontFamily="Material"
                        TextColor="{AppThemeBinding Light=#0080ff, Dark=#a20deb}"
                        FontSize="25"
@@ -165,13 +166,17 @@
                 </Label>
                 <Frame HorizontalOptions="FillAndExpand"
                        Padding="0"
-                       CornerRadius="20">
+                       CornerRadius="20"
+                       BackgroundColor="{AppThemeBinding Light=#f2f3f5, Dark=#333333}">
                     <Entry Placeholder="{i18n:Translate texting}"
                            Text="{Binding currentMessage}"
+                           TextColor="{AppThemeBinding Light=#797979, Dark=#8b8b8b}"
+                           PlaceholderColor="{AppThemeBinding Light=#797979, Dark=#8b8b8b}"
                            Keyboard="Chat"
                            HorizontalOptions="FillAndExpand"
                            VerticalOptions="Center"
-                           Margin="15, 0, 15, 0">
+                           Margin="15, 0, 15, 0"
+                           >
                         <Entry.Effects>
                             <effects:PlainEntry />
                         </Entry.Effects>

@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:i18n="clr-namespace:ChatApp_xamarin.Helpers"
+             x:Class="ChatApp_xamarin.Views.Group.GroupScreen"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout Padding="20"
+                     BackgroundColor="{AppThemeBinding Light=#ffffff, Dark=#000000}">
+            <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="Fill"
+                         Margin="0, 0, 0, 10">
+                <Label FontFamily="Material"
+                       TextColor="{AppThemeBinding Light=#000000, Dark=#ffffff}"
+                       FontSize="30"
+                       Text="&#xe5c4;"
+                       Margin="5, 0, 10, 0"
+                       VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding BackCM}" />
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="{i18n:Translate addMembers}"
+                       FontAttributes="Bold"
+                       FontSize="22"
+                       Margin="10, 0, 0, 0"
+                       TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                       HorizontalOptions="StartAndExpand"
+                       VerticalOptions="Center" />
+                <Label Text="{i18n:Translate next}"
+                       FontSize="18" />
+            </StackLayout>
+            <Frame CornerRadius="10"
+                   BackgroundColor="{AppThemeBinding Light=#f6f6f6, Dark=#303030}"
+                   Padding="10"
+                   HorizontalOptions="FillAndExpand">
+                <StackLayout Orientation="Horizontal"
+                             HorizontalOptions="StartAndExpand">
+                    <Label FontFamily="Material"
+                           TextColor="{AppThemeBinding Light=#9f9f9f, Dark=#6d6d6d}"
+                           FontSize="25"
+                           Text="&#xe8b6;"
+                           Margin="5, 0, 10, 0"
+                           VerticalOptions="Center"></Label>
+                    <Label Text="{i18n:Translate search}"
+                           TextColor="{AppThemeBinding Light=#767676,Dark=#878787}"
+                           FontSize="15"
+                           VerticalOptions="Center" />
+                </StackLayout>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding OpenSearchScreenVM}" />
+                </Frame.GestureRecognizers>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

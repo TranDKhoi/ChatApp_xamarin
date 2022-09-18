@@ -18,7 +18,7 @@ namespace ChatApp_xamarin.ViewModels.Chat
         {
             if (item == null) return null;
             Message messageItem = item as Message;
-            if (messageItem.images != null)
+            if (messageItem.image != null)
             {
                 return SendImageTemplate;
             }

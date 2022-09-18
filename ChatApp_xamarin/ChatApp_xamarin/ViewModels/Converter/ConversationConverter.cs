@@ -9,51 +9,58 @@ using ChatApp_xamarin.Utils;
 
 namespace ChatApp_xamarin.ViewModels.Converter
 {
-    public class MemberToNameConverter : IValueConverter
+    public class RoomNameConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            List<User> users = value as List<User>;
-            if (users.Count == 2)
+            Room room = value as Room;
+            if (room != null)
             {
-                var partner = users.Where(u => u.id != GlobalData.ins.currentUser.id).First();
-                return partner.name;
-            }
-            return "Group";
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            List<User> users = value as List<User>;
-            if (users.Count == 2)
-            {
-                var partner = users.Where(u => u.id != GlobalData.ins.currentUser.id).First();
-                return partner.name;
-            }
-            return "Group";
-        }
-    }
-
-    public class MemberToAvatarConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            List<User> users = value as List<User>;
-            if (users.Count == 2)
-            {
-                var partner = users.Where(u => u.id != GlobalData.ins.currentUser.id).First();
-                return partner.avatar;
+                if (room.member.Count == 2)
+                {
+                    var partner = room.member.Where(u => u.id != GlobalData.ins.currentUser.id).First();
+                    return partner.name;
+                }
+                return room.roomName;
             }
             return null;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            List<User> users = value as List<User>;
-            if (users.Count == 2)
+            Room room = value as Room;
+            if (room != null)
             {
-                var partner = users.Where(u => u.id != GlobalData.ins.currentUser.id).First();
-                return partner.avatar;
+                if (room.member.Count == 2)
+                {
+                    var partner = room.member.Where(u => u.id != GlobalData.ins.currentUser.id).First();
+                    return partner.name;
+                }
+                return room.roomName;
+            }
+            return null;
+        }
+    }
+
+    public class RoomAvatarConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+
+            Room room = value as Room;
+            if (room != null)
+            {
+                return room.avatar ?? room.member.Where(u => u.id != GlobalData.ins.currentUser.id).First().avatar;
+            }
+            return null;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            Room room = value as Room;
+            if (room != null)
+            {
+                return room.avatar ?? room.member.Where(u => u.id != GlobalData.ins.currentUser.id).First().avatar;
             }
             return null;
         }
@@ -64,21 +71,13 @@ namespace ChatApp_xamarin.ViewModels.Converter
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var isOnline = (bool)value;
-            if (isOnline)
-            {
-                return Color.FromHex("#FF50ca30");
-            }
-            return null;
+            return (isOnline) ? Color.FromHex("#FF50ca30") : Color.Red;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var isOnline = (bool)value;
-            if (isOnline)
-            {
-                return Color.FromHex("#FF50ca30");
-            }
-            return null;
+            return (isOnline) ? Color.FromHex("#FF50ca30") : Color.Red;
         }
     }
 
@@ -93,15 +92,11 @@ namespace ChatApp_xamarin.ViewModels.Converter
                 {
                     if (members[i].id != GlobalData.ins.currentUser.id)
                     {
-                        if (members[i].isOnline)
-                        {
-                            return Color.FromHex("#FF50ca30");
-                        }
-                        return null;
+                        return (members[i].isOnline) ? Color.FromHex("#FF50ca30") : Color.Red;
                     }
                 }
             }
-            return null;
+            return Color.Red;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -113,15 +108,11 @@ namespace ChatApp_xamarin.ViewModels.Converter
                 {
                     if (members[i].id != GlobalData.ins.currentUser.id)
                     {
-                        if (members[i].isOnline)
-                        {
-                            return Color.FromHex("#FF50ca30");
-                        }
-                        return null;
+                        return (members[i].isOnline) ? Color.FromHex("#FF50ca30") : Color.Red;
                     }
                 }
             }
-            return null;
+            return Color.Red;
         }
     }
 }
