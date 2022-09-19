@@ -140,7 +140,7 @@
                     </Frame.GestureRecognizers>
                 </Frame>
             </StackLayout>
-            <CollectionView ItemsSource="{Binding ListMessage, Mode=TwoWay}"
+            <CollectionView ItemsSource="{Binding ListMessage}"
                             ItemTemplate="{StaticResource messageItemSelector}"
                             x:Name="MessageList" />
             <StackLayout Orientation="Horizontal"
@@ -186,11 +186,7 @@
                        Text="&#xe163;"
                        Margin="5, 0, 10, 0"
                        VerticalOptions="Center"
-                       x:Name="SendIcon">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding SendMessageCM}" />
-                    </Label.GestureRecognizers>
-                </Label>
+                       x:Name="SendIcon"></Label>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
