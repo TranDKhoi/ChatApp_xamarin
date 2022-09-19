@@ -277,6 +277,15 @@ namespace ChatApp_xamarin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Member already existed.
+        /// </summary>
+        internal static string memberalreadyexisted {
+            get {
+                return ResourceManager.GetString("memberalreadyexisted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New password.
         /// </summary>
         internal static string newpass {

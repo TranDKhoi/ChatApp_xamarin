@@ -57,7 +57,8 @@ namespace ChatApp_xamarin.Services
                 foreach (var memberId in listCv[i].memberId)
                 {
                     var u = await UserService.ins.GetUserById(memberId);
-                    listCv[i].member.Add(u);
+                    if (u != null)
+                        listCv[i].member.Add(u);
                 }
                 //fetch last message of this room
                 listCv[i].lastMessage = await MessageService.ins.GetLastMessage(listCv[i].id);
@@ -182,7 +183,7 @@ namespace ChatApp_xamarin.Services
             await _client.Child($"rooms/{roomId}").PatchAsync<Room>(group);
         }
 
-        public async Task UpdateRoomAvatar(string roomId, MediaFile avt)
+        public async Task<string> UpdateRoomAvatar(string roomId, MediaFile avt)
         {
             var room = await _client.Child($"rooms/{roomId}").OnceSingleAsync<Room>();
 
@@ -191,6 +192,7 @@ namespace ChatApp_xamarin.Services
             room.avatar = link;
 
             await _client.Child($"rooms/{roomId}").PatchAsync(JsonConvert.SerializeObject(room));
+            return link;
         }
 
         public async Task<Room> GetRoomWithMyFriend(string friendId)
@@ -208,7 +210,8 @@ namespace ChatApp_xamarin.Services
             foreach (var memberId in res.memberId)
             {
                 var u = await UserService.ins.GetUserById(memberId);
-                res.member.Add(u);
+                if (u != null)
+                    res.member.Add(u);
             }
             //fetch last message of this room
             res.lastMessage = await MessageService.ins.GetLastMessage(res.id);

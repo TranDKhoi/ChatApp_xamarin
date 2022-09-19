@@ -189,6 +189,9 @@
   <data name="login" xml:space="preserve">
     <value>Đăng nhập</value>
   </data>
+  <data name="memberalreadyexisted" xml:space="preserve">
+    <value>Thành viên đã tồn tại</value>
+  </data>
   <data name="newpass" xml:space="preserve">
     <value>Mật khẩu mới</value>
   </data>

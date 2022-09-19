@@ -66,7 +66,8 @@ namespace ChatApp_xamarin.ViewModels.Group
                 Entry s = p as Entry;
 
                 if (!string.IsNullOrEmpty(s.Text))
-                    users = new ObservableCollection<User>(await UserService.ins.GetUserByName(s.Text));
+                    users = new ObservableCollection<User>((await UserService.ins.GetUserByName(s.Text))
+                        .Where(i => i.id != GlobalData.ins.currentUser.id));
                 else
                     users = new ObservableCollection<User>(await UserService.ins.GetOnlineFriend(GlobalData.ins.currentUser.friendId));
             });
@@ -77,6 +78,12 @@ namespace ChatApp_xamarin.ViewModels.Group
             CreateGroupCM = new Command(async () =>
             {
                 var chatVM = Application.Current.Resources["ChatVM"] as ChatViewModel;
+
+                if (chatVM.CurrentRoom.memberId.Contains(CurrentSelect.id))
+                {
+                    UserDialogs.Instance.Toast(AppResources.memberalreadyexisted);
+                    return;
+                }
 
                 if (chatVM.CurrentRoom.memberId.Count == 2)
                 {

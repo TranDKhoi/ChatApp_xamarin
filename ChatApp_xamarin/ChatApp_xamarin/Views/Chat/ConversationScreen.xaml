@@ -60,7 +60,7 @@
                                        HorizontalOptions="Center"
                                        IsClippedToBounds="True"
                                        VerticalOptions="Center">
-                                    <Image Source="{Binding ., Converter={StaticResource roomAvatarCVT}}"
+                                    <Image Source="{Binding .,Converter={StaticResource roomAvatarCVT}}"
                                            VerticalOptions="Center"
                                            HorizontalOptions="Center" />
                                 </Frame>

@@ -7,6 +7,9 @@ using Plugin.LocalNotification;
 using System;
 using System.Windows.Input;
 using Xamarin.Forms;
+using System.Threading.Tasks;
+using Firebase.Database.Streaming;
+using System.Linq;
 
 namespace ChatApp_xamarin.ViewModels
 {
@@ -34,7 +37,7 @@ namespace ChatApp_xamarin.ViewModels
                 var subscriber = ConversationService.ins.SubscriptionToConversationChange();
                 conversationListener = subscriber.Subscribe(item =>
                 {
-                    RefreshConversationAndNotify(item.Object);
+                    RefreshConversationAndNotify(item);
                 });
 
                 isSubscribeConver = true;
@@ -49,18 +52,21 @@ namespace ChatApp_xamarin.ViewModels
             });
 
         }
-        private void RefreshConversationAndNotify(Room item)
+        private async void RefreshConversationAndNotify(FirebaseEvent<Room> item)
         {
-            if (!GlobalData.ins.currentUser.roomKey.Contains(item.id)) return;
+            if (item is null) return;
+            if (!GlobalData.ins.currentUser.roomKey.Contains(item.Object.id)) return;
 
             var converVM = Application.Current.Resources["ConversationVM"] as ConversationViewModel;
             converVM.GetAllConversation.Execute(null);
 
-            showNotification(item);
+            await Task.Run(() => showNotification(item.Object));
         }
 
         private async void showNotification(Room item)
         {
+            if (item is null) return;
+
             if (isFirstTime)
             {
                 isFirstTime = false;
@@ -74,12 +80,17 @@ namespace ChatApp_xamarin.ViewModels
                 if (ChatVM.CurrentRoom.id == item.id)
                     return;
 
-
+            User partner;
+            if (item.roomName is null)
+            {
+                partner = await UserService.ins.GetUserById(item.memberId.Where(i => i != GlobalData.ins.currentUser.id).First());
+                item.roomName = partner.name;
+            }
 
             var notification = new NotificationRequest
             {
                 BadgeNumber = 3,
-                Description = item.lastMessage.message,
+                Description = item.lastMessage == null ? "" : item.lastMessage.message,
                 Title = item.roomName,
                 //ReturningData = "Test Data",
                 NotificationId = 1,
@@ -94,7 +105,7 @@ namespace ChatApp_xamarin.ViewModels
 
             if (!GlobalData.ins.isSilentMode)
             {
-                _ = LocalNotificationCenter.Current.Show(notification);
+                await LocalNotificationCenter.Current.Show(notification);
             }
         }
     }

@@ -51,7 +51,7 @@ namespace ChatApp_xamarin.ViewModels.Converter
             if (room != null)
             {
                 if (room.member.Count == 2)
-                    return room.avatar ?? room.member.Where(u => u.id != GlobalData.ins.currentUser.id).First().avatar;
+                    return room.member.Where(u => u.id != GlobalData.ins.currentUser.id).First().avatar;
                 else
                     return room.avatar;
             }
@@ -64,7 +64,7 @@ namespace ChatApp_xamarin.ViewModels.Converter
             if (room != null)
             {
                 if (room.member.Count == 2)
-                    return room.avatar ?? room.member.Where(u => u.id != GlobalData.ins.currentUser.id).First().avatar;
+                    return room.member.Where(u => u.id != GlobalData.ins.currentUser.id).First().avatar;
                 else
                     return room.avatar;
             }

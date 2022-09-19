@@ -41,6 +41,7 @@ namespace ChatApp_xamarin.ViewModels.Chat
 
             GetAllConversation = new Command(async () =>
             {
+                GlobalData.ins.currentUser = await UserService.ins.GetUserById(GlobalData.ins.currentUser.id);
                 ListConversation = new ObservableCollection<Room>(await ConversationService.ins.GetAllConversation(GlobalData.ins.currentUser.roomKey));
             });
 

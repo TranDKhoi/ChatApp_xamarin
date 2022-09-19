@@ -46,17 +46,9 @@
                         <ColumnDefinition Width="4*" />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <Frame CornerRadius="60"
-                           HeightRequest="27"
-                           WidthRequest="27"
-                           Padding="0"
-                           HorizontalOptions="Center"
-                           IsClippedToBounds="True"
-                           VerticalOptions="Center">
-                        <Image Source="{Binding sender.avatar}"
-                               VerticalOptions="Center"
-                               HorizontalOptions="Center" />
-                    </Frame>
+                    <Image Source="{Binding sender.avatar}"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center" />
                     <Frame Grid.Column="1"
                            Padding="5"
                            CornerRadius="10"
@@ -82,17 +74,7 @@
                            CornerRadius="10"
                            Margin="0, 0, 0, 0"
                            HorizontalOptions="End">
-                        <Frame.Background>
-                            <LinearGradientBrush EndPoint="0,1">
-                                <GradientStop Color="#881ed7"
-                                              Offset="0.1" />
-                                <GradientStop Color="#881ceb"
-                                              Offset="1.0" />
-                            </LinearGradientBrush>
-                        </Frame.Background>
-                        <Image Source="{Binding image}"
-                               HeightRequest="100"
-                               WidthRequest="100" />
+                        <Image Source="{Binding image}" />
                     </Frame>
                 </Grid>
             </DataTemplate>
@@ -131,6 +113,9 @@
                     <Image Source="{Binding CurrentRoom,Converter={StaticResource roomAvatarCVT}}"
                            VerticalOptions="Center"
                            HorizontalOptions="Center" />
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding PickAvatarForGroupCM}" />
+                    </Frame.GestureRecognizers>
                 </Frame>
                 <Label Text="{Binding CurrentRoom,Converter={StaticResource roomNameCVT}}"
                        FontAttributes="Bold"

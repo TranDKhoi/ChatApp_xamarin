@@ -104,7 +104,7 @@ namespace ChatApp_xamarin.Services
             using (var fileStream = File.OpenRead(filePath))
             {
                 await imageBlob.UploadFromStreamAsync(fileStream);
-                return $"https://trankhoi.blob.core.windows.net/messages/{roomId}.png";
+                return $"https://trankhoi.blob.core.windows.net/rooms/{roomId}.png";
             }
         }
     }

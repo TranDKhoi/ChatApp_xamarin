@@ -1,16 +1,11 @@
 ﻿using ChatApp_xamarin.Models;
 using ChatApp_xamarin.Services;
-using ChatApp_xamarin.Utils;
 using ChatApp_xamarin.Views.Group;
+using Plugin.Media;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace ChatApp_xamarin.ViewModels.Chat
@@ -23,6 +18,7 @@ namespace ChatApp_xamarin.ViewModels.Chat
         public ICommand PickPhotoCM { get; set; }
         public ICommand SubscribeMessageChange { get; set; }
         public ICommand OpenGroupScreenVM { get; set; }
+        public ICommand PickAvatarForGroupCM { get; set; }
 
         private String _currentMessage;
         public String currentMessage
@@ -45,7 +41,7 @@ namespace ChatApp_xamarin.ViewModels.Chat
             set { currentRoom = value; OnPropertyChanged(); }
         }
 
-        private IDisposable messageListener;
+        public IDisposable messageListener;
 
 
         public ChatViewModel()
@@ -61,7 +57,6 @@ namespace ChatApp_xamarin.ViewModels.Chat
             {
                 CurrentRoom = null;
                 ListMessage = null;
-                messageListener.Dispose();
                 await Application.Current.MainPage.Navigation.PopAsync();
             });
             SendMessageCM = new Command(async () =>
@@ -79,10 +74,22 @@ namespace ChatApp_xamarin.ViewModels.Chat
                     throw (e);
                 }
             });
-            PickPhotoCM = new Command(() =>
+            PickPhotoCM = new Command(async () =>
             {
                 try
                 {
+                    //pick image
+                    await CrossMedia.Current.Initialize();
+                    var file = await CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
+                    {
+                        PhotoSize = Plugin.Media.Abstractions.PhotoSize.Medium
+                    });
+
+                    if (file == null)
+                        return;
+
+                    await MessageService.ins.SendImage(CurrentRoom.id, file);
+                    InitCM.Execute(null);
                 }
                 catch (Exception e)
                 {
@@ -100,6 +107,23 @@ namespace ChatApp_xamarin.ViewModels.Chat
             OpenGroupScreenVM = new Command(async () =>
             {
                 await Application.Current.MainPage.Navigation.PushAsync(new GroupScreen());
+            });
+            PickAvatarForGroupCM = new Command(async () =>
+            {
+                if (CurrentRoom.memberId.Count == 2) return;
+
+                //pick image
+                await CrossMedia.Current.Initialize();
+                var file = await CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
+                {
+                    PhotoSize = Plugin.Media.Abstractions.PhotoSize.Medium
+                });
+
+                if (file == null)
+                    return;
+
+                var link = await ConversationService.ins.UpdateRoomAvatar(CurrentRoom.id, file);
+                CurrentRoom.avatar = link;
             });
         }
 

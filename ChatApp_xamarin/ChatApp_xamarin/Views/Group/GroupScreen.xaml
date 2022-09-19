@@ -44,6 +44,7 @@
             <Entry Placeholder="{i18n:Translate pleaseentergroupname}"
                    HorizontalOptions="FillAndExpand"
                    Visual="Material"
+                   x:Name="groupNameEntry"
                    Text="{Binding RoomName,Mode=OneWayToSource}"
                    BackgroundColor="{AppThemeBinding Light=White,Dark=#242526}"
                    PlaceholderColor="{StaticResource primaryColor}" />
