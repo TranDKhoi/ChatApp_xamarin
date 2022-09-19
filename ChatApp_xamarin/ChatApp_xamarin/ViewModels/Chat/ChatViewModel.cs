@@ -134,8 +134,16 @@ namespace ChatApp_xamarin.ViewModels.Chat
 
         private async void AddMoreMessage(Message mess)
         {
-            mess.sender = await UserService.ins.GetUserById(mess.senderId);
-            ListMessage.Add(mess);
+            try
+            {
+                mess.sender = await UserService.ins.GetUserById(mess.senderId);
+                ListMessage.Add(mess);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            
         }
     }
 }
