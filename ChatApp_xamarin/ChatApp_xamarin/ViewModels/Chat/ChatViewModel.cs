@@ -47,15 +47,13 @@ namespace ChatApp_xamarin.ViewModels.Chat
 
         public ChatViewModel()
         {
-            InitCM = new Command(async (p) =>
+            InitCM = new Command((p) =>
             {
                 CollectionView collectionView = p as CollectionView;
                 ListMessage = new ObservableCollection<Message>();
-                var res = await MessageService.ins.GetRoomMessages(CurrentRoom.id);
-                if (res != null)
-                    ListMessage = new ObservableCollection<Message>(res.OrderBy(i => i.createdAt).ToList<Message>());
-                //if (ListMessage.Count == 0) return;
-                //collectionView.ScrollTo(ListMessage.Last(), null, ScrollToPosition.End, true);
+                SubscribeMessageChange.Execute(null);
+                if (ListMessage.Count == 0) return;
+                collectionView.ScrollTo(ListMessage.Last(), null, ScrollToPosition.End, true);
             });
             BackCM = new Command(async () =>
             {
@@ -72,8 +70,8 @@ namespace ChatApp_xamarin.ViewModels.Chat
                         CollectionView collectionView = p as CollectionView;
                         await MessageService.ins.SendMessage(currentMessage.Trim(), CurrentRoom.id);
                         currentMessage = null;
-                        //if (ListMessage.Count == 0) return;
-                        //collectionView.ScrollTo(ListMessage.Last(), null, ScrollToPosition.End, true);
+                        if (ListMessage.Count == 0) return;
+                        collectionView.ScrollTo(ListMessage.Last(), null, ScrollToPosition.End, true);
                     }
                 }
                 catch (Exception e)
@@ -136,11 +134,6 @@ namespace ChatApp_xamarin.ViewModels.Chat
 
         private async void AddMoreMessage(Message mess)
         {
-            foreach (var item in ListMessage)
-            {
-                if (item.createdAt == mess.createdAt) return;
-            }
-
             mess.sender = await UserService.ins.GetUserById(mess.senderId);
             ListMessage.Add(mess);
         }

@@ -25,7 +25,6 @@ namespace ChatApp_xamarin.Views.Chat
         {
             var viewModel = (ChatViewModel)this.BindingContext;
             viewModel.InitCM.Execute(MessageList);
-            viewModel.SubscribeMessageChange.Execute(null);
         }
     }
 }
