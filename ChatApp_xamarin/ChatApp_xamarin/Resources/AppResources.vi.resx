@@ -177,6 +177,9 @@
   <data name="friendsTitle" xml:space="preserve">
     <value>Bạn bè</value>
   </data>
+  <data name="groupname" xml:space="preserve">
+    <value>Tên nhóm</value>
+  </data>
   <data name="incorrectpassword" xml:space="preserve">
     <value>Sai mật khẩu</value>
   </data>
@@ -197,6 +200,9 @@
   </data>
   <data name="password" xml:space="preserve">
     <value>Mật khẩu</value>
+  </data>
+  <data name="pleaseentergroupname" xml:space="preserve">
+    <value>Vui lòng đặt tên nhóm</value>
   </data>
   <data name="pleaseenteryouremail" xml:space="preserve">
     <value>Vui lòng nhập email</value>

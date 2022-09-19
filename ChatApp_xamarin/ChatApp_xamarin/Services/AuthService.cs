@@ -116,12 +116,12 @@ namespace ChatApp_xamarin.Services
             _ = _client.Child($"users/{userID}").PatchAsync(JsonConvert.SerializeObject(user));
         }
 
-        public async void Online(string userID)
+        public async Task Online(string userID)
         {
             var u = await _client.Child($"users/{userID}").OnceSingleAsync<User>();
             u.isOnline = true;
 
-            _ = _client.Child($"users/{userID}").PatchAsync(JsonConvert.SerializeObject(u));
+            await _client.Child($"users/{userID}").PatchAsync(JsonConvert.SerializeObject(u));
         }
 
         public async Task<(String, bool)> ResetPassword(string userId, string password)

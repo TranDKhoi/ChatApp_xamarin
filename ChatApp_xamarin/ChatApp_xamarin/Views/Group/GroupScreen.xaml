@@ -2,8 +2,15 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:i18n="clr-namespace:ChatApp_xamarin.Helpers"
+             xmlns:effects="clr-namespace:ChatApp_xamarin.Effects"
+             xmlns:behaviors="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:cvt="clr-namespace:ChatApp_xamarin.ViewModels.Converter"
              x:Class="ChatApp_xamarin.Views.Group.GroupScreen"
-             NavigationPage.HasNavigationBar="False">
+             NavigationPage.HasNavigationBar="False"
+             BindingContext="{StaticResource GroupVM}">
+    <ContentPage.Resources>
+        <cvt:IsOnlineConverter x:Key="isOnlineCVT" />
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout Padding="20"
                      BackgroundColor="{AppThemeBinding Light=#ffffff, Dark=#000000}">
@@ -28,29 +35,100 @@
                        HorizontalOptions="StartAndExpand"
                        VerticalOptions="Center" />
                 <Label Text="{i18n:Translate next}"
-                       FontSize="18" />
+                       FontSize="18">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CreateGroupCM}" />
+                    </Label.GestureRecognizers>
+                </Label>
             </StackLayout>
+            <Entry Placeholder="{i18n:Translate pleaseentergroupname}"
+                   HorizontalOptions="FillAndExpand"
+                   Visual="Material"
+                   Text="{Binding RoomName,Mode=OneWayToSource}"
+                   BackgroundColor="{AppThemeBinding Light=White,Dark=#242526}"
+                   PlaceholderColor="{StaticResource primaryColor}" />
             <Frame CornerRadius="10"
                    BackgroundColor="{AppThemeBinding Light=#f6f6f6, Dark=#303030}"
-                   Padding="10"
+                   Padding="2"
                    HorizontalOptions="FillAndExpand">
                 <StackLayout Orientation="Horizontal"
-                             HorizontalOptions="StartAndExpand">
+                             HorizontalOptions="FillAndExpand"
+                             VerticalOptions="Center">
                     <Label FontFamily="Material"
                            TextColor="{AppThemeBinding Light=#9f9f9f, Dark=#6d6d6d}"
                            FontSize="25"
                            Text="&#xe8b6;"
-                           Margin="5, 0, 10, 0"
+                           Margin="20, 0, 0, 0"
                            VerticalOptions="Center"></Label>
-                    <Label Text="{i18n:Translate search}"
-                           TextColor="{AppThemeBinding Light=#767676,Dark=#878787}"
+                    <Entry Placeholder="{i18n:Translate search}"
+                           TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                           PlaceholderColor="{AppThemeBinding Light=#7f7f7f, Dark=#6e6e6e}"
+                           Keyboard="Chat"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="Center"
                            FontSize="15"
-                           VerticalOptions="Center" />
+                           Margin="10, 0, 15, 0"
+                           x:Name="searchEntry">
+                        <Entry.Effects>
+                            <effects:PlainEntry />
+                        </Entry.Effects>
+                        <Entry.Behaviors>
+                            <behaviors:EventToCommandBehavior EventName="TextChanged"
+                                                              Command="{Binding SearchCM}"
+                                                              CommandParameter="{x:Reference searchEntry}" />
+                        </Entry.Behaviors>
+                    </Entry>
                 </StackLayout>
-                <Frame.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding OpenSearchScreenVM}" />
-                </Frame.GestureRecognizers>
             </Frame>
+            <CollectionView ItemsSource="{Binding users}"
+                            Margin="0"
+                            x:Name="listFriends"
+                            SelectionChanged="listFriends_SelectionChange"
+                            SelectionMode="Single">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal"
+                                     Padding="0, 7, 0, 7">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup Name="CommonStates">
+                                    <VisualState Name="Normal" />
+                                    <VisualState Name="Selected">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor"
+                                                    Value="Gray" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Grid Margin="0, 0, 10, 0">
+                                <Frame CornerRadius="100"
+                                       HeightRequest="60"
+                                       WidthRequest="60"
+                                       Padding="0"
+                                       HorizontalOptions="Center"
+                                       IsClippedToBounds="True">
+                                    <Image Source="{Binding avatar}"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Center" />
+                                </Frame>
+                                <Frame BackgroundColor="{Binding isOnline, Converter={StaticResource isOnlineCVT}}"
+                                       HeightRequest="15"
+                                       WidthRequest="15"
+                                       Padding="0"
+                                       Margin="5, 0, 5, 0"
+                                       VerticalOptions="End"
+                                       HorizontalOptions="End"
+                                       CornerRadius="90" />
+                            </Grid>
+                            <Label Text="{Binding name}"
+                                   TextColor="{AppThemeBinding Light=#080808, Dark=#b4b4b4}"
+                                   FontSize="15"
+                                   FontAttributes="Bold"
+                                   VerticalOptions="Center" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

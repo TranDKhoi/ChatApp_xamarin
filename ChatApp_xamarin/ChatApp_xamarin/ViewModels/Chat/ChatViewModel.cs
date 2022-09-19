@@ -1,6 +1,7 @@
 ﻿using ChatApp_xamarin.Models;
 using ChatApp_xamarin.Services;
 using ChatApp_xamarin.Utils;
+using ChatApp_xamarin.Views.Group;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -21,6 +22,7 @@ namespace ChatApp_xamarin.ViewModels.Chat
         public ICommand SendMessageCM { get; set; }
         public ICommand PickPhotoCM { get; set; }
         public ICommand SubscribeMessageChange { get; set; }
+        public ICommand OpenGroupScreenVM { get; set; }
 
         private String _currentMessage;
         public String currentMessage
@@ -94,6 +96,10 @@ namespace ChatApp_xamarin.ViewModels.Chat
                 {
                     AddMoreMessage(item.Object);
                 });
+            });
+            OpenGroupScreenVM = new Command(async () =>
+            {
+                await Application.Current.MainPage.Navigation.PushAsync(new GroupScreen());
             });
         }
 

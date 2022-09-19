@@ -177,6 +177,9 @@
   <data name="friendsTitle" xml:space="preserve">
     <value>Friends</value>
   </data>
+  <data name="groupname" xml:space="preserve">
+    <value>Group name</value>
+  </data>
   <data name="incorrectpassword" xml:space="preserve">
     <value>Incorrect password</value>
   </data>
@@ -197,6 +200,9 @@
   </data>
   <data name="password" xml:space="preserve">
     <value>Password</value>
+  </data>
+  <data name="pleaseentergroupname" xml:space="preserve">
+    <value>Please enter group name</value>
   </data>
   <data name="pleaseenteryouremail" xml:space="preserve">
     <value>Please enter your email</value>

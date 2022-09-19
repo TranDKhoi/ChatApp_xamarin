@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChatApp_xamarin.ViewModels.Group;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,18 @@ namespace ChatApp_xamarin.Views.Group
         public GroupScreen()
         {
             InitializeComponent();
+        }
+
+        private void listFriends_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void listFriends_SelectionChange(object sender, SelectionChangedEventArgs e)
+        {
+            CollectionView cl = sender as CollectionView;
+            var vm = (GroupViewModel)this.BindingContext;
+            vm.AddToMemberQueueCM.Execute(cl.SelectedItem);
         }
     }
 }

@@ -7,7 +7,7 @@
              x:Class="ChatApp_xamarin.Application"
              xmlns:settingVM="clr-namespace:ChatApp_xamarin.ViewModels.Setting"
              xmlns:bottomBarVM="clr-namespace:ChatApp_xamarin.ViewModels"
-             >
+             xmlns:groupVM="clr-namespace:ChatApp_xamarin.ViewModels.Group">
     <Application.Resources>
         <ResourceDictionary>
             <loginVM:LoginViewModel x:Key="LoginVM" />
@@ -19,6 +19,7 @@
             <settingVM:SettingViewModel x:Key="SettingVM" />
             <friendsVM:FriendsViewModel x:Key="FriendsVM" />
             <bottomBarVM:BottomBarViewModel x:Key="BottomVM" />
+            <groupVM:GroupViewModel x:Key="GroupVM" />
             
             <Color x:Key="primaryColor">#0695FF</Color>
         </ResourceDictionary>

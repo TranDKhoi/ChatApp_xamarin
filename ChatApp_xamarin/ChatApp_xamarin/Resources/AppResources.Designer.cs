@@ -241,6 +241,15 @@ namespace ChatApp_xamarin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Group name.
+        /// </summary>
+        internal static string groupname {
+            get {
+                return ResourceManager.GetString("groupname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Incorrect password.
         /// </summary>
         internal static string incorrectpassword {
@@ -300,6 +309,15 @@ namespace ChatApp_xamarin.Resources {
         internal static string password {
             get {
                 return ResourceManager.GetString("password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter group name.
+        /// </summary>
+        internal static string pleaseentergroupname {
+            get {
+                return ResourceManager.GetString("pleaseentergroupname", resourceCulture);
             }
         }
         

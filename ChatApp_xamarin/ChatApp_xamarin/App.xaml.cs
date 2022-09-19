@@ -47,12 +47,12 @@ namespace ChatApp_xamarin
                 MainPage = new NavigationPage(new LoginScreen());
         }
 
-        protected override void OnStart()
+        protected override async void OnStart()
         {
             var id = Preferences.Get("currentUser", null);
 
             if (id != null)
-                AuthService.ins.Online(id);
+                await AuthService.ins.Online(id);
         }
 
         protected override void OnSleep()
@@ -63,12 +63,12 @@ namespace ChatApp_xamarin
                 AuthService.ins.Logout(id);
         }
 
-        protected override void OnResume()
+        protected override async void OnResume()
         {
             var id = Preferences.Get("currentUser", null);
 
             if (id != null)
-                AuthService.ins.Online(id);
+               await AuthService.ins.Online(id);
         }
     }
 }

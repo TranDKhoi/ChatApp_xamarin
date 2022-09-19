@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace ChatApp_xamarin.Services
 {
@@ -43,6 +44,7 @@ namespace ChatApp_xamarin.Services
 
             foreach (var item in roomKey)
             {
+                if (item is null) continue;
                 var room = await _client.Child($"rooms/{item}").OnceSingleAsync<Room>();
                 if (room != null)
                     listCv.Add(room);
@@ -111,19 +113,15 @@ namespace ChatApp_xamarin.Services
             return newRoom;
         }
 
-        public async Task<Room> CreateGroupConversation(List<string> memberID, string roomName, MediaFile avt)
+        public async Task<Room> CreateGroupConversation(List<string> memberID, string roomName)
         {
             var uniqueID = Guid.NewGuid().ToString();
-
-            var link = await StorageService.ins.UploadGroupImage(uniqueID, avt);
 
             Room newGroup = new Room
             {
                 id = uniqueID,
                 memberId = new List<string>(memberID),
                 roomName = roomName,
-                avatar = link,
-
             };
             var json = JsonConvert.SerializeObject(newGroup);
             await _client.Child($"rooms/{uniqueID}").PutAsync(json);
@@ -131,6 +129,17 @@ namespace ChatApp_xamarin.Services
             _ = UserService.ins.UpdateRoomKey(memberID, uniqueID);
 
             return newGroup;
+        }
+
+        public async Task AddMemberToGroup(string roomId, string memberId)
+        {
+            var room = await _client.Child($"rooms/{roomId}").OnceSingleAsync<Room>();
+
+            room.memberId.Add(memberId);
+
+            _ = UserService.ins.UpdateRoomKey(new List<string> { memberId }, room.id);
+
+            await _client.Child($"rooms/{roomId}").PatchAsync(JsonConvert.SerializeObject(room));
         }
 
         public async void SeenLastMessage(string roomId)

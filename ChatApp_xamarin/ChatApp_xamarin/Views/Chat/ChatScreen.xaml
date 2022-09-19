@@ -112,7 +112,7 @@
                          Padding="10"
                          android:VisualElement.Elevation="100">
                 <Label FontFamily="Material"
-                       TextColor="{AppThemeBinding Light=#aa00ff, Dark=#a20deb}"
+                       TextColor="{AppThemeBinding Light=Black, Dark=white}"
                        FontSize="30"
                        Text="&#xe5c4;"
                        Margin="5, 0, 10, 0"
@@ -132,13 +132,28 @@
                            VerticalOptions="Center"
                            HorizontalOptions="Center" />
                 </Frame>
-                <Label Text="{Binding CurrentRoom,Converter={StaticResource roomAvatarCVT}}"
+                <Label Text="{Binding CurrentRoom,Converter={StaticResource roomNameCVT}}"
                        FontAttributes="Bold"
                        FontSize="22"
                        Margin="10, 0, 0, 0"
                        TextColor="{AppThemeBinding Light=Black, Dark=White}"
                        HorizontalOptions="StartAndExpand"
                        VerticalOptions="Center" />
+                <Frame CornerRadius="90"
+                       BackgroundColor="{AppThemeBinding Light=#f6f6f6, Dark=#303030}"
+                       Padding="10"
+                       Margin="10, 0, 0, 0"
+                       VerticalOptions="Center">
+                    <Label Text="&#xe145;"
+                           FontFamily="Material"
+                           TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                           FontSize="20"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center" />
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OpenGroupScreenVM}" />
+                    </Frame.GestureRecognizers>
+                </Frame>
             </StackLayout>
             <CollectionView ItemsSource="{Binding ListMessage}"
                             ItemTemplate="{StaticResource messageItemSelector}"
@@ -146,8 +161,7 @@
             <StackLayout Orientation="Horizontal"
                          HorizontalOptions="Fill"
                          Padding="10"
-                         android:VisualElement.Elevation="100"
-                         >
+                         android:VisualElement.Elevation="100">
                 <Label FontFamily="Material"
                        TextColor="{AppThemeBinding Light=#0080ff, Dark=#a20deb}"
                        FontSize="25"
@@ -175,8 +189,7 @@
                            Keyboard="Chat"
                            HorizontalOptions="FillAndExpand"
                            VerticalOptions="Center"
-                           Margin="15, 0, 15, 0"
-                           >
+                           Margin="15, 0, 15, 0">
                         <Entry.Effects>
                             <effects:PlainEntry />
                         </Entry.Effects>

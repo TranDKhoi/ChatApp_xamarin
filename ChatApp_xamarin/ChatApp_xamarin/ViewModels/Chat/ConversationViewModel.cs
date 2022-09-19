@@ -18,7 +18,6 @@ namespace ChatApp_xamarin.ViewModels.Chat
     {
         public ICommand OpenChatScreenVM { get; set; }
         public ICommand OpenSearchScreenVM { get; set; }
-        public ICommand OpenGroupScreenVM { get; set; }
         public ICommand GetAllConversation { get; set; }
 
         private ObservableCollection<Room> listConversation;
@@ -48,10 +47,6 @@ namespace ChatApp_xamarin.ViewModels.Chat
             OpenSearchScreenVM = new Command(async (p) =>
             {
                 await Application.Current.MainPage.Navigation.PushAsync(new SearchScreen());
-            });
-            OpenGroupScreenVM = new Command(async (p) =>
-            {
-                await Application.Current.MainPage.Navigation.PushAsync(new GroupScreen());
             });
         }
     }

@@ -3,14 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ChatApp_xamarin.Views.Chat.ConversationScreen"
              xmlns:i18n="clr-namespace:ChatApp_xamarin.Helpers"
-             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-             xmlns:sho="http://sharpnado.com"
              xmlns:cvt="clr-namespace:ChatApp_xamarin.ViewModels.Converter"
              BindingContext="{StaticResource ConversationVM}">
     <ContentPage.Resources>
         <cvt:RoomNameConverter x:Key="roomNameCVT" />
         <cvt:RoomAvatarConverter x:Key="roomAvatarCVT" />
-        <cvt:IsOnlineConverter x:Key="isOnlineCVT" />
         <cvt:IsOnlineRoomConverter x:Key="isOnlineRoomCVT" />
     </ContentPage.Resources>
     <ContentPage.Content>
@@ -25,21 +22,6 @@
                        TextColor="{AppThemeBinding Light=Black, Dark=White}"
                        HorizontalOptions="StartAndExpand"
                        VerticalOptions="Center" />
-                <Frame CornerRadius="90"
-                       BackgroundColor="{AppThemeBinding Light=#f6f6f6, Dark=#303030}"
-                       Padding="10"
-                       Margin="10, 0, 0, 0"
-                       VerticalOptions="Center">
-                    <Label Text="&#xe3c9;"
-                           FontFamily="Material"
-                           TextColor="{AppThemeBinding Light=Black, Dark=White}"
-                           FontSize="20"
-                           VerticalOptions="Center"
-                           HorizontalOptions="Center" />
-                    <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding OpenGroupScreenVM}" />
-                    </Frame.GestureRecognizers>
-                </Frame>
             </StackLayout>
             <Frame CornerRadius="10"
                    BackgroundColor="{AppThemeBinding Light=#f6f6f6, Dark=#303030}"

@@ -151,6 +151,10 @@ namespace ChatApp_xamarin.Services
             if (res.Count != 0)
             {
                 listMatchedName = new List<User>();
+                foreach(var item in res.ToList())
+                {
+                    item.Object.id = item.Key;
+                }
                 listMatchedName = res.Select(i => i.Object).Where(item => item.name == userName && item.id != GlobalData.ins.currentUser.id).ToList();
             }
 
