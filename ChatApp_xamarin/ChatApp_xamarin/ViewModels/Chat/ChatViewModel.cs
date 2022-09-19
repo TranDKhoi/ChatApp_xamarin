@@ -3,6 +3,7 @@ using ChatApp_xamarin.Services;
 using ChatApp_xamarin.Views.Group;
 using Plugin.Media;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
@@ -46,12 +47,15 @@ namespace ChatApp_xamarin.ViewModels.Chat
 
         public ChatViewModel()
         {
-            InitCM = new Command(async () =>
+            InitCM = new Command(async (p) =>
             {
+                CollectionView collectionView = p as CollectionView;
                 ListMessage = new ObservableCollection<Message>();
                 var res = await MessageService.ins.GetRoomMessages(CurrentRoom.id);
                 if (res != null)
                     ListMessage = new ObservableCollection<Message>(res.OrderBy(i => i.createdAt).ToList<Message>());
+                //if (ListMessage.Count == 0) return;
+                //collectionView.ScrollTo(ListMessage.Last(), null, ScrollToPosition.End, true);
             });
             BackCM = new Command(async () =>
             {
@@ -59,19 +63,22 @@ namespace ChatApp_xamarin.ViewModels.Chat
                 ListMessage = null;
                 await Application.Current.MainPage.Navigation.PopAsync();
             });
-            SendMessageCM = new Command(async () =>
+            SendMessageCM = new Command(async (p) =>
             {
                 try
                 {
                     if (currentMessage != null)
                     {
+                        CollectionView collectionView = p as CollectionView;
                         await MessageService.ins.SendMessage(currentMessage.Trim(), CurrentRoom.id);
                         currentMessage = null;
+                        //if (ListMessage.Count == 0) return;
+                        //collectionView.ScrollTo(ListMessage.Last(), null, ScrollToPosition.End, true);
                     }
                 }
                 catch (Exception e)
                 {
-                    throw (e);
+                    Console.WriteLine(e.Message);
                 }
             });
             PickPhotoCM = new Command(async () =>

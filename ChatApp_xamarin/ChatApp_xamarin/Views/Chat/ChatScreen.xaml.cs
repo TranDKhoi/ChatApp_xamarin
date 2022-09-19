@@ -21,29 +21,11 @@ namespace ChatApp_xamarin.Views.Chat
             InitializeComponent();
 
         }
-        protected override async void OnAppearing()
+        protected override void OnAppearing()
         {
             var viewModel = (ChatViewModel)this.BindingContext;
-            await Task.Run(() => viewModel.InitCM.Execute(null));
-            await Task.Run(() => viewModel.SubscribeMessageChange.Execute(null));
-
-            Device.BeginInvokeOnMainThread(() =>
-            {
-                if (viewModel.ListMessage.Count == 0) return;
-                MessageList.ScrollTo(viewModel.ListMessage.Last(), null, ScrollToPosition.End, true);
-            });
-
-            var sendMessage = new TapGestureRecognizer();
-            sendMessage.Tapped += (s, e) =>
-            {
-                viewModel.SendMessageCM.Execute(null);
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    if (viewModel.ListMessage.Count == 0) return;
-                    MessageList.ScrollTo(viewModel.ListMessage.Last(), null, ScrollToPosition.End, true);
-                });
-            };
-            SendIcon.GestureRecognizers.Add(sendMessage);
+            viewModel.InitCM.Execute(MessageList);
+            viewModel.SubscribeMessageChange.Execute(null);
         }
     }
 }
