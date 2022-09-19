@@ -49,6 +49,7 @@ namespace ChatApp_xamarin.ViewModels.Chat
         {
             InitCM = new Command((p) =>
             {
+                currentMessage = "";
                 CollectionView collectionView = p as CollectionView;
                 ListMessage = new ObservableCollection<Message>();
                 SubscribeMessageChange.Execute(null);
@@ -143,7 +144,6 @@ namespace ChatApp_xamarin.ViewModels.Chat
             {
                 Console.WriteLine(e.Message);
             }
-            
         }
     }
 }

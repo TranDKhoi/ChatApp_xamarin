@@ -26,5 +26,11 @@ namespace ChatApp_xamarin.Views.Chat
             var viewModel = (ChatViewModel)this.BindingContext;
             viewModel.InitCM.Execute(MessageList);
         }
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            var viewModel = (ChatViewModel)this.BindingContext;
+            viewModel.messageListener.Dispose();
+        }
     }
 }

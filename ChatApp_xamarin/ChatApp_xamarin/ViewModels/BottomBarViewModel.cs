@@ -54,9 +54,6 @@ namespace ChatApp_xamarin.ViewModels
         }
         private async void RefreshConversationAndNotify(FirebaseEvent<Room> item)
         {
-            if (item is null) return;
-            if (!GlobalData.ins.currentUser.roomKey.Contains(item.Object.id)) return;
-
             var converVM = Application.Current.Resources["ConversationVM"] as ConversationViewModel;
             converVM.GetAllConversation.Execute(null);
 
