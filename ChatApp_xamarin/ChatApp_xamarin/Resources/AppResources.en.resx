@@ -192,6 +192,9 @@
   <data name="memberalreadyexisted" xml:space="preserve">
     <value>Member already existed</value>
   </data>
+  <data name="newimage" xml:space="preserve">
+    <value>New image</value>
+  </data>
   <data name="newpass" xml:space="preserve">
     <value>New password</value>
   </data>

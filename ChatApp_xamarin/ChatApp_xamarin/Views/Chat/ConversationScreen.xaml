@@ -10,6 +10,7 @@
         <cvt:RoomAvatarConverter x:Key="roomAvatarCVT" />
         <cvt:IsOnlineRoomConverter x:Key="isOnlineRoomCVT" />
         <cvt:TimeToStringConverter x:Key="timeStringCVT" />
+        <cvt:LassMessageConverter x:Key="lassMessCVT" />
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout Padding="20">
@@ -64,9 +65,9 @@
                                        VerticalOptions="Center">
                                     <Image Source="{Binding .,Converter={StaticResource roomAvatarCVT}}"
                                            VerticalOptions="Center"
-                                           HorizontalOptions="Center" 
+                                           HorizontalOptions="Center"
                                            HeightRequest="50"
-                                           WidthRequest="50"/>
+                                           WidthRequest="50" />
                                 </Frame>
                                 <Frame BackgroundColor="{Binding member, Converter={StaticResource isOnlineRoomCVT}}"
                                        HeightRequest="15"
@@ -87,7 +88,7 @@
                                         <ColumnDefinition Width="3*" />
                                         <ColumnDefinition />
                                     </Grid.ColumnDefinitions>
-                                    <Label Text="{Binding lastMessage.message}"
+                                    <Label Text="{Binding lastMessage, Converter={StaticResource lassMessCVT}}"
                                            TextColor="{AppThemeBinding Light=#080808, Dark=#b4b4b4}"
                                            FontSize="15"
                                            MaxLines="1" />

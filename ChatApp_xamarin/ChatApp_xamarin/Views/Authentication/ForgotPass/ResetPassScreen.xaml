@@ -11,17 +11,20 @@
     <ContentPage.Content>
         <StackLayout>
             <Label Text="{i18l:Translate setyournewpass}"
+                   TextColor="{AppThemeBinding Dark=white,Light=black}"
                    FontSize="50" />
             <StackLayout VerticalOptions="CenterAndExpand">
                 <Entry BackgroundColor="{AppThemeBinding Light=White,Dark=#242526}"
                        PlaceholderColor="{StaticResource primaryColor}"
                        IsPassword="True"
+                       TextColor="{AppThemeBinding Dark=white,Light=black}"
                        x:Name="newPass"
                        Placeholder="{i18l:Translate newpass}" />
                 <Entry Placeholder="{i18l:Translate  confirmpass}"
                        BackgroundColor="{AppThemeBinding Light=White,Dark=#242526}"
                        PlaceholderColor="{StaticResource primaryColor}"
-                       IsPassword="True" 
+                       IsPassword="True"
+                       TextColor="{AppThemeBinding Dark=white,Light=black}"
                        Text="{Binding NewPass,Mode=OneWayToSource}"/>
                 <Button Text="{i18l:Translate resetpass}"
                         Command="{Binding ResetPassClickCM}"
@@ -32,6 +35,7 @@
                         BackgroundColor="{StaticResource primaryColor}" />
                 <Label Text="{i18l:Translate login}"
                        HorizontalOptions="Center"
+                       TextColor="{AppThemeBinding Dark=white,Light=black}"
                        Margin="0,50,0,0">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding PopUntilLoginScreenClickCM}" />

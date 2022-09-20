@@ -6,6 +6,7 @@ using System.Text;
 using Xamarin.Forms;
 using System.Linq;
 using ChatApp_xamarin.Utils;
+using ChatApp_xamarin.Resources;
 
 namespace ChatApp_xamarin.ViewModels.Converter
 {
@@ -133,7 +134,15 @@ namespace ChatApp_xamarin.ViewModels.Converter
             }
             else
             {
-                DateTime d = DateTime.Parse(time, System.Globalization.CultureInfo.InvariantCulture);
+                DateTime d = new DateTime();
+                if (time.Contains("PM") || time.Contains("AM"))
+                {
+                    d = DateTime.Parse(time, new CultureInfo("en-US", false));
+                }
+                else if (time.Contains("SA") || time.Contains("CH"))
+                {
+                    d = DateTime.Parse(time, new CultureInfo("vi-VN", false));
+                }
                 return d.ToString("hh:mm");
             }
         }
@@ -147,9 +156,40 @@ namespace ChatApp_xamarin.ViewModels.Converter
             }
             else
             {
-                DateTime d = DateTime.Parse(time);
+                DateTime d = new DateTime();
+                if (time.Contains("PM") || time.Contains("AM"))
+                {
+                    d = DateTime.Parse(time, new CultureInfo("en-US", false));
+                }
+                else if (time.Contains("SA") || time.Contains("CH"))
+                {
+                    d = DateTime.Parse(time, new CultureInfo("vi-VN", false));
+                }
                 return d.ToString("hh:mm");
             }
+        }
+    }
+
+    public class LassMessageConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            Message message = value as Message;
+            if (message.message != null)
+                return message.message;
+            if (message.image != null)
+                return AppResources.newimage;
+            return "";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            Message message = value as Message;
+            if (message.message != null)
+                return message.message;
+            if (message.image != null)
+                return AppResources.newimage;
+            return "";
         }
     }
 }

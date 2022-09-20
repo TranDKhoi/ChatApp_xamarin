@@ -46,6 +46,7 @@
                    Visual="Material"
                    x:Name="groupNameEntry"
                    Text="{Binding RoomName,Mode=OneWayToSource}"
+                   TextColor="{AppThemeBinding Dark=white,Light=black}"
                    BackgroundColor="{AppThemeBinding Light=White,Dark=#242526}"
                    PlaceholderColor="{StaticResource primaryColor}" />
             <Frame CornerRadius="10"

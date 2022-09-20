@@ -72,8 +72,7 @@ namespace ChatApp_xamarin.Services
                 }
             }
 
-            //return listCv.OrderByDescending(item => item.lastMessage?.createdAt).ToList();
-            return listCv;
+            return listCv.OrderByDescending(item => item.lastUpdate).ToList();
         }
 
         public async Task<Room> CreateConversation(List<string> memberID)
@@ -88,6 +87,7 @@ namespace ChatApp_xamarin.Services
             {
                 id = uniqueID,
                 memberId = new List<string>(memberID),
+                lastUpdate = DateTime.Now.ToString(),
             };
             var json = JsonConvert.SerializeObject(newRoom);
             await _client.Child($"rooms/{uniqueID}").PutAsync(json);
@@ -121,6 +121,7 @@ namespace ChatApp_xamarin.Services
                 id = uniqueID,
                 memberId = new List<string>(memberID),
                 roomName = roomName,
+                lastUpdate = DateTime.Now.ToString(),
             };
             var json = JsonConvert.SerializeObject(newGroup);
             await _client.Child($"rooms/{uniqueID}").PutAsync(json);
@@ -135,6 +136,7 @@ namespace ChatApp_xamarin.Services
             var room = await _client.Child($"rooms/{roomId}").OnceSingleAsync<Room>();
 
             room.memberId.Add(memberId);
+            room.lastUpdate = DateTime.Now.ToString();
 
             _ = UserService.ins.UpdateRoomKey(new List<string> { memberId }, room.id);
 
@@ -171,6 +173,7 @@ namespace ChatApp_xamarin.Services
             var room = await _client.Child($"rooms/{roomId}").OnceSingleAsync<Room>();
 
             room.lastMessage = lassmess;
+            room.lastUpdate = DateTime.Now.ToString();
             await _client.Child($"rooms/{roomId}").PatchAsync(JsonConvert.SerializeObject(room));
         }
 
@@ -178,6 +181,7 @@ namespace ChatApp_xamarin.Services
         {
             var group = await _client.Child($"rooms/{roomId}").OnceSingleAsync<Room>();
             group.roomName = newName;
+            group.lastUpdate = DateTime.Now.ToString();
             await _client.Child($"rooms/{roomId}").PatchAsync<Room>(group);
         }
 
