@@ -46,9 +46,19 @@
                         <ColumnDefinition Width="4*" />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <Image Source="{Binding sender.avatar}"
-                           VerticalOptions="Center"
-                           HorizontalOptions="Center" />
+                    <Frame CornerRadius="120"
+                           HeightRequest="30"
+                           WidthRequest="30"
+                           Padding="0"
+                           HorizontalOptions="Center"
+                           IsClippedToBounds="True"
+                           VerticalOptions="Center">
+                        <Image Source="{Binding sender.avatar}"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center"
+                               HeightRequest="30"
+                               WidthRequest="30" />
+                    </Frame>
                     <Frame Grid.Column="1"
                            Padding="5"
                            CornerRadius="10"
@@ -188,8 +198,8 @@
                        VerticalOptions="Center"
                        x:Name="SendIcon">
                     <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding SendMessageCM}" 
-                                              CommandParameter="{x:Reference MessageList}"/>
+                        <TapGestureRecognizer Command="{Binding SendMessageCM}"
+                                              CommandParameter="{x:Reference MessageList}" />
                     </Label.GestureRecognizers>
                 </Label>
             </StackLayout>

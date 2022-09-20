@@ -43,7 +43,21 @@ namespace ChatApp_xamarin.ViewModels.Friends
 
             SearchCM = new Command(async () =>
             {
-                users = new ObservableCollection<User>(await UserService.ins.GetUserByName(searchName));
+                if (searchName == "")
+                {
+                    for (int i = 0; i < GlobalData.ins.currentUser.friendId.Count; i++)
+                    {
+                        users.Add(await UserService.ins.GetUserById(GlobalData.ins.currentUser.friendId[i]));
+                    }
+                }
+                else
+                {
+                    if (users != null)
+                    {
+                        users.Clear();
+                    }
+                    users = new ObservableCollection<User>(await UserService.ins.GetUserByName(searchName));
+                }
             });
 
             OpenChatScreenVM = new Command(async (p) =>

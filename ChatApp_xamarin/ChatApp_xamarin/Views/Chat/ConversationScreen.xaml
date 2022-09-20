@@ -53,7 +53,7 @@
                     <DataTemplate>
                         <StackLayout Orientation="Horizontal"
                                      Padding="0, 7, 0, 7">
-                            <Grid WidthRequest="100"
+                            <Grid WidthRequest="50"
                                   Margin="0, 0, 10, 0">
                                 <Frame CornerRadius="120"
                                        HeightRequest="50"
@@ -72,12 +72,13 @@
                                        HeightRequest="15"
                                        WidthRequest="15"
                                        Padding="0"
-                                       Margin="5, 0, 5, 0"
+                                       Margin="0, 0, 0, 0"
                                        VerticalOptions="End"
                                        HorizontalOptions="End"
                                        CornerRadius="90" />
                             </Grid>
-                            <StackLayout VerticalOptions="CenterAndExpand">
+                            <StackLayout VerticalOptions="CenterAndExpand"
+                                         HorizontalOptions="FillAndExpand">
                                 <Label Text="{Binding ., Converter={StaticResource roomNameCVT}}"
                                        TextColor="{AppThemeBinding Light=#080808, Dark=#bbbbbb}"
                                        FontSize="15"
@@ -90,12 +91,14 @@
                                     <Label Text="{Binding lastMessage.message}"
                                            TextColor="{AppThemeBinding Light=#080808, Dark=#b4b4b4}"
                                            FontSize="15"
-                                           MaxLines="1" />
+                                           MaxLines="1" 
+                                           HorizontalOptions="FillAndExpand"/>
                                     <Label Text="{Binding lastMessage.createdAt,Converter={StaticResource timeStringCVT}}"
                                            TextColor="{AppThemeBinding Light=#080808, Dark=#b4b4b4}"
                                            FontSize="15"
                                            MaxLines="1"
-                                           Grid.Column="1" />
+                                           Grid.Column="1" 
+                                           HorizontalTextAlignment="End"/>
                                 </Grid>
                             </StackLayout>
                         </StackLayout>

@@ -55,7 +55,9 @@
                         <Switch IsToggled="{Binding IsDark}"
                                 HorizontalOptions="End"
                                 IsEnabled="False"
-                                ThumbColor="{StaticResource primaryColor}" />
+                                ThumbColor="{StaticResource primaryColor}"
+                                OnColor="{AppThemeBinding Light=Gray,Dark=White}"
+                                />
                     </Grid>
                 </Frame>
                 <Frame Padding="5"
@@ -80,7 +82,8 @@
                         <Switch IsToggled="{Binding ISVN}"
                                 HorizontalOptions="End"
                                 IsEnabled="False"
-                                ThumbColor="{StaticResource primaryColor}" />
+                                ThumbColor="{StaticResource primaryColor}"
+                                OnColor="{AppThemeBinding Light=Gray,Dark=White}"/>
                     </Grid>
                 </Frame>
                 <Frame Padding="5"
@@ -100,12 +103,14 @@
                             <Label Text="{tran:Translate silentmode}"
                                    VerticalOptions="Center"
                                    TextColor="{AppThemeBinding Dark=White,Light=Black}"
-                                   FontSize="20" />
+                                   FontSize="20" 
+                                   />
                         </StackLayout>
                         <Switch IsToggled="{Binding IsSilent}"
                                 HorizontalOptions="End"
                                 IsEnabled="False"
-                                ThumbColor="{StaticResource primaryColor}" />
+                                ThumbColor="{StaticResource primaryColor}"
+                                OnColor="{AppThemeBinding Light=Gray,Dark=White}"/>
                     </Grid>
                 </Frame>
                 <!---ACCOUNT-->

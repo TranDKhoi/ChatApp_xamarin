@@ -133,7 +133,15 @@ namespace ChatApp_xamarin.ViewModels.Converter
             }
             else
             {
-                DateTime d = DateTime.Parse(time, System.Globalization.CultureInfo.InvariantCulture);
+                DateTime d = new DateTime();
+                if (time.Contains("PM") || time.Contains("AM"))
+                {
+                    d = DateTime.Parse(time, new CultureInfo("en-US", false));
+                }
+                else if (time.Contains("SA") || time.Contains("CH"))
+                {
+                    d = DateTime.Parse(time, new CultureInfo("vi-VN", false));
+                }
                 return d.ToString("hh:mm");
             }
         }
@@ -147,9 +155,18 @@ namespace ChatApp_xamarin.ViewModels.Converter
             }
             else
             {
-                DateTime d = DateTime.Parse(time);
+                DateTime d = new DateTime();
+                if (time.Contains("PM") || time.Contains("AM"))
+                {
+                    d = DateTime.Parse(time, new CultureInfo("en-US", false));
+                }
+                else if (time.Contains("SA") || time.Contains("CH"))
+                {
+                    d = DateTime.Parse(time, new CultureInfo("vi-VN", false));
+                }
                 return d.ToString("hh:mm");
             }
         }
     }
+
 }
