@@ -64,6 +64,12 @@ namespace ChatApp_xamarin.ViewModels
         {
             if (item is null) return;
 
+            //nếu như đây là room mới
+            if (item.lastMessage is null) return;
+
+            //nếu đây là các room cũ
+            if (string.Compare(item.lastMessage.createdAt, DateTime.Now.ToString()) < 0) return;
+
             if (isFirstTime)
             {
                 isFirstTime = false;

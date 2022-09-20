@@ -41,9 +41,6 @@ namespace ChatApp_xamarin.Views.Chat
             }
             var bottomVM = Application.Current.Resources["BottomVM"] as BottomBarViewModel;
             bottomVM.SubscribeToConversationCM.Execute(null);
-
-            var cvVM = (ConversationViewModel)this.BindingContext;
-            cvVM.GetAllConversation.Execute(null);
         }
     }
 }

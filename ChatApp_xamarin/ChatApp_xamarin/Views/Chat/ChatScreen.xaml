@@ -186,7 +186,12 @@
                        Text="&#xe163;"
                        Margin="5, 0, 10, 0"
                        VerticalOptions="Center"
-                       x:Name="SendIcon"></Label>
+                       x:Name="SendIcon">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding SendMessageCM}" 
+                                              CommandParameter="{x:Reference MessageList}"/>
+                    </Label.GestureRecognizers>
+                </Label>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

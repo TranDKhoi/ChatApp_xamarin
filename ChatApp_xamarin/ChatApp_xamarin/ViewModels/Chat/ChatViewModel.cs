@@ -61,6 +61,9 @@ namespace ChatApp_xamarin.ViewModels.Chat
                 CurrentRoom = null;
                 ListMessage = null;
                 await Application.Current.MainPage.Navigation.PopAsync();
+                var converVM = Application.Current.Resources["ConversationVM"] as ConversationViewModel;
+
+                converVM.GetAllConversation.Execute(null);
             });
             SendMessageCM = new Command(async (p) =>
             {
