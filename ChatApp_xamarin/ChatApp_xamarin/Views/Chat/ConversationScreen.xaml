@@ -57,13 +57,16 @@
                                   Margin="0, 0, 10, 0">
                                 <Frame CornerRadius="120"
                                        HeightRequest="50"
+                                       WidthRequest="50"
                                        Padding="0"
                                        HorizontalOptions="Center"
                                        IsClippedToBounds="True"
                                        VerticalOptions="Center">
                                     <Image Source="{Binding .,Converter={StaticResource roomAvatarCVT}}"
                                            VerticalOptions="Center"
-                                           HorizontalOptions="Center" />
+                                           HorizontalOptions="Center" 
+                                           HeightRequest="50"
+                                           WidthRequest="50"/>
                                 </Frame>
                                 <Frame BackgroundColor="{Binding member, Converter={StaticResource isOnlineRoomCVT}}"
                                        HeightRequest="15"

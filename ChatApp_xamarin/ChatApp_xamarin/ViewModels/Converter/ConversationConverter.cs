@@ -133,7 +133,7 @@ namespace ChatApp_xamarin.ViewModels.Converter
             }
             else
             {
-                DateTime d = DateTime.Parse(time);
+                DateTime d = DateTime.Parse(time, System.Globalization.CultureInfo.InvariantCulture);
                 return d.ToString("hh:mm");
             }
         }

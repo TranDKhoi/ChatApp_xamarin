@@ -14,14 +14,15 @@
                        WidthRequest="130"
                        HeightRequest="130"
                        HorizontalOptions="Center"
-                       IsClippedToBounds="True"
                        Padding="0">
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding PickAvatarCM}" />
                     </Frame.GestureRecognizers>
                     <Image Source="{Binding CurrentUser.avatar}"
                            HorizontalOptions="Center"
-                           VerticalOptions="Center" />
+                           VerticalOptions="Center"
+                           WidthRequest="130"
+                           HeightRequest="130" />
                 </Frame>
                 <Label Text="{Binding CurrentUser.name}"
                        FontSize="30"
