@@ -79,6 +79,7 @@ namespace ChatApp_xamarin.ViewModels.Chat
                         currentMessage = null;
                         if (ListMessage.Count == 0) return;
                         collectionView.ScrollTo(ListMessage.Last(), null, ScrollToPosition.End, true);
+                        return;
                     }
                 }
                 catch (Exception e)

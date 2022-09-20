@@ -82,6 +82,7 @@
                            Margin="0,0,20,0"
                            HorizontalOptions="End"
                            Grid.Column="1" />
+
                 </Grid>
             </DataTemplate>
             <DataTemplate x:Key="ReceiveImage">
@@ -91,10 +92,21 @@
                         <ColumnDefinition Width="4*" />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <Image Source="{Binding sender.avatar}"
+                    <Frame CornerRadius="120"
+                           HeightRequest="30"
+                           WidthRequest="30"
+                           Padding="0"
+                           HorizontalOptions="Center"
+                           IsClippedToBounds="True"
                            VerticalOptions="Center"
-                           Grid.Column="0"
-                           HorizontalOptions="Center" />
+                           Grid.Column="0">
+                        <Image Source="{Binding sender.avatar}"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center"
+                               HeightRequest="30"
+                               WidthRequest="30" />
+                    </Frame>
+
                     <Image Source="{Binding image}"
                            Grid.Column="1"
                            HorizontalOptions="Start" />
