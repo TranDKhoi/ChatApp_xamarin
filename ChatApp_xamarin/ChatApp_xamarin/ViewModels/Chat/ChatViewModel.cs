@@ -43,6 +43,7 @@ namespace ChatApp_xamarin.ViewModels.Chat
         }
 
         public IDisposable messageListener;
+        public CollectionView collectionView { get; set; }
 
 
         public ChatViewModel()
@@ -50,7 +51,7 @@ namespace ChatApp_xamarin.ViewModels.Chat
             InitCM = new Command((p) =>
             {
                 currentMessage = "";
-                CollectionView collectionView = p as CollectionView;
+                collectionView = p as CollectionView;
                 ListMessage = new ObservableCollection<Message>();
                 SubscribeMessageChange.Execute(null);
                 if (ListMessage.Count == 0) return;
@@ -142,7 +143,7 @@ namespace ChatApp_xamarin.ViewModels.Chat
             {
                 mess.sender = CurrentRoom.member.Where(i => i.id == mess.senderId).First();
                 ListMessage.Add(mess);
-
+                collectionView.ScrollTo(ListMessage.Last(), null, ScrollToPosition.End, true);
             }
             catch (Exception e)
             {

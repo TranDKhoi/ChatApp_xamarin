@@ -9,6 +9,7 @@
         <cvt:RoomNameConverter x:Key="roomNameCVT" />
         <cvt:RoomAvatarConverter x:Key="roomAvatarCVT" />
         <cvt:IsOnlineRoomConverter x:Key="isOnlineRoomCVT" />
+        <cvt:TimeToStringConverter x:Key="timeStringCVT" />
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout Padding="20">
@@ -87,7 +88,7 @@
                                            TextColor="{AppThemeBinding Light=#080808, Dark=#b4b4b4}"
                                            FontSize="15"
                                            MaxLines="1" />
-                                    <Label Text="{Binding lastMessage.createdAt,StringFormat=hh\\:mm}"
+                                    <Label Text="{Binding lastMessage.createdAt,Converter={StaticResource timeStringCVT}}"
                                            TextColor="{AppThemeBinding Light=#080808, Dark=#b4b4b4}"
                                            FontSize="15"
                                            MaxLines="1"

@@ -121,4 +121,35 @@ namespace ChatApp_xamarin.ViewModels.Converter
             return Color.Gray;
         }
     }
+
+    public class TimeToStringConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            string time = value as string;
+            if (string.IsNullOrEmpty(time))
+            {
+                return "";
+            }
+            else
+            {
+                DateTime d = DateTime.Parse(time);
+                return d.ToString("hh:mm");
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            string time = value as string;
+            if (string.IsNullOrEmpty(time))
+            {
+                return "";
+            }
+            else
+            {
+                DateTime d = DateTime.Parse(time);
+                return d.ToString("hh:mm");
+            }
+        }
+    }
 }
