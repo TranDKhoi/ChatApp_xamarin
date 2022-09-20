@@ -60,8 +60,6 @@ namespace ChatApp_xamarin.Services
                     if (u != null)
                         listCv[i].member.Add(u);
                 }
-                //fetch last message of this room
-                listCv[i].lastMessage = await MessageService.ins.GetLastMessage(listCv[i].id);
             }
 
             //retrieve name for room

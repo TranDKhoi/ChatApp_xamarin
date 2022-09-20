@@ -136,12 +136,13 @@ namespace ChatApp_xamarin.ViewModels.Chat
             });
         }
 
-        private async void AddMoreMessage(Message mess)
+        private void AddMoreMessage(Message mess)
         {
             try
             {
-                mess.sender = await UserService.ins.GetUserById(mess.senderId);
+                mess.sender = CurrentRoom.member.Where(i => i.id == mess.senderId).First();
                 ListMessage.Add(mess);
+
             }
             catch (Exception e)
             {

@@ -63,7 +63,7 @@ namespace ChatApp_xamarin.Services
             var json = JsonConvert.SerializeObject(newMess);
             var res = await _client.Child($"messages/{roomID}").PostAsync(json);
 
-            await ConversationService.ins.UpdateLastMessage(roomID, newMess);
+            await ConversationService.ins.UpdateLastMessage(roomID, JsonConvert.DeserializeObject<Message>(res.Object));
         }
 
         public async Task SendImage(string roomId, MediaFile file)
@@ -96,8 +96,8 @@ namespace ChatApp_xamarin.Services
             var listIdQueried = new List<string>();
             foreach (var mess in res)
             {
-                if (listIdQueried.Contains(mess.senderId)) continue;
-                mess.sender = await UserService.ins.GetUserById(mess.senderId);
+                if (!listIdQueried.Contains(mess.senderId))
+                    mess.sender = await UserService.ins.GetUserById(mess.senderId);
             }
             return res;
         }

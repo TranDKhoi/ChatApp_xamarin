@@ -87,7 +87,7 @@
                                            TextColor="{AppThemeBinding Light=#080808, Dark=#b4b4b4}"
                                            FontSize="15"
                                            MaxLines="1" />
-                                    <Label Text="{Binding lastMessage.createdAt}"
+                                    <Label Text="{Binding lastMessage.createdAt,StringFormat=hh\\:mm}"
                                            TextColor="{AppThemeBinding Light=#080808, Dark=#b4b4b4}"
                                            FontSize="15"
                                            MaxLines="1"
