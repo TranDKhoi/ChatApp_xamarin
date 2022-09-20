@@ -11,6 +11,7 @@
     <ContentPage.Content>
         <StackLayout>
             <Label Text="{i18l:Translate enteryourverificationcode}"
+                   TextColor="{AppThemeBinding Dark=white,Light=black}"
                    FontSize="50" />
             <StackLayout VerticalOptions="CenterAndExpand">
                 <Entry x:Name="codeField"
@@ -19,6 +20,7 @@
                        CharacterSpacing="20"
                        HorizontalTextAlignment="Center"
                        MaxLength="5"
+                       TextColor="{AppThemeBinding Dark=white,Light=black}"
                        FontSize="30"
                        PlaceholderColor="{StaticResource primaryColor}" />
                 <Button Text="{i18l:Translate verify}"
@@ -30,6 +32,7 @@
                         BackgroundColor="{StaticResource primaryColor}" />
                 <Label Text="{i18l:Translate donthaveanycode}"
                        HorizontalOptions="Center"
+                       TextColor="{AppThemeBinding Dark=white,Light=black}"
                        Margin="0,50,0,0">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding PopToForgotPassScreenClickCM}" />

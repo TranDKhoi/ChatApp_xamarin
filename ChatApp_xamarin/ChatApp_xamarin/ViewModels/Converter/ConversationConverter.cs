@@ -6,6 +6,7 @@ using System.Text;
 using Xamarin.Forms;
 using System.Linq;
 using ChatApp_xamarin.Utils;
+using ChatApp_xamarin.Resources;
 
 namespace ChatApp_xamarin.ViewModels.Converter
 {
@@ -169,4 +170,26 @@ namespace ChatApp_xamarin.ViewModels.Converter
         }
     }
 
+    public class LassMessageConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            Message message = value as Message;
+            if (message.message != null)
+                return message.message;
+            if (message.image != null)
+                return AppResources.newimage;
+            return "";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            Message message = value as Message;
+            if (message.message != null)
+                return message.message;
+            if (message.image != null)
+                return AppResources.newimage;
+            return "";
+        }
+    }
 }

@@ -73,24 +73,37 @@
                 </Grid>
             </DataTemplate>
             <DataTemplate x:Key="SendImage">
-                <Grid Padding="0, 10, 0, 10">
+                <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition Width="4*" />
-                        <ColumnDefinition Width="10" />
+                        <ColumnDefinition Width="3*" />
+                        <ColumnDefinition Width="7*" />
                     </Grid.ColumnDefinitions>
-                    <Frame Grid.Column="1"
-                           Padding="5"
-                           CornerRadius="10"
-                           Margin="0, 0, 0, 0"
-                           HorizontalOptions="End">
-                        <Image Source="{Binding image}" />
-                    </Frame>
+                    <Image Source="{Binding image}"
+                           Margin="0,0,20,0"
+                           HorizontalOptions="End"
+                           Grid.Column="1" />
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="ReceiveImage">
+                <Grid Padding="10, 10, 0, 10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30" />
+                        <ColumnDefinition Width="4*" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Image Source="{Binding sender.avatar}"
+                           VerticalOptions="Center"
+                           Grid.Column="0"
+                           HorizontalOptions="Center" />
+                    <Image Source="{Binding image}"
+                           Grid.Column="1"
+                           HorizontalOptions="Start" />
                 </Grid>
             </DataTemplate>
             <chatVM:MessageItemTemplateSelector ReceiveTemplate="{StaticResource Receive}"
                                                 SendTemplate="{StaticResource Send}"
                                                 SendImageTemplate="{StaticResource SendImage}"
+                                                ReceiveImageTemplate="{StaticResource ReceiveImage}"
                                                 x:Key="messageItemSelector" />
         </ResourceDictionary>
         <cvt:RoomAvatarConverter x:Key="roomAvatarCVT" />
@@ -162,7 +175,11 @@
                        FontSize="25"
                        Text="&#xe412;"
                        Margin="5, 0, 10, 0"
-                       VerticalOptions="Center"></Label>
+                       VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding TakePhotoCM}" />
+                    </Label.GestureRecognizers>
+                </Label>
                 <Label FontFamily="Material"
                        TextColor="{AppThemeBinding Light=#0080ff, Dark=#a20deb}"
                        FontSize="25"

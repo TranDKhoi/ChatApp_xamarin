@@ -286,6 +286,15 @@ namespace ChatApp_xamarin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New image.
+        /// </summary>
+        internal static string newimage {
+            get {
+                return ResourceManager.GetString("newimage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New password.
         /// </summary>
         internal static string newpass {

@@ -14,10 +14,12 @@
                 <Image Source="logo.png" />
                 <Entry Placeholder="{i18n:Translate youremail}"
                        Text="{Binding Email, Mode=OneWayToSource}"
+                       TextColor="{AppThemeBinding Dark=white,Light=black}"
                        BackgroundColor="{AppThemeBinding Light=White,Dark=#242526}"
                        PlaceholderColor="{StaticResource primaryColor}" />
                 <Entry Placeholder="{i18n:Translate password}"
                        Text="{Binding Password, Mode=OneWayToSource}"
+                       TextColor="{AppThemeBinding Dark=white,Light=black}"
                        IsPassword="True"
                        BackgroundColor="{AppThemeBinding Light=White,Dark=#242526}"
                        PlaceholderColor="{StaticResource primaryColor}"></Entry>
@@ -35,6 +37,7 @@
                         Command="{Binding SignUpClickCM}" />
                 <Label Text="{i18n:Translate forgotpass}"
                        FontSize="18"
+                       TextColor="{AppThemeBinding Dark=white,Light=black}"
                        HorizontalOptions="Center"
                        Margin="0,20,0,0">
                     <Label.GestureRecognizers>

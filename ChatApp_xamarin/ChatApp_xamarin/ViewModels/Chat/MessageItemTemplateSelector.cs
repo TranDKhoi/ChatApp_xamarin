@@ -13,23 +13,24 @@ namespace ChatApp_xamarin.ViewModels.Chat
         public DataTemplate ReceiveTemplate { get; set; }
         public DataTemplate SendTemplate { get; set; }
         public DataTemplate SendImageTemplate { get; set; }
+        public DataTemplate ReceiveImageTemplate { get; set; }
 
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
         {
             if (item == null) return null;
             Message messageItem = item as Message;
-            if (messageItem.image != null)
+
+            if (messageItem.senderId != GlobalData.ins.currentUser.id)
             {
-                return SendImageTemplate;
+                if (messageItem.message != null)
+                    return ReceiveTemplate;
+                return ReceiveImageTemplate;
             }
-            else
-            {
-                if (messageItem.senderId == GlobalData.ins.currentUser.id)
-                {
-                    return SendTemplate;
-                }
-                return ReceiveTemplate;
-            }
+
+            if (messageItem.message != null)
+                return SendTemplate;
+            return SendImageTemplate;
+
         }
     }
 }

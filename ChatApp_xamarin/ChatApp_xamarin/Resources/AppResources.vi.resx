@@ -192,6 +192,9 @@
   <data name="memberalreadyexisted" xml:space="preserve">
     <value>Thành viên đã tồn tại</value>
   </data>
+  <data name="newimage" xml:space="preserve">
+    <value>Hình ảnh mới</value>
+  </data>
   <data name="newpass" xml:space="preserve">
     <value>Mật khẩu mới</value>
   </data>

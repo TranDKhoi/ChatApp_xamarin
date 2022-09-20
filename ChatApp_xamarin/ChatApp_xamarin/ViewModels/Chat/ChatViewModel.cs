@@ -2,6 +2,7 @@
 using ChatApp_xamarin.Services;
 using ChatApp_xamarin.Views.Group;
 using Plugin.Media;
+using Plugin.Media.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -17,6 +18,7 @@ namespace ChatApp_xamarin.ViewModels.Chat
         public ICommand BackCM { get; set; }
         public ICommand SendMessageCM { get; set; }
         public ICommand PickPhotoCM { get; set; }
+        public ICommand TakePhotoCM { get; set; }
         public ICommand SubscribeMessageChange { get; set; }
         public ICommand OpenGroupScreenVM { get; set; }
         public ICommand PickAvatarForGroupCM { get; set; }
@@ -90,9 +92,9 @@ namespace ChatApp_xamarin.ViewModels.Chat
                 {
                     //pick image
                     await CrossMedia.Current.Initialize();
-                    var file = await CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
+                    var file = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions
                     {
-                        PhotoSize = Plugin.Media.Abstractions.PhotoSize.Medium
+                        PhotoSize = PhotoSize.Medium
                     });
 
                     if (file == null)
@@ -134,6 +136,20 @@ namespace ChatApp_xamarin.ViewModels.Chat
 
                 var link = await ConversationService.ins.UpdateRoomAvatar(CurrentRoom.id, file);
                 CurrentRoom.avatar = link;
+            });
+            TakePhotoCM = new Command(async () =>
+            {
+                MediaFile photo = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
+                {
+                    DefaultCamera = CameraDevice.Rear,
+                    Name = null,
+                    CompressionQuality = 100
+                });
+                if (photo == null)
+                    return;
+
+                await MessageService.ins.SendImage(CurrentRoom.id, photo);
+                InitCM.Execute(null);
             });
         }
 
