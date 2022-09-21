@@ -208,7 +208,7 @@
                        Padding="0"
                        CornerRadius="20"
                        BackgroundColor="{AppThemeBinding Light=#f2f3f5, Dark=#333333}">
-                    <Entry Placeholder="{i18n:Translate texting}"
+                    <Editor Placeholder="{i18n:Translate texting}"
                            Text="{Binding currentMessage}"
                            TextColor="{AppThemeBinding Light=#797979, Dark=#8b8b8b}"
                            PlaceholderColor="{AppThemeBinding Light=#797979, Dark=#8b8b8b}"
@@ -216,10 +216,10 @@
                            HorizontalOptions="FillAndExpand"
                            VerticalOptions="Center"
                            Margin="15, 0, 15, 0">
-                        <Entry.Effects>
+                        <Editor.Effects>
                             <effects:PlainEntry />
-                        </Entry.Effects>
-                    </Entry>
+                        </Editor.Effects>
+                    </Editor>
                 </Frame>
                 <Label FontFamily="Material"
                        TextColor="{AppThemeBinding Light=#0080ff, Dark=#a20deb}"
