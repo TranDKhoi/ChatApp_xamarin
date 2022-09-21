@@ -49,19 +49,15 @@ namespace ChatApp_xamarin.ViewModels.Chat
         }
 
         public IDisposable messageListener;
-        public CollectionView collectionView { get; set; }
 
 
         public ChatViewModel()
         {
-            InitCM = new Command((p) =>
+            InitCM = new Command(() =>
             {
                 currentMessage = "";
-                collectionView = p as CollectionView;
                 ListMessage = new ObservableCollection<Message>();
                 SubscribeMessageChange.Execute(null);
-                if (ListMessage.Count == 0) return;
-                collectionView.ScrollTo(ListMessage.Last(), null, ScrollToPosition.End, true);
             });
             BackCM = new Command(async () =>
             {
@@ -72,18 +68,14 @@ namespace ChatApp_xamarin.ViewModels.Chat
 
                 converVM.GetAllConversation.Execute(null);
             });
-            SendMessageCM = new Command(async (p) =>
+            SendMessageCM = new Command(async () =>
             {
                 try
                 {
                     if (currentMessage != null)
                     {
-                        CollectionView collectionView = p as CollectionView;
                         await MessageService.ins.SendMessage(currentMessage.Trim(), CurrentRoom.id);
                         currentMessage = null;
-                        if (ListMessage.Count == 0) return;
-                        collectionView.ScrollTo(ListMessage.Last(), null, ScrollToPosition.End, true);
-                        return;
                     }
                 }
                 catch (Exception e)
@@ -181,11 +173,8 @@ namespace ChatApp_xamarin.ViewModels.Chat
         {
             try
             {
-
-
                 mess.sender = CurrentRoom.member.Where(i => i.id == mess.senderId).First();
                 ListMessage.Add(mess);
-                collectionView.ScrollTo(ListMessage.Last(), null, ScrollToPosition.End, true);
                 updateLastMessage();
             }
             catch (Exception e)

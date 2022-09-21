@@ -15,7 +15,7 @@ namespace ChatApp_xamarin.Views.Chat
         protected override void OnAppearing()
         {
             var viewModel = (ChatViewModel)this.BindingContext;
-            viewModel.InitCM.Execute(MessageList);
+            viewModel.InitCM.Execute(null);
         }
         protected override void OnDisappearing()
         {

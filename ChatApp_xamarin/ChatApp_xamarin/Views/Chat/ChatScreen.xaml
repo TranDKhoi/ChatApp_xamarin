@@ -82,7 +82,6 @@
                            Margin="0,0,20,0"
                            HorizontalOptions="End"
                            Grid.Column="1" />
-
                 </Grid>
             </DataTemplate>
             <DataTemplate x:Key="ReceiveImage">
@@ -106,7 +105,6 @@
                                HeightRequest="30"
                                WidthRequest="30" />
                     </Frame>
-
                     <Image Source="{Binding image}"
                            Grid.Column="1"
                            HorizontalOptions="Start" />
@@ -160,7 +158,7 @@
                        HorizontalOptions="StartAndExpand"
                        VerticalOptions="Center">
                     <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding ChangeGroupNameCM}"/>
+                        <TapGestureRecognizer Command="{Binding ChangeGroupNameCM}" />
                     </Label.GestureRecognizers>
                 </Label>
                 <Frame CornerRadius="90"
@@ -181,7 +179,7 @@
             </StackLayout>
             <CollectionView ItemsSource="{Binding ListMessage}"
                             ItemTemplate="{StaticResource messageItemSelector}"
-                            x:Name="MessageList" />
+                            ItemsUpdatingScrollMode="KeepLastItemInView" />
             <StackLayout Orientation="Horizontal"
                          HorizontalOptions="Fill"
                          Padding="10"
@@ -231,8 +229,7 @@
                        VerticalOptions="Center"
                        x:Name="SendIcon">
                     <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding SendMessageCM}"
-                                              CommandParameter="{x:Reference MessageList}" />
+                        <TapGestureRecognizer Command="{Binding SendMessageCM}" />
                     </Label.GestureRecognizers>
                 </Label>
             </StackLayout>
