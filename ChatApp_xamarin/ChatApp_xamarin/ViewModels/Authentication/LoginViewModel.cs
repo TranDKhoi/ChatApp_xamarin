@@ -1,22 +1,16 @@
 ﻿using Acr.UserDialogs;
-using ChatApp_xamarin.Resources;
-using ChatApp_xamarin.Views.Authentication.ForgotPass;
-
-using System.Windows.Input;
-using Xamarin.Forms;
-using ChatApp_xamarin.Views.Authentication.SignUpScreen;
-using ChatApp_xamarin.Services;
 using ChatApp_xamarin.Models;
+using ChatApp_xamarin.Resources;
+using ChatApp_xamarin.Services;
 using ChatApp_xamarin.Utils;
+using ChatApp_xamarin.Views.Authentication.ForgotPass;
+using ChatApp_xamarin.Views.Authentication.SignUpScreen;
 using ChatApp_xamarin.Views.BottomBarCustom;
-using Firebase.Database;
-using Xamarin.Essentials;
-using System.Reactive.Linq;
 using System.Collections.Generic;
-using System;
-using Plugin.LocalNotification;
-using Plugin.LocalNotification.iOSOption;
-using Plugin.LocalNotification.AndroidOption;
+using System.Reactive.Linq;
+using System.Windows.Input;
+using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace ChatApp_xamarin.ViewModels.Authentication
 {

@@ -1,9 +1,5 @@
 ﻿using ChatApp_xamarin.Models;
 using ChatApp_xamarin.Utils;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
 using Xamarin.Forms;
 
 namespace ChatApp_xamarin.ViewModels.Chat

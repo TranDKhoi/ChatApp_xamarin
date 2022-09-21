@@ -1,16 +1,8 @@
-﻿using Azure.Core;
-using Azure.Storage.Blobs;
-using ChatApp_xamarin.Models;
-using ChatApp_xamarin.Utils;
-using Firebase.Database;
+﻿using ChatApp_xamarin.Utils;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
 using Plugin.Media.Abstractions;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using File = System.IO.File;
 

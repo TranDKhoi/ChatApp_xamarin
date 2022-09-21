@@ -11,6 +11,8 @@
         <cvt:IsOnlineRoomConverter x:Key="isOnlineRoomCVT" />
         <cvt:TimeToStringConverter x:Key="timeStringCVT" />
         <cvt:LassMessageConverter x:Key="lassMessCVT" />
+        <cvt:IsSeenConverter x:Key="isSeenCVT" />
+        <cvt:IsSeenToVisibleConverter x:Key="isSeenToVisibleCVT" />
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout Padding="20">
@@ -90,16 +92,24 @@
                                         <ColumnDefinition />
                                     </Grid.ColumnDefinitions>
                                     <Label Text="{Binding lastMessage, Converter={StaticResource lassMessCVT}}"
-                                           TextColor="{AppThemeBinding Light=#080808, Dark=#b4b4b4}"
+                                           TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                            FontSize="15"
-                                           MaxLines="1" 
-                                           HorizontalOptions="FillAndExpand"/>
-                                    <Label Text="{Binding lastMessage.createdAt,Converter={StaticResource timeStringCVT}}"
-                                           TextColor="{AppThemeBinding Light=#080808, Dark=#b4b4b4}"
-                                           FontSize="15"
+                                           FontAttributes="{Binding isSeen, Converter={StaticResource isSeenCVT}}"
                                            MaxLines="1"
-                                           Grid.Column="1" 
-                                           HorizontalTextAlignment="End"/>
+                                           HorizontalOptions="FillAndExpand" />
+                                    <StackLayout  Grid.Column="1"
+                                                  Orientation="Horizontal">
+                                        <Label FontFamily="Material"
+                                               TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                                               FontSize="15"
+                                               Text="&#xe061;"
+                                               VerticalOptions="Center"
+                                               IsVisible="{Binding isSeen, Converter={StaticResource isSeenToVisibleCVT}}" />
+                                        <Label Text="{Binding lastMessage.createdAt,Converter={StaticResource timeStringCVT}}"
+                                               TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                                               FontSize="15"
+                                               MaxLines="1" />
+                                    </StackLayout>
                                 </Grid>
                             </StackLayout>
                         </StackLayout>

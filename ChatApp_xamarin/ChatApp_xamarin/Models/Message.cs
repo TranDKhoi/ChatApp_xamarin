@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ChatApp_xamarin.Models
+﻿namespace ChatApp_xamarin.Models
 {
     public class Message
     {

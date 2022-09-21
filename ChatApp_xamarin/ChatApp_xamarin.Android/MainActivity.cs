@@ -1,18 +1,17 @@
-﻿using System;
+﻿using Acr.UserDialogs;
 using Android.App;
+using Android.Content;
 using Android.Content.PM;
-
-using Android.Runtime;
+using Android.Content.Res;
 using Android.OS;
-using Acr.UserDialogs;
+using Android.Runtime;
+using ChatApp_xamarin.Droid;
 using Plugin.LocalNotification;
 using Plugin.LocalNotification.AndroidOption;
-using Android.Content;
-using Android.Content.Res;
+using System;
 using System.ComponentModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
-using ChatApp_xamarin.Droid;
 
 [assembly: ResolutionGroupName("PlainEntryGroup")]
 [assembly: ExportEffect(typeof(AndroidPlainEntryEffect), "PlainEntryEffect")]
@@ -29,7 +28,7 @@ using ChatApp_xamarin.Droid;
 namespace ChatApp_xamarin.Droid
 {
     [Activity(Label = "ChatApp_xamarin", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize)]
-    
+
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)

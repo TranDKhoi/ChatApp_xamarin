@@ -1,5 +1,4 @@
 ﻿using ChatApp_xamarin.Models;
-using ChatApp_xamarin.Resources;
 using ChatApp_xamarin.Utils;
 using Firebase.Database;
 using Firebase.Database.Streaming;

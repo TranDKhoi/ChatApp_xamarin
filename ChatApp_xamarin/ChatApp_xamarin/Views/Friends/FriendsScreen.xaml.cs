@@ -1,14 +1,8 @@
 ﻿using ChatApp_xamarin.Models;
 using ChatApp_xamarin.Services;
 using ChatApp_xamarin.Utils;
-using ChatApp_xamarin.ViewModels.Chat;
 using ChatApp_xamarin.ViewModels.Friends;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;

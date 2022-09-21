@@ -1,12 +1,11 @@
 ﻿using ChatApp_xamarin.Models;
+using ChatApp_xamarin.Resources;
+using ChatApp_xamarin.Utils;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Text;
-using Xamarin.Forms;
 using System.Linq;
-using ChatApp_xamarin.Utils;
-using ChatApp_xamarin.Resources;
+using Xamarin.Forms;
 
 namespace ChatApp_xamarin.ViewModels.Converter
 {
@@ -175,6 +174,9 @@ namespace ChatApp_xamarin.ViewModels.Converter
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             Message message = value as Message;
+
+            if (message is null) return "";
+
             if (message.message != null)
                 return message.message;
             if (message.image != null)
@@ -185,11 +187,58 @@ namespace ChatApp_xamarin.ViewModels.Converter
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             Message message = value as Message;
+
+            if (message is null) return "";
+
             if (message.message != null)
                 return message.message;
             if (message.image != null)
                 return AppResources.newimage;
             return "";
+        }
+    }
+    public class IsSeenConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            List<string> listId = value as List<string>;
+            if (listId == null)
+                return FontAttributes.Bold;
+            if (!listId.Contains(GlobalData.ins.currentUser.id))
+                return FontAttributes.Bold;
+            return FontAttributes.None;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            List<string> listId = value as List<string>;
+            if (listId == null)
+                return FontAttributes.Bold;
+            if (!listId.Contains(GlobalData.ins.currentUser.id))
+                return FontAttributes.Bold;
+            return FontAttributes.None;
+        }
+    }
+    public class IsSeenToVisibleConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            List<string> listId = value as List<string>;
+            if (listId == null)
+                return true;
+            if (!listId.Contains(GlobalData.ins.currentUser.id))
+                return true;
+            return false;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            List<string> listId = value as List<string>;
+            if (listId == null)
+                return true;
+            if (!listId.Contains(GlobalData.ins.currentUser.id))
+                return true;
+            return false;
         }
     }
 }

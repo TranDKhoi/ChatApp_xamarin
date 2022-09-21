@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
 
 namespace ChatApp_xamarin.ViewModels
 {
-    public class BaseViewModel: INotifyPropertyChanged 
+    public class BaseViewModel : INotifyPropertyChanged
     {
         protected BaseViewModel()
         {

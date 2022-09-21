@@ -10,7 +10,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
-using System.Xml;
 
 namespace ChatApp_xamarin.Services
 {
@@ -174,6 +173,10 @@ namespace ChatApp_xamarin.Services
 
             room.lastMessage = lassmess;
             room.lastUpdate = DateTime.Now.ToString();
+
+            room.isSeen = new List<string>();
+            room.isSeen.Add(GlobalData.ins.currentUser.id);
+
             await _client.Child($"rooms/{roomId}").PatchAsync(JsonConvert.SerializeObject(room));
         }
 

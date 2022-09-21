@@ -1,15 +1,9 @@
 ﻿using ChatApp_xamarin.Models;
 using ChatApp_xamarin.Services;
 using ChatApp_xamarin.Utils;
-using ChatApp_xamarin.Views.Authentication.ForgotPass;
 using ChatApp_xamarin.Views.Chat;
-using ChatApp_xamarin.Views.Group;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using System.Windows.Input;
-using Xamarin.CommunityToolkit.UI.Views;
 using Xamarin.Forms;
 
 namespace ChatApp_xamarin.ViewModels.Chat

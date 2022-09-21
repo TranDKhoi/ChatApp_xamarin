@@ -1,14 +1,8 @@
-﻿using Acr.UserDialogs;
-using ChatApp_xamarin.Models;
-using ChatApp_xamarin.Services;
+﻿using ChatApp_xamarin.Services;
 using ChatApp_xamarin.Utils;
-using ChatApp_xamarin.Views;
 using ChatApp_xamarin.Views.Authentication.LoginScreen;
-using ChatApp_xamarin.Views.Authentication.SignUpScreen;
 using ChatApp_xamarin.Views.BottomBarCustom;
-using ChatApp_xamarin.Views.Chat;
 using Plugin.Multilingual;
-using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -36,7 +30,6 @@ namespace ChatApp_xamarin
             //get silent mode
             var isSilent = Preferences.Get("isSilent", false);
             GlobalData.ins.isSilentMode = isSilent;
-
 
             //get user login state
             var id = Preferences.Get("currentUser", null);
@@ -68,7 +61,7 @@ namespace ChatApp_xamarin
             var id = Preferences.Get("currentUser", null);
 
             if (id != null)
-               await AuthService.ins.Online(id);
+                await AuthService.ins.Online(id);
         }
     }
 }

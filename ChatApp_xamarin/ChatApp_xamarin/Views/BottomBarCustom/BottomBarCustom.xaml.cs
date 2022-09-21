@@ -1,5 +1,4 @@
-﻿using ChatApp_xamarin.ViewModels;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace ChatApp_xamarin.Views.BottomBarCustom

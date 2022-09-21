@@ -2,14 +2,14 @@
 using ChatApp_xamarin.Services;
 using ChatApp_xamarin.Utils;
 using ChatApp_xamarin.ViewModels.Chat;
-using Plugin.LocalNotification.AndroidOption;
+using Firebase.Database.Streaming;
 using Plugin.LocalNotification;
+using Plugin.LocalNotification.AndroidOption;
 using System;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
-using System.Threading.Tasks;
-using Firebase.Database.Streaming;
-using System.Linq;
 
 namespace ChatApp_xamarin.ViewModels
 {

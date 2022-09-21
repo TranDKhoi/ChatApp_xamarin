@@ -1,17 +1,15 @@
-﻿using ChatApp_xamarin.Models;
+﻿using Acr.UserDialogs;
+using ChatApp_xamarin.Models;
+using ChatApp_xamarin.Resources;
 using ChatApp_xamarin.Services;
 using ChatApp_xamarin.Utils;
+using ChatApp_xamarin.ViewModels.Chat;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
+using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
-using System.Linq;
-using ChatApp_xamarin.ViewModels.Chat;
-using Plugin.Media.Abstractions;
-using Acr.UserDialogs;
-using ChatApp_xamarin.Resources;
 
 namespace ChatApp_xamarin.ViewModels.Group
 {

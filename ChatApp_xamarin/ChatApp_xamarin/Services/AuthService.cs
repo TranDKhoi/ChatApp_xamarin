@@ -1,14 +1,14 @@
 ﻿using ChatApp_xamarin.Models;
-using Newtonsoft.Json;
-using System;
-using System.Text;
-using System.Threading.Tasks;
-using System.Linq;
 using ChatApp_xamarin.Resources;
-using System.Net.Mail;
-using System.Net;
 using ChatApp_xamarin.Utils;
 using Firebase.Database;
+using Newtonsoft.Json;
+using System;
+using System.Linq;
+using System.Net;
+using System.Net.Mail;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace ChatApp_xamarin.Services
 {

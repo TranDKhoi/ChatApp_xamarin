@@ -1,23 +1,15 @@
 ﻿using Acr.UserDialogs;
-using Azure.Storage.Blobs;
 using ChatApp_xamarin.Models;
 using ChatApp_xamarin.Resources;
 using ChatApp_xamarin.Services;
 using ChatApp_xamarin.Utils;
 using ChatApp_xamarin.Views.Authentication.LoginScreen;
 using ChatApp_xamarin.Views.BottomBarCustom;
-using Microsoft.WindowsAzure.Storage.Blob;
 using Plugin.Media;
 using Plugin.Multilingual;
-using System;
-using System.Diagnostics;
-using System.IO;
-using System.Runtime.InteropServices.ComTypes;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using static System.Net.WebRequestMethods;
 
 namespace ChatApp_xamarin.ViewModels.Setting
 {

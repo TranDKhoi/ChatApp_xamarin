@@ -1,9 +1,4 @@
-﻿using ChatApp_xamarin.Services;
-using ChatApp_xamarin.Utils;
-using ChatApp_xamarin.ViewModels.Setting;
-using ChatApp_xamarin.Views.BottomBarCustom;
-using Plugin.Multilingual;
-using System.Collections.Generic;
+﻿using ChatApp_xamarin.ViewModels.Setting;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;

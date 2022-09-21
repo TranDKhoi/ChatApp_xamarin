@@ -225,6 +225,9 @@
   <data name="resetpasswordsuccessfully" xml:space="preserve">
     <value>Cập nhật mật khẩu thành công</value>
   </data>
+  <data name="save" xml:space="preserve">
+    <value>Lưu</value>
+  </data>
   <data name="search" xml:space="preserve">
     <value>Tìm kiếm</value>
   </data>

@@ -1,5 +1,8 @@
-﻿using ChatApp_xamarin.Models;
+﻿using Acr.UserDialogs;
+using ChatApp_xamarin.Models;
+using ChatApp_xamarin.Resources;
 using ChatApp_xamarin.Services;
+using ChatApp_xamarin.Utils;
 using ChatApp_xamarin.Views.Group;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
@@ -22,6 +25,7 @@ namespace ChatApp_xamarin.ViewModels.Chat
         public ICommand SubscribeMessageChange { get; set; }
         public ICommand OpenGroupScreenVM { get; set; }
         public ICommand PickAvatarForGroupCM { get; set; }
+        public ICommand ChangeGroupNameCM { get; set; }
 
         private String _currentMessage;
         public String currentMessage
@@ -152,19 +156,58 @@ namespace ChatApp_xamarin.ViewModels.Chat
                 await MessageService.ins.SendImage(CurrentRoom.id, photo);
                 InitCM.Execute(null);
             });
+            ChangeGroupNameCM = new Command(async () =>
+            {
+                if (CurrentRoom.memberId.Count == 2) return;
+
+                PromptResult pResult = await UserDialogs.Instance.PromptAsync(new PromptConfig
+                {
+                    InputType = InputType.Name,
+                    OkText = AppResources.save,
+                    Title = AppResources.pleaseentergroupname,
+                    CancelText = AppResources.no,
+
+                });
+                if (pResult.Ok && !string.IsNullOrWhiteSpace(pResult.Text))
+                {
+                    UserDialogs.Instance.ShowLoading();
+                    await ConversationService.ins.UpdateRoomName(CurrentRoom.id, pResult.Text.Trim());
+                    UserDialogs.Instance.HideLoading();
+                }
+            });
         }
 
         private void AddMoreMessage(Message mess)
         {
             try
             {
+
+
                 mess.sender = CurrentRoom.member.Where(i => i.id == mess.senderId).First();
                 ListMessage.Add(mess);
                 collectionView.ScrollTo(ListMessage.Last(), null, ScrollToPosition.End, true);
+                updateLastMessage();
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
+            }
+        }
+        public void updateLastMessage()
+        {
+            var vm = Application.Current.Resources["ChatVM"] as ChatViewModel;
+            if (vm.CurrentRoom.isSeen == null)
+            {
+                vm.CurrentRoom.isSeen = new List<string>();
+                vm.CurrentRoom.isSeen.Add(GlobalData.ins.currentUser.id);
+                ConversationService.ins.SeenLastMessage(vm.CurrentRoom.id);
+                return;
+            }
+            if (!vm.CurrentRoom.isSeen.Contains(GlobalData.ins.currentUser.id))
+            {
+                vm.CurrentRoom.isSeen.Add(GlobalData.ins.currentUser.id);
+                ConversationService.ins.SeenLastMessage(vm.CurrentRoom.id);
+                return;
             }
         }
     }

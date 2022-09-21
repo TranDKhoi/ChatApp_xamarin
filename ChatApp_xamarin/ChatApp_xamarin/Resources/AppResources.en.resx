@@ -225,6 +225,9 @@
   <data name="resetpasswordsuccessfully" xml:space="preserve">
     <value>Reset password successfully</value>
   </data>
+  <data name="save" xml:space="preserve">
+    <value>Save</value>
+  </data>
   <data name="search" xml:space="preserve">
     <value>Search</value>
   </data>
